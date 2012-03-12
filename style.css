@@ -13,13 +13,16 @@ padding:14px;
 /*------------ tableau -------------*/
 /*ajout des flèches vertes*/
 table.tablesorter .header {
-	background: url(css/bg.png) no-repeat;
+	background-image: url(img/bg.png);
+	background-repeat: no-repeat;
+	background-color: #F6AD37;
+	background-position: 5px 10px;
 }
 table.tablesorter .headerSortUp {
-	background: url(css/asc.png) no-repeat;
+	background-image: url(img/asc.png);
 }
 table.tablesorter .headerSortDown {
-	background: url(css/desc.png) no-repeat;
+	background-image: url(img/desc.png);
 }
 table.tableau{
     display: inline;
@@ -29,8 +32,7 @@ table.tableau{
 }
 
 table.tableau th{
-    background-position: 5px 10px;
-	background-color: #F6AD37;
+
 	color: #454545;
 	font-weight: bold;
 	padding: 8px;
