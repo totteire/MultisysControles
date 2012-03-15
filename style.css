@@ -16,7 +16,7 @@ table.tablesorter .header {
 	background-image: url(img/bg.png);
 	background-repeat: no-repeat;
 	background-color: #F6AD37;
-	background-position: 5px 10px;
+	background-position: 5px 12px;
 }
 table.tablesorter .headerSortUp {
 	background-image: url(img/asc.png);
@@ -35,7 +35,7 @@ table.tableau th{
 
 	color: #454545;
 	font-weight: bold;
-	padding: 8px;
+	padding: 8px 20px;
 	border-bottom: 1px solid #FFFFFF;
 	cursor: pointer;
 }
@@ -47,14 +47,17 @@ table.tableau td{
 	padding: 8px;
 	height: 41px;
 }
-table.tableau td.modifCom{
+table.tableau td.modifCell{
 	display: none;
 	-moz-border-radius: 0 10px 10px 0;
 	-webkit-border-radius: 0 10px 10px 0;
 	border-radius: 0 10px 10px 0;
 	border: 1px solid transparent;
 }
-table.tableau tr:hover > td.modifCom{
+table.tableau td img{
+    margin: auto 5px;
+}
+table.tableau tr:hover > td.modifCell{
 	display: table-cell;
 }
 table.tableau tr:hover td{
@@ -74,8 +77,19 @@ table.tableau tr:hover td{
 }
 /*----------- boutton ajout --------*/
 .btAjout{
-    margin: 5% auto auto 10%;
-    position: absolute !important;
+    top: 15%;
+    left: 85%;
+    position: fixed !important;
+}
+/* ----------- messageDiv ----------- */
+#message{
+    display:none;
+    position:fixed;
+    top:50px;
+    left:35%;
+    width:400px;
+    padding:10px;
+    text-align:center;
 }
 /* ----------- stylized ----------- */
 #stylized{
@@ -110,7 +124,7 @@ font-weight:normal;
 text-align:right;
 width:140px;
 }
-#stylized input{
+input{
 float:left;
 font-size:12px;
 padding:4px 2px;

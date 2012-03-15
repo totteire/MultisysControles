@@ -25,7 +25,7 @@
 	</tbody>
 </table>
 
-<div id="dialogCli" class="dialog">
+<div id="dialogApp" class="dialog">
 	<div id="stylized" class="myform">
 		<form id="formClient" class="formulaire">
 			<h1>Nouveau Client</h1>

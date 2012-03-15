@@ -1,7 +1,12 @@
 <?php 
-if ($POST['nom'] && $POST['ad1'] && $POST['adVille'] && $POST['adCP'])
-    $req = mysql_query("INSERT INTO CLIENT VALUES (NULL,'".$POST['nom']."','".$POST['ad1'].$POST['ad2'].".".$POST['adVille']."','".$POST['adCP']."');") or die(mysql_error());
-else
-#    error
-
+include("connect.php");
+if ($_POST['nom'] && $_POST['ad1'] && $_POST['adVille'] && $_POST['adCP']){
+    $req = mysql_query("INSERT INTO CLIENT VALUES (NULL,'".$_POST['nom']."','".$_POST['ad1'].'$'.$_POST['ad2']."','".$_POST['adVille']."','".$_POST['adCP']."');") or die(mysql_error());
+	$return['error'] = false;
+	$return['msg'] = "Le client: ".$_POST['nom']." a bien été enregistré!";
+}else{
+	$return['error'] = true;
+	$return['msg'] = "Le formulaire n'a pas été correctement remplie!";
+}
+echo json_encode($return);
 ?>
