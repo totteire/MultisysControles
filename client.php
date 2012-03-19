@@ -9,18 +9,19 @@
 		$result=mysql_query($req) or die(mysql_error());
 		while($res=mysql_fetch_array($result))
 		{
-		    $res['ADRESSE'] = str_replace('$',', ',$res['ADRESSE']);
+		    $ad=explode('$',$res["ADRESSE"]);
+			if (!isset($ad[1]))$ad[1]='';
 			echo "<tr>
+			    <td id='id' class='info'>".$res['ID']."</td>
 				<td id='nom'>".$res['NOM']."</a></td>
-				<td id='adresse'>".$res['ADRESSE']."</td>
+				<td id='ad1'>".$ad[0]."</td>
+				<td id='ad2' class='info'>".$ad[1]."</td>
 				<td id='adCP'>".$res["AD_CP"]."</td>
 				<td id='adVille'>".$res["AD_VILLE"]."</td>
 				<td id='modif' class='modifCell'><img class='modif' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
 			</tr>";
 			$nb++;
 		}
-		// déconnexion
-		mysql_close($connex);
 	?>
 	</tbody>
 </table>
@@ -29,9 +30,8 @@
 	<div id="stylized" class="myform">
 		<form id="formClient" class="formulaire">
 			<h1>Nouveau Client</h1>
-			<p>Inserez un nouveau client</p>
-
- 
+			<p></p>
+            <input class='info' type='text' name='id' id='id'/>
 			<label>Nom:</label>
 			<input type="text" name="nom" id="nom" />
 
@@ -47,8 +47,7 @@
 			<label>Code Postal:</label>
 			<input type="text" name="adCP" id="adCP"/>
 			
-			<button id="ajoutCli.php" class="submit">Enregistrer</button>
-
+			<button class="submit">Enregistrer</button>
 
 		</form>
 	</div>

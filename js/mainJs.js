@@ -1,41 +1,91 @@
 $(document).ready(function(){
-
+    var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':''};
     $(".tabs" ).tabs();
     reloadContent();
+    updateTAb();
+    updateSubmitClick(tab.modif);
+    
     function reloadContent(){
-        $("#tableau").tablesorter();
+        $(".tableau").tablesorter();
         $("input#submit, button").button();
         $(".dialog").dialog({
             autoOpen: false,
             width: 'auto',
+            modal: true,
+            close: function(event, ui) {
+                $(tab.dialogId+' form.formulaire').get(0).reset();
+            }
         });
+        $( "#dialog-confirm" ).dialog({
+            autoOpen: false,
+            width: 'auto',
+			modal: true,
+			title: 'Suppression!'
+		});
+        
         $('.btAjout').click(function(){
-            $("#dialog").dialog('open');
+            updateSubmitClick(tab.ajout);
+            $(tab.dialogId+' form h1').html('AJOUT ' + $('ul .ui-state-active a').html());
+            $(tab.dialogId).dialog('open');
         });
+        
         $('img.modif').click(function(){
-            if($('#dialog').dialog('isOpen')) return false;
+            if($('.dialog').dialog('isOpen')) return false;
+            else{
+                updateSubmitClick(tab.modif);
+                var par = $(this).parent().parent();
+                // Remplir les champs en fonction 
+                $(tab.dialogId+' .formulaire input').each(function(){
+                    $(this).val(getChildText(par,$(this).attr('id')));
+                });
+                $(tab.dialogId+' form h1').html('MODIFICATION ' + $('ul .ui-state-active a').html());
+                $(tab.dialogId).dialog('open');
+            }
+        });
+        
+        $('img.suppr').click(function(){
+            if($('.dialog').dialog('isOpen')) return false;
             else{
                 var par = $(this).parent().parent();
-                $('.ui-tabs-panel:visible #dialog .formulaire > h1').html("Modification du client");
-                $('.ui-tabs-panel:visible #dialog .formulaire > #nom').val(getChildText(par,'nom'));
-                $('#dialog').dialog('open');
-            }   
+                $("#dialog-confirm #confirmMess").html("Voulez-vous vraiment supprimer "+par.children(':nth-child(2)').text()+"?");
+                $("#dialog-confirm").dialog("option","buttons",{"Supprimer":function(){
+                                                                    submitForm('id='+getChildText(par,'id'),tab.suppr);
+                                                                    $("#dialog-confirm").dialog('close');
+                                                                },"Annuler":function(){
+                                                                    $("#dialog-confirm").dialog('close');
+                                                                }});
+                $("#dialog-confirm").dialog('open');
+            }
         });
-        $('input#search').quicksearch('table tbody tr');    
-        $('.myform .formulaire button.submit').click(function(e){
-		    e.preventDefault();
-    //		if(validateForm()){
-    //			$('#Formulaire #response').removeClass().addClass('processing').html(loadingText).fadeIn('fast');
-		    var formData = $('.myform form.formulaire').serialize();
-		    var php = $(this).attr('id');
-		    submitForm(formData, php);
-		    $("#dialog").dialog('close');
-		    $('.myform form.formulaire').get(0).reset();
-    //		}else{
-    //			$('#Formulaire #response').removeClass().addClass('error').html('Remplissez le formulaire comme demand\351!').fadeIn('fast');
-    //		}
-	    });
+        
+        $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
     }
+    function updateSubmitClick(php){
+        $(tab.dialogId+' .formulaire button.submit').unbind('click');
+        $(tab.dialogId+' .formulaire button.submit').click(function(e){
+            e.preventDefault();
+            //		if(validateForm()){
+            //			$('#Formulaire #response').removeClass().addClass('processing').html(loadingText).fadeIn('fast');
+            formData = $(tab.dialogId+' form.formulaire').first().serialize();
+            submitForm(formData, php);
+            $(tab.dialogId).dialog('close');
+            
+            //		}else{
+            //			$('#Formulaire #response').removeClass().addClass('error').html('Remplissez le formulaire comme demand\351!').fadeIn('fast');
+            //		}
+        });
+    }
+    function updateTAb(){
+        tab.page = $('.ui-tabs-panel:visible').attr('page');
+        tab.ajout = $('.ui-tabs-panel:visible').attr('ajout');
+        tab.suppr = $('.ui-tabs-panel:visible').attr('suppr');
+        tab.modif = $('.ui-tabs-panel:visible').attr('modif');
+        tab.dialogId = $('.ui-tabs-panel:visible').attr('dialogId');
+    }
+    // fonction changeant les variables de tabs
+    $('ul.ui-tabs-nav a').click(function(){
+        updateTAb();
+    });
     
 	// retourne le contenue textuel d'un élément Enfant
 	function getChildText(parentEl,id){
@@ -55,11 +105,11 @@ $(document).ready(function(){
                     displayMess("<img src='img/error.png'/><h3>"+data.msg+"</h3>", "ui-state-error",2500);
                 }else{
                     displayMess("<img src='img/icon_ok.png'/><h3>"+data.msg+"</h3>", "ui-state-highlight",2500);
-                    $('.ui-tabs-panel:visible').load($('.ui-tabs-panel:visible').attr('page'),function(){reloadContent();});
+                    $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
                 }
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
-				alert("D\351sol\351! Il y a eu une erreur" + errorThrown + " " + textStatus);
+				alert("D\351sol\351! Il y a eu une erreur: " + errorThrown + " " + textStatus+" Veuillez contacter Thibaud SMITH afin de résoudre ce problème!");
                 
 			}
 		});

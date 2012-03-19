@@ -1,26 +1,23 @@
-<button class="btAjout"><h1> + Client</button>
+<button class="btAjout" dialog='dialogApp'><h1> + Appareil</h1></button>
 <table id="tableau" class="tableau tablesorter">
-	<thead><tr><th class="topLeft">Nom</th><th>Adresse</th><th>CP</th><th class="topRight">Ville</th></tr></thead>
+	<thead><tr><th class="topLeft">Désignation</th><th>Marque</th><th class="topRight">Type</th></tr></thead>
     <tbody>
 	<?php
 		include('connect.php');
-		$req="SELECT * FROM CLIENT;";
+		$req="SELECT * FROM APPAREIL;";
 		$nb=0;
 		$result=mysql_query($req) or die(mysql_error());
 		while($res=mysql_fetch_array($result))
 		{
-		    $res['ADRESSE'] = str_replace('$',', ',$res['ADRESSE']);
 			echo "<tr>
-				<td id='nom'>".$res['NOM']."</a></td>
-				<td id='adresse'>".$res['ADRESSE']."</td>
-				<td id='adCP'>".$res["AD_CP"]."</td>
-				<td id='adVille'>".$res["AD_VILLE"]."</td>
+    			<td id='id' class='info'>".$res['ID']."</td>
+				<td id='desig'>".$res['DESIGNATION']."</a></td>
+				<td id='marque'>".$res['MARQUE']."</td>
+				<td id='type'>".$res["TYPE"]."</td>
 				<td id='modif' class='modifCell'><img class='modif' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
 			</tr>";
 			$nb++;
 		}
-		// déconnexion
-		mysql_close($connex);
 	?>
 	</tbody>
 </table>
@@ -28,29 +25,20 @@
 <div id="dialogApp" class="dialog">
 	<div id="stylized" class="myform">
 		<form id="formClient" class="formulaire">
-			<h1>Nouveau Client</h1>
-			<p>Inserez un nouveau client</p>
-
- 
-			<label>Nom:</label>
-			<input type="text" name="nom" id="nom" />
-
-			<label>Adresse:</label>
-			<input type="text" name="ad1" id="ad1" />
-			<label></label>
-			<input type="text" name="ad2" id="ad2" />
-
-			<label>Ville:</label>
-
-			<input type="text" name="adVille" id="adVille" />
+			<h1>Nouvel appareil</h1>
+			<p></p>
+ 			<input class='info' type='text' name='id' id='id'/>
+ 			
+			<label>Désignation:</label>
+			<input type="text" name="desig" id="desig" />
 			
-			<label>Code Postal:</label>
-			<input type="text" name="adCP" id="adCP"/>
+			<label>Marque:</label>
+			<input type="text" name="marque" id="marque" />
 			
-			<button id="ajoutCli.php" class="submit">Enregistrer</button>
-
-
+			<label>Type:</label>
+			<input type="text" name="type" id="type" />
+			
+			<button class="submit">Enregistrer</button>
 		</form>
 	</div>
 </div>
-

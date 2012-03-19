@@ -2,7 +2,7 @@
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 	<title>Gestion Constats</title>
-	<link media="screen, projection, print" href="style.css" type="text/css" rel="stylesheet"/>
+	<link media="screen, projection, print" href="css/style.css" type="text/css" rel="stylesheet"/>
 	<link type="text/css" href="./js/jquery-ui-1.8.18.custom/css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
 	<script type="text/javascript" src="js/jquery-ui-1.8.18.custom/js/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js"></script>
@@ -11,15 +11,14 @@
 	<script type="text/javascript" src="js/mainJs.js"></script>
 </head>
 <body>
-
-    <div id="header">
-    
-    </div>
+    <div id="header"></div>
     
     <div id="page-content">
-        
 	    <div class="tabs">
-	    <div id="message" class="ui-state-highlight ui-corner-all" style=""></div>
+	        <div id="message" class="ui-state-highlight ui-corner-all"></div>
+	        <div id="dialog-confirm">
+	            <p><span id='confirmIcon' class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><span id='confirmMess'></span></p>
+            </div>
 	        <ul>
 		        <li><a href="#tabCli">CLIENT</a></li>
 		        <li><a href="#tabApp">APPAREIL</a></li>
@@ -29,14 +28,22 @@
 	        	<li style="margin-left:15px;top:8px;">Rechercher:</li>
 	        	<li><input type="text" id="search" style="margin:0 0 0 5px;"/></li>
         	</ul>
-	        <div id="tabCli" page='client.php'>
-		        <?php include("client.php")?>
+	        <div id="tabCli" page='client.php' dialogId='#dialogCli' ajout='client/ajoutCli.php' suppr='client/supprCli.php' modif='client/modifCli.php'>
+		        <?php 
+                    include("connect.php");
+		            include("client.php");
+	            ?>
 	        </div>
-        	<div id="tabApp">
-		        <?php include("appareil.php")?>
+        	<div id="tabApp" page='appareil.php' dialogId='#dialogApp' ajout='appareil/ajoutApp.php' suppr='appareil/supprApp.php' modif='appareil/modifApp.php'>
+		        <?php 
+		            include("appareil.php");
+		        ?>
         	</div>
         	<div id="tabCtr">
-		        <?php include("controle.php")?>
+		        <?php
+		            include("connect.php");
+		            include("controle.php");
+		        ?>
         	</div>
         	<div id="tabMes">
 		        <?php include(".php")?>
@@ -46,6 +53,5 @@
         	</div>
 	    </div>
 	</div>
-
 </body>
 </html>

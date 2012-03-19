@@ -1,0 +1,5 @@
+var dépendant d'une tab: 
+    - id du dialog
+    - contenue de la div (ex: client.php)
+    - page PHP ajout, suppr, modif 
+
