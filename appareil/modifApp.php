@@ -11,7 +11,7 @@ if (!$id||!$desig||!$marque||!$type){
     include("../connect.php");
     $test = mysql_query("SELECT * FROM APPAREIL WHERE TYPE='$type' AND DESIGNATION='$desig' AND MARQUE='$marque';")or die(mysql_error());
     if (mysql_num_rows($test)==0){
-        // Modification du Client
+        // Modification de l'appareil
 	    $req = mysql_query("UPDATE APPAREIL SET DESIGNATION='$desig', MARQUE='$marque', TYPE='$type' WHERE ID='$id';") or die(mysql_error());
 	    $return['error'] = false;
 	    $return['msg'] = "L'appareil: ".$desig." ".$marque." ".$type." a bien été modifié!";

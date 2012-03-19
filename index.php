@@ -24,13 +24,12 @@
 		        <li><a href="#tabApp">APPAREIL</a></li>
 	        	<li><a href="#tabCtr">CONTROLE</a></li>
 	        	<li><a href="#tabMes">MOYEN MESURE</a></li>
-	        	<li><a href="#tabPar">PARAMETRES</a></li>
+	        	<li><a href="#tabPar">PARAMETRE</a></li>
 	        	<li style="margin-left:15px;top:8px;">Rechercher:</li>
 	        	<li><input type="text" id="search" style="margin:0 0 0 5px;"/></li>
         	</ul>
 	        <div id="tabCli" page='client.php' dialogId='#dialogCli' ajout='client/ajoutCli.php' suppr='client/supprCli.php' modif='client/modifCli.php'>
 		        <?php 
-                    include("connect.php");
 		            include("client.php");
 	            ?>
 	        </div>
@@ -41,15 +40,18 @@
         	</div>
         	<div id="tabCtr">
 		        <?php
-		            include("connect.php");
 		            include("controle.php");
 		        ?>
         	</div>
-        	<div id="tabMes">
-		        <?php include(".php")?>
+        	<div id="tabMes" page='moyenMesure.php' dialogId='#dialogMes' ajout='moyenMesure/ajoutMes.php' suppr='moyenMesure/supprMes.php' modif='moyenMesure/modifMes.php'>
+		        <?php 
+		            include("moyenMesure.php");
+		        ?>
         	</div>
-        	<div id="tabPar">
-		        <?php include(".php")?>
+        	<div id="tabPar" page='parametre.php' dialogId='#dialogPar' ajout='parametre/ajoutPar.php' suppr='parametre/supprPar.php' modif='parametre/modifPar.php'>
+		        <?php 
+		            include("parametre.php");
+		        ?>
         	</div>
 	    </div>
 	</div>

@@ -1,4 +1,4 @@
-<button class="btAjout" dialog='dialogApp'><h1> + Appareil</h1></button>
+<button class="btAjout"><h1> + Appareil</h1></button>
 <table id="tableau" class="tableau tablesorter">
 	<thead><tr><th class="topLeft">Désignation</th><th>Marque</th><th class="topRight">Type</th></tr></thead>
     <tbody>
@@ -24,7 +24,7 @@
 
 <div id="dialogApp" class="dialog">
 	<div id="stylized" class="myform">
-		<form id="formClient" class="formulaire">
+		<form id="formAppareil" class="formulaire">
 			<h1>Nouvel appareil</h1>
 			<p></p>
  			<input class='info' type='text' name='id' id='id'/>
