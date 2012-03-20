@@ -25,7 +25,7 @@
 	        	<li><a href="#tabCtr">CONTROLE</a></li>
 	        	<li><a href="#tabMes">MOYEN MESURE</a></li>
 	        	<li><a href="#tabPar">PARAMETRE</a></li>
-	        	<li style="margin-left:15px;top:8px;">Rechercher:</li>
+	        	<li style="margin-left:15px;top:6px;">Rechercher:</li>
 	        	<li><input type="text" id="search" style="margin:0 0 0 5px;"/></li>
         	</ul>
 	        <div id="tabCli" page='client.php' dialogId='#dialogCli' ajout='client/ajoutCli.php' suppr='client/supprCli.php' modif='client/modifCli.php'>

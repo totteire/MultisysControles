@@ -6,9 +6,9 @@ p, h1, form{border:0; margin:0; padding:0;}
 .spacer{clear:both; height:1px;}
 /* ----------- My Form ----------- */
 .myform{
-    margin:0 auto;
-    width:400px;
-    padding:14px;
+    margin: 0 auto;
+    width: 400px;
+    padding: 14px;
 }
 /*------------ tableau -------------*/
 /*ajout des flèches vertes*/
@@ -62,6 +62,20 @@ table.tableau tr:hover > td.modifCell{
 table.tableau tr:hover td{
 	background:#FDF5CE;
 	color:#1C94C4;
+}
+table.tableau td a span.ui-state-default{
+    margin:5px;
+    float:right;
+}
+table.inline{
+    float:left;
+    margin: 15px;
+    width:auto;
+}
+#dialogParMM button{
+    display:block;
+    clear:both;
+    margin-left:45%;
 }
 .info{
 	display:none;
@@ -127,7 +141,7 @@ table.tableau tr:hover td{
     text-align:right;
     width:140px;
 }
-input{
+#stylized input{
     float:left;
     font-size:12px;
     padding:4px 2px;

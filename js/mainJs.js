@@ -4,6 +4,7 @@ $(document).ready(function(){
     reloadContent();
     updateTAb();
     updateSubmitClick(tab.modif);
+    $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
     
     function reloadContent(){
         $(".tableau").tablesorter();
@@ -57,8 +58,6 @@ $(document).ready(function(){
                 $("#dialog-confirm").dialog('open');
             }
         });
-        
-        $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
     }
     function updateSubmitClick(php){
         $(tab.dialogId+' .formulaire button.submit').unbind('click');
@@ -85,13 +84,29 @@ $(document).ready(function(){
     // fonction changeant les variables de tabs
     $('ul.ui-tabs-nav a').click(function(){
         updateTAb();
+        $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
     });
     
 	// retourne le contenue textuel d'un élément Enfant
 	function getChildText(parentEl,id){
 		return parentEl.children('td#'+id).text();
 	}
-	
+
+    $('.parModifMM').click(function(){
+        $('#dialogParMM').dialog('open');
+        var idPar = $(this).parent().parent().children().first().text();
+        // tout décocher avant
+        $('#dialogParMM input:checkbox').each(function(){
+            $(this).attr('checked',false);
+        });
+        $(this).parent().parent().children(':nth-child(3)').children('select').children('option').each(function(){
+            var idMM = $(this).val();
+            $('#dialogParMM input:checkbox').each(function(){
+                if($(this).val() == idMM) $(this).attr('checked',true);
+            });
+        });
+    });
+    
 	function submitForm(formData, URL){
 		$.ajax({
 			type: 'POST',
