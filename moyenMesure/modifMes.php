@@ -9,7 +9,7 @@ if (!$id||!$libelle||!$nomVerif||!$numDateVerif){
 	$return['msg'] = "Le formulaire n'a pas été correctement remplie!";
 }else{
     include("../connect.php");
-    $test = mysql_query("SELECT * FROM MOYEN_MESURE WHERE LIBELLE='$libelle' AND NOM_VERIF='$nomVerif' AND NUM_DATE_VERIF='$numDateVerif';")or die(mysql_error());
+    $test = mysql_query("SELECT * FROM MOYEN_MESURE WHERE LIBELLE='$libelle' AND NOM_VERIF='$nomVerif' AND NUM_DATE_VERIF='$numDateVerif' AND ID<>$id;")or die(mysql_error());
     if (mysql_num_rows($test)==0){
         // Modification du moyen de mesure
 	    $req = mysql_query("UPDATE MOYEN_MESURE SET LIBELLE='$libelle', NOM_VERIF='$nomVerif', NUM_DATE_VERIF='$numDateVerif' WHERE ID='$id';") or die(mysql_error());

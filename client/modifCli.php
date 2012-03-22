@@ -11,7 +11,7 @@ if (!$id||!$nom||!$ad1||!$adVille||!$adCP){
 	$return['msg'] = "Le formulaire n'a pas été correctement remplie!";
 }else{
     include("../connect.php");
-    $test = mysql_query("SELECT ID FROM CLIENT WHERE NOM='$nom';")or die(mysql_error());
+    $test = mysql_query("SELECT ID FROM CLIENT WHERE NOM='$nom' AND ID<>$id;")or die(mysql_error());
     if (mysql_num_rows($test)==0){
 	    // Modification du Client
 	    $req = mysql_query("UPDATE CLIENT SET NOM='$nom', ADRESSE='".$ad1."$".$ad2."', AD_VILLE='$adVille', AD_CP='$adCP' WHERE ID='$id';") or die(mysql_error());

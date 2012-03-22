@@ -9,7 +9,7 @@ if (!$id||!$desig||!$marque||!$type){
 	$return['msg'] = "Le formulaire n'a pas été correctement remplie!";
 }else{
     include("../connect.php");
-    $test = mysql_query("SELECT * FROM APPAREIL WHERE TYPE='$type' AND DESIGNATION='$desig' AND MARQUE='$marque';")or die(mysql_error());
+    $test = mysql_query("SELECT * FROM APPAREIL WHERE TYPE='$type' AND DESIGNATION='$desig' AND MARQUE='$marque' AND ID<>$id;")or die(mysql_error());
     if (mysql_num_rows($test)==0){
         // Modification de l'appareil
 	    $req = mysql_query("UPDATE APPAREIL SET DESIGNATION='$desig', MARQUE='$marque', TYPE='$type' WHERE ID='$id';") or die(mysql_error());

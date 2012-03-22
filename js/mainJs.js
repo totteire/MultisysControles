@@ -5,10 +5,10 @@ $(document).ready(function(){
     updateTAb();
     updateSubmitClick(tab.modif);
     $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
-    
     function reloadContent(){
         $(".tableau").tablesorter();
         $("input#submit, button").button();
+        $(".dialog").dialog('destroy');
         $(".dialog").dialog({
             autoOpen: false,
             width: 'auto',
@@ -17,7 +17,8 @@ $(document).ready(function(){
                 $(tab.dialogId+' form.formulaire').get(0).reset();
             }
         });
-        $( "#dialog-confirm" ).dialog({
+        
+        $("#dialog-confirm").dialog({
             autoOpen: false,
             width: 'auto',
 			modal: true,
@@ -58,20 +59,36 @@ $(document).ready(function(){
                 $("#dialog-confirm").dialog('open');
             }
         });
+        $('.parModifMM').click(function(){
+            console.log('.parModifMM click');
+            $('#dialogParMM').dialog('open');
+            var idPar = $(this).parent().parent().children().first().text();
+            updateSubmitClick('parModifMM.php','#dialogParMM button.submit', "'idPar="+idPar+"&ids=' + $('#dialogParMM input:checkbox:checked').map(function(){return $(this).val()}).get().join(',')");
+            // tout décocher avant
+            $('#dialogParMM input:checkbox').each(function(){
+                $(this).attr('checked',false);
+            });
+            $(this).parent().parent().children(':nth-child(3)').children('select').children('option').each(function(){
+                var idMM = $(this).val();
+                $('#dialogParMM input:checkbox').each(function(){
+                    if($(this).val() == idMM) $(this).attr('checked',true);
+                });
+            });
+        });
     }
-    function updateSubmitClick(php){
-        $(tab.dialogId+' .formulaire button.submit').unbind('click');
-        $(tab.dialogId+' .formulaire button.submit').click(function(e){
+    
+    function updateSubmitClick(php, cssButton, formData){
+        console.log(formData);
+        if(cssButton === undefined) cssButton = tab.dialogId+' button.submit';
+        if(formData === undefined) formData = "$(tab.dialogId+' form.formulaire').first().serialize()";
+        $(cssButton).unbind('click');
+        $(cssButton).click(function(e){
             e.preventDefault();
             //		if(validateForm()){
-            //			$('#Formulaire #response').removeClass().addClass('processing').html(loadingText).fadeIn('fast');
-            formData = $(tab.dialogId+' form.formulaire').first().serialize();
+            formData = eval(formData);
             submitForm(formData, php);
-            $(tab.dialogId).dialog('close');
-            
-            //		}else{
-            //			$('#Formulaire #response').removeClass().addClass('error').html('Remplissez le formulaire comme demand\351!').fadeIn('fast');
-            //		}
+            $('.dialog').dialog('close');
+            //}else{$('#Formulaire #response').removeClass().addClass('error').html('Remplissez le formulaire comme demand\351!').fadeIn('fast');}
         });
     }
     function updateTAb(){
@@ -84,6 +101,7 @@ $(document).ready(function(){
     // fonction changeant les variables de tabs
     $('ul.ui-tabs-nav a').click(function(){
         updateTAb();
+        $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
         $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
     });
     
@@ -91,21 +109,6 @@ $(document).ready(function(){
 	function getChildText(parentEl,id){
 		return parentEl.children('td#'+id).text();
 	}
-
-    $('.parModifMM').click(function(){
-        $('#dialogParMM').dialog('open');
-        var idPar = $(this).parent().parent().children().first().text();
-        // tout décocher avant
-        $('#dialogParMM input:checkbox').each(function(){
-            $(this).attr('checked',false);
-        });
-        $(this).parent().parent().children(':nth-child(3)').children('select').children('option').each(function(){
-            var idMM = $(this).val();
-            $('#dialogParMM input:checkbox').each(function(){
-                if($(this).val() == idMM) $(this).attr('checked',true);
-            });
-        });
-    });
     
 	function submitForm(formData, URL){
 		$.ajax({
