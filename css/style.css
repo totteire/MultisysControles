@@ -72,7 +72,7 @@ table.inline{
     margin: 15px;
     width:auto;
 }
-#dialogParMM button{
+.dialog button{
     display:block;
     clear:both;
     margin-left:45%;

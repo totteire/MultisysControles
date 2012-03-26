@@ -5,6 +5,7 @@ $(document).ready(function(){
     updateTAb();
     updateSubmitClick(tab.modif);
     function reloadContent(){
+        $(".datepicker" ).datepicker();
         $(".tableau").tablesorter();
         $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
         $("button").button();
@@ -166,7 +167,6 @@ $(document).ready(function(){
 	    setTimeout(function(){$('#message').fadeOut('slow');},timeOut);
 	}
 	
-	$(".datepicker" ).datepicker();
 	$.datepicker.regional['fr'] = {
 		closeText: 'Fermer',
 		prevText: '&#x3c;Pr\351c',

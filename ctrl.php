@@ -81,7 +81,12 @@
 	    </tr>
 	    <tr class='essa veri'>
             <td><label class="titre">Jugement:</label></td>
-            <td><input type='text' class="ui-corner-all" name='numS' id='numS'/></td>
+            <td><select class="combobox" id='jugement' name='jugement'>
+                <option></option>
+                <option>Appareil conforme</option>
+                <option>Appareil conforme après réparation</option>
+                <option>Appareil non conforme</option>
+            </select></td>
         </tr>
 	    <tr class='static'>
             <td><label class="titre">Observation:</label></td>
