@@ -26,7 +26,8 @@
 	        	<li><a href="#tabMes">MOYEN MESURE</a></li>
 	        	<li><a href="#tabPar">PARAMETRE</a></li>
 	        	<li style="margin-left:15px;top:6px;">Rechercher:</li>
-	        	<li><input type="text" id="search" style="margin:0 0 0 5px;"/></li>
+	        	<li><input type="text" id="search" class="ui-corner-all" style="margin:0 0 0 5px;"/></li>
+	        	<li style="float:right;"><a href="#tabCtrl">+CONTROLE</a></li>
         	</ul>
 	        <div id="tabCli" page='client.php' dialogId='#dialogCli' ajout='client/ajoutCli.php' suppr='client/supprCli.php' modif='client/modifCli.php'>
 		        <?php 
@@ -53,6 +54,11 @@
 		            include("parametre.php");
 		        ?>
         	</div>
+	        <div id="tabCtrl" page='ctrl.php' dialogId='#CTRL' ajout='client/ajoutCli.php' suppr='controle/supprCtr.php' modif='controle/modifCtr.php'>
+		        <?php
+		            include("ctrl.php");
+	            ?>
+	        </div>
 	    </div>
 	</div>
 </body>

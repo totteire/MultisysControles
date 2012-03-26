@@ -14,17 +14,19 @@
         if(!in_array($res['ID'], $ids)){
             $reqSuppr = "DELETE FROM AVOIRPARDEFAUT WHERE ID=".$res['ID']." AND ID_1=$idPar;";
             $resSuppr = mysql_query($reqSuppr) or die(mysql_error());
-            $return['msg'].="suppression de ".$res['LIBELLE']." ";
+            $return['msg'].="suppression de ".$res['LIBELLE']."<br>";
         }
     }
+    $nbNouv = 0;
     foreach($ids as $id){
         if(!in_array($id, $tabMMexistant)){
             # créer le lien
-            $return['msg'].="ajout du ".$id." ";
+            $nbNouv ++;
             $reqAjout = "INSERT INTO AVOIRPARDEFAUT VALUES('$id','$idPar');";
             $resAjout = mysql_query($reqAjout)or die (mysql_error());
         }
     }
+    $return['msg'].="ajout de ".$nbNouv." nouveaux moyens de mesure<br>";
     $return['error'] = false;
     echo json_encode($return);
 ?>

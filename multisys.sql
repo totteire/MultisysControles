@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Lun 19 Mars 2012 à 16:54
+-- Généré le : Ven 23 Mars 2012 à 15:27
 -- Version du serveur: 5.5.16
 -- Version de PHP: 5.3.8
 
@@ -32,7 +32,14 @@ CREATE TABLE IF NOT EXISTS `APPAREIL` (
   `MARQUE` varchar(30) DEFAULT NULL,
   `TYPE` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `APPAREIL`
+--
+
+INSERT INTO `APPAREIL` (`ID`, `DESIGNATION`, `MARQUE`, `TYPE`) VALUES
+(1, 'qsdf', 'qdsf', 'qsdf');
 
 -- --------------------------------------------------------
 
@@ -48,6 +55,16 @@ CREATE TABLE IF NOT EXISTS `AVOIRPARDEFAUT` (
   KEY `I_FK_AVOIRPARDEFAUT_PARAMETRE` (`ID_1`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `AVOIRPARDEFAUT`
+--
+
+INSERT INTO `AVOIRPARDEFAUT` (`ID`, `ID_1`) VALUES
+(4, 4),
+(6, 4),
+(7, 4),
+(8, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -62,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `CLIENT` (
   `AD_CP` varchar(5) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `NOM` (`NOM`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
 
 --
 -- Contenu de la table `CLIENT`
@@ -87,20 +104,22 @@ INSERT INTO `CLIENT` (`ID`, `NOM`, `ADRESSE`, `AD_VILLE`, `AD_CP`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `CONTROLE` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NUM` int(8) NOT NULL,
   `ID_CONCERNER` int(11) NOT NULL,
   `ID_AVOIR` int(11) NOT NULL,
-  `TYPE_CTRL` int(1) NOT NULL,
-  `DATE` char(32) DEFAULT NULL,
-  `TECHNICIEN` char(32) DEFAULT NULL,
-  `LIEU` char(32) DEFAULT NULL,
-  `JUGEMENT` char(32) DEFAULT NULL,
-  `NUM_SERIE` char(32) DEFAULT NULL,
-  `NUM_CHASSIS` char(32) DEFAULT NULL,
+  `TYPE_CTRL` varchar(4) NOT NULL,
+  `DATE` date DEFAULT NULL,
+  `TECHNICIEN` varchar(32) DEFAULT NULL,
+  `LIEU` varchar(1) DEFAULT NULL,
+  `JUGEMENT` int(1) DEFAULT NULL,
+  `OBSERVATION` varchar(600) NOT NULL,
+  `NUM_SERIE` varchar(20) DEFAULT NULL,
+  `NUM_CHASSIS` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `I_FK_CONTROLE_APPAREIL` (`ID_CONCERNER`),
   KEY `I_FK_CONTROLE_CLIENT` (`ID_AVOIR`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -140,14 +159,26 @@ CREATE TABLE IF NOT EXISTS `PARAMETRE` (
   `ID` int(3) NOT NULL AUTO_INCREMENT,
   `LIBELLE` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Contenu de la table `PARAMETRE`
 --
 
 INSERT INTO `PARAMETRE` (`ID`, `LIBELLE`) VALUES
-(4, 'Amplitudes');
+(4, 'Amplitudes'),
+(5, 'Bandes passantes'),
+(6, 'CapacitÃ©s'),
+(7, 'Compensations'),
+(8, 'Comptage'),
+(9, 'ContinuitÃ©'),
+(10, 'Courants'),
+(11, 'Dimensionnel'),
+(12, 'Distorsion'),
+(13, 'Eclairement'),
+(14, 'Facteur de puissance'),
+(15, 'FrÃ©quences'),
+(16, 'Inductances');
 
 -- --------------------------------------------------------
 

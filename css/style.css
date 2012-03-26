@@ -118,7 +118,7 @@ table.inline{
     font-weight:bold;
     margin-bottom:8px;
 }
-#stylized p{
+p{
     font-size:11px;
     color:#666666;
     margin-bottom:20px;
@@ -141,14 +141,39 @@ table.inline{
     text-align:right;
     width:140px;
 }
-#stylized input{
+#stylized input,textarea{
     float:left;
     font-size:12px;
     padding:4px 2px;
     border:solid 1px #aacfe4;
     width:200px;
-    margin:2px 0 20px 10px;
+    margin:0px 0 20px 0px;
 }
 #stylized button{
-    margin-left:150px;
+    margin-left:150px;}
+label.titre{
+    display:block;
+    font-weight:bold;
+    text-align:right;
+    float:left;
+    margin: 10px 10px;
+}
+#CTRL td>label{
+    width:200px;
+}
+#CTRL input,textarea{
+    border:solid 1px #aacfe4;
+    width:200px;
+}
+#CTRL td span{
+    display:inline-block;
+}
+#CTRL td a{
+    margin-left: 10px;
+}
+#CTRL button span{
+    padding: .1em;
+}
+#CTRL .radio label:not(.ui-state-active) span{
+    opacity:0.5;
 }

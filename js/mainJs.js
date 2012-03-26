@@ -1,19 +1,21 @@
 $(document).ready(function(){
     var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':''};
-    $(".tabs" ).tabs();
+    $(".tabs" ).tabs({'selected':5});
     reloadContent();
     updateTAb();
     updateSubmitClick(tab.modif);
-    $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
     function reloadContent(){
         $(".tableau").tablesorter();
-        $("input#submit, button").button();
+        $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
+        $("button").button();
+        $(".combobox").combobox();
+        $(".radio").buttonset();
         $(".dialog").dialog('destroy');
         $(".dialog").dialog({
             autoOpen: false,
             width: 'auto',
             modal: true,
-            close: function(event, ui) {
+            close: function(event, ui) {$(".datepicker" ).datepicker();
                 $(tab.dialogId+' form.formulaire').get(0).reset();
             }
         });
@@ -60,7 +62,8 @@ $(document).ready(function(){
             }
         });
         $('.parModifMM').click(function(){
-            console.log('.parModifMM click');
+            var nom = $(this).parent().parent().children(":nth-child(2)").text();
+            $('#dialogParMM').dialog({'title':'Moyens de mesure par défaut pour le paramètre: '+nom});
             $('#dialogParMM').dialog('open');
             var idPar = $(this).parent().parent().children().first().text();
             updateSubmitClick('parModifMM.php','#dialogParMM button.submit', "'idPar="+idPar+"&ids=' + $('#dialogParMM input:checkbox:checked').map(function(){return $(this).val()}).get().join(',')");
@@ -75,20 +78,42 @@ $(document).ready(function(){
                 });
             });
         });
+        
+    	$('#CTRL table tr:not(.menu)').hide();
+	    $('#CTRL .menu.type .radio input:radio').change(function(){
+	        var affichClass=$(this).attr('affichClass');
+            $('#CTRL tr:not(.'+affichClass+')').hide();
+	        $('#CTRL tr.'+affichClass).show();
+	        $('#CTRL tr.static').show();
+	    });
+	    $('#CTRL tr.menu.lieu .radio input:radio').change(function(){
+	        var lieu=($(this).attr('id'));
+	        switch (lieu){
+    	        case 'site':
+        	        var d = new Date();
+                    var n = d.getFullYear().toString()+'-'+(d.getMonth()+1).toString()+'-'+d.getDate().toString();
+                    $(".datepicker" ).datepicker("getDate");
+    	            $('#CTRL input#num').val(n);
+    	            break;
+    	        case 'atelier':
+    	            $('#CTRL input#num').val('');
+    	            break;
+	        }
+	    });
+	
     }
     
     function updateSubmitClick(php, cssButton, formData){
-        console.log(formData);
         if(cssButton === undefined) cssButton = tab.dialogId+' button.submit';
         if(formData === undefined) formData = "$(tab.dialogId+' form.formulaire').first().serialize()";
         $(cssButton).unbind('click');
         $(cssButton).click(function(e){
             e.preventDefault();
-            //		if(validateForm()){
+            // if(validateForm()){
             formData = eval(formData);
             submitForm(formData, php);
             $('.dialog').dialog('close');
-            //}else{$('#Formulaire #response').removeClass().addClass('error').html('Remplissez le formulaire comme demand\351!').fadeIn('fast');}
+            // }else{$('#Formulaire #response').removeClass().addClass('error').html('Remplissez le formulaire comme demand\351!').fadeIn('fast');}
         });
     }
     function updateTAb(){
@@ -136,4 +161,135 @@ $(document).ready(function(){
 	    $('#message').html(mess).removeClass('ui-state-highlight ui-state-error').addClass(Class + ' ui-corner-all').fadeIn('slow');
 	    setTimeout(function(){$('#message').fadeOut('slow');},timeOut);
 	}
-});
+	var nowDate = new Date();
+	nowDate = nowDate.getDate();
+	$(".datepicker" ).datepicker();
+	$.datepicker.regional['fr'] = {
+		closeText: 'Fermer',
+		prevText: '&#x3c;Pr\351c',
+		nextText: 'Suiv&#x3e;',
+		currentText: 'Courant',
+		monthNames: ['Janvier','F\351vrier','Mars','Avril','Mai','Juin',
+		'Juillet','Ao\373t','Septembre','Octobre','Novembre','D\351cembre'],
+		monthNamesShort: ['Jan','F\351v','Mar','Avr','Mai','Jun',
+		'Jul','Ao\373','Sep','Oct','Nov','D\351c'],
+		dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+		dayNamesShort: ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
+		dayNamesMin: ['Di','Lu','Ma','Me','Je','Ve','Sa'],
+		weekHeader: 'Sm',
+		dateFormat: 'dd-mm-yy',
+		defaultDate: nowDate,
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''
+	};
+	$.datepicker.setDefaults($.datepicker.regional['fr']);
+	
+});var d = new Date();
+var n = d.getTime();
+
+//////////////    Initialisation des combobox autocomplete    ////////////////
+
+(function( $ ) {
+	$.widget( "ui.combobox", {
+		_create: function() {
+			var self = this,
+				select = this.element.hide(),
+				selected = select.children( ":selected" ),
+				value = selected.val() ? selected.text() : "";
+			var input = this.input = $( "<input>" )
+				.insertAfter( select )
+				.val( value )
+				.autocomplete({
+					delay: 0,
+					minLength: 0,
+					source: function( request, response ) {
+						var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
+						response( select.children( "option" ).map(function() {
+							var text = $( this ).text();
+							if ( this.value && ( !request.term || matcher.test(text) ) )
+								return {
+									label: text.replace(
+										new RegExp(
+											"(?![^&;]+;)(?!<[^<>]*)(" +
+											$.ui.autocomplete.escapeRegex(request.term) +
+											")(?![^<>]*>)(?![^&;]+;)", "gi"
+										), "<strong>$1</strong>" ),
+									value: text,
+									option: this
+								};
+						}) );
+					},
+					select: function( event, ui ) {
+						ui.item.option.selected = true;
+						self._trigger( "selected", event, {
+							item: ui.item.option
+						});
+					},
+					change: function( event, ui ) {
+						if ( !ui.item ) {
+							var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( $(this).val() ) + "$", "i" ),
+								valid = false;
+							select.children( "option" ).each(function() {
+								if ( $( this ).text().match( matcher ) ) {
+									this.selected = valid = true;
+									return false;
+								}
+							});
+							if ( !valid ) {
+								// remove invalid value, as it didn't match anything
+								$( this ).val( "" );
+								select.val( "" );
+								input.data( "autocomplete" ).term = "";
+								return false;
+							}
+						}
+					}
+				})
+				.addClass( "ui-widget ui-widget-content ui-corner-left" );
+
+			input.data( "autocomplete" )._renderItem = function( ul, item ) {
+				return $( "<li></li>" )
+					.data( "item.autocomplete", item )
+					.append( "<a>" + item.label + "</a>" )
+					.appendTo( ul );
+			};
+
+			this.button = $( "<button type='button'>&nbsp;</button>" )
+				.attr( "tabIndex", -1 )
+				.attr( "title", "Show All Items" )
+				.insertAfter( input )
+				.button({
+					icons: {
+						primary: "ui-icon-triangle-1-s"
+					},
+					text: false
+				})
+				.removeClass( "ui-corner-all" )
+				.addClass( "ui-corner-right ui-button-icon" )
+				.click(function() {
+					// close if already visible
+					if ( input.autocomplete( "widget" ).is( ":visible" ) ) {
+						input.autocomplete( "close" );
+						return;
+					}
+
+					// work around a bug (likely same cause as #5265)
+					$( this ).blur();
+
+					// pass empty string as value to search for, displaying all results
+					input.autocomplete( "search", "" );
+					input.focus();
+				});
+		},
+
+		destroy: function() {
+			this.input.remove();
+			this.button.remove();
+			this.element.show();
+			$.Widget.prototype.destroy.call( this );
+		}
+	});
+	
+})( jQuery );
