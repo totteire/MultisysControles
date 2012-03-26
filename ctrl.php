@@ -1,3 +1,6 @@
+<?php 
+    include('connect.php');
+?>
 <div id="CTRL">
     <table style="width: 600px;margin: auto;">
         <tr class='static menu type'>
@@ -21,7 +24,7 @@
         </tr>
         <tr class='static'>
             <td><label class="titre">Numéro:</label></td>
-            <td><input type='text' class="ui-corner-all" name='num' id='num'/></td>
+            <td><input type='text' class="ui-corner-all" name='num' id='num' defaut=<?php include('getCtrlNum.php');?>></td>
         </tr>
 	    <tr class='static'>
             <td><label class="titre">Client:</label></td>
@@ -29,7 +32,6 @@
                 <select id="cli" class="combobox" name='cli'>
                 <option value=""></option>
                 <?php 
-                    include('connect.php');
                     $reqCli="SELECT ID, NOM FROM CLIENT;";
                     $resultCli = mysql_query($reqCli)or die(mysql_error());
                     while($res = mysql_fetch_array($resultCli)){
@@ -75,7 +77,7 @@
 	    </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Date:</label></td>
-	        <td><input type="text" id="dateRecrutement_com" class='datepicker ui-corner-all' name="dateRecrutement_com" size="20" value=<?php echo date('d-m-Y') ?>></td>
+	        <td><input type="text" id="date" class='datepicker ui-corner-all' name="date" size="20" value=<?php echo date('d-m-Y') ?>></td>
 	    </tr>
 	    <tr class='essa veri'>
             <td><label class="titre">Jugement:</label></td>
@@ -85,7 +87,9 @@
             <td><label class="titre">Observation:</label></td>
             <td><textarea type='textarea' class="ui-corner-all" name='numS' id='numS'></textarea></td>
         </tr>
+        <tr class='static'><td></td><td><button class="submit">Enregistrer</button></td></tr>
         </table>
+
     </div>
     <div id="dialogParCtr" class="dialog">
         <table class="inline">
@@ -129,7 +133,7 @@
                 $prevLib = $MM['LIBELLE'];
                 if($nb == $middleRow)echo "</table><table class='inline'>";
             };
-        ?>class='static'
+        ?>
     </table>
     <button class="submit">Enregistrer</button>
 </div>

@@ -147,10 +147,11 @@ p{
     padding:4px 2px;
     border:solid 1px #aacfe4;
     width:200px;
-    margin:0px 0 20px 0px;
+    margin:0px 0 20px 4px;
 }
 #stylized button{
-    margin-left:150px;}
+    margin-left:150px;
+}
 label.titre{
     display:block;
     font-weight:bold;
@@ -171,7 +172,7 @@ label.titre{
 #CTRL td a{
     margin-left: 10px;
 }
-#CTRL button span{
+#CTRL button:not(.submit) span{
     padding: .1em;
 }
 #CTRL .radio label:not(.ui-state-active) span{

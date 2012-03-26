@@ -1,5 +1,4 @@
-var dépendant d'une tab: 
-    - id du dialog
-    - contenue de la div (ex: client.php)
-    - page PHP ajout, suppr, modif 
-
+bug:
+    - tries sur colonnes
+    - si formulaire non rempli réafficher les champs remplis
+    - trier tableau par ordre alphabétique

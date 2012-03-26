@@ -90,15 +90,19 @@ $(document).ready(function(){
 	        var lieu=($(this).attr('id'));
 	        switch (lieu){
     	        case 'site':
-        	        var d = new Date();
-                    var n = d.getFullYear().toString()+'-'+(d.getMonth()+1).toString()+'-'+d.getDate().toString();
-                    $(".datepicker" ).datepicker("getDate");
-    	            $('#CTRL input#num').val(n);
+        	        var num = $('#CTRL input#num').attr('defaut');
+    	            $('#CTRL input#num').val(num);
     	            break;
     	        case 'atelier':
     	            $('#CTRL input#num').val('');
     	            break;
 	        }
+	    });
+	    $('#ajoutParCtr').click(function(){
+	        $('#dialogParCtr').dialog('open');
+	    });
+	    $('#ajoutMMCtr').click(function(){
+	        $('#dialogMMCtr').dialog('open');
 	    });
 	
     }
@@ -129,7 +133,7 @@ $(document).ready(function(){
         $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
         $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
     });
-    
+    ajoutParCtr
 	// retourne le contenue textuel d'un élément Enfant
 	function getChildText(parentEl,id){
 		return parentEl.children('td#'+id).text();
@@ -161,8 +165,7 @@ $(document).ready(function(){
 	    $('#message').html(mess).removeClass('ui-state-highlight ui-state-error').addClass(Class + ' ui-corner-all').fadeIn('slow');
 	    setTimeout(function(){$('#message').fadeOut('slow');},timeOut);
 	}
-	var nowDate = new Date();
-	nowDate = nowDate.getDate();
+	
 	$(".datepicker" ).datepicker();
 	$.datepicker.regional['fr'] = {
 		closeText: 'Fermer',
@@ -178,7 +181,6 @@ $(document).ready(function(){
 		dayNamesMin: ['Di','Lu','Ma','Me','Je','Ve','Sa'],
 		weekHeader: 'Sm',
 		dateFormat: 'dd-mm-yy',
-		defaultDate: nowDate,
 		firstDay: 1,
 		isRTL: false,
 		showMonthAfterYear: false,
@@ -186,9 +188,7 @@ $(document).ready(function(){
 	};
 	$.datepicker.setDefaults($.datepicker.regional['fr']);
 	
-});var d = new Date();
-var n = d.getTime();
-
+});
 //////////////    Initialisation des combobox autocomplete    ////////////////
 
 (function( $ ) {
