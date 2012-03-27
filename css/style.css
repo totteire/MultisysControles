@@ -106,7 +106,7 @@ table.inline{
     width:400px;
     padding:10px;
     text-align:center;
-    z-index: 9999px;
+    z-index: 999999px;
 }
 /* ----------- stylized ----------- */
 #stylized{

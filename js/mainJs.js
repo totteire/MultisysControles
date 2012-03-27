@@ -17,7 +17,7 @@ $(document).ready(function(){
             width: 'auto',
             modal: true,
             close: function(event, ui) {$(".datepicker" ).datepicker();
-                $(tab.dialogId+' form.formulaire').get(0).reset();
+                if(tab.dialogId != '#CTRL') $(tab.dialogId+' form.formulaire').get(0).reset();
             }
         });
         
@@ -80,6 +80,40 @@ $(document).ready(function(){
             });
         });
         
+        // CTRL ajout Paramètre
+        $('#dialogParCtr button.submit').click(function(){
+            $.ajax({type:'POST',
+                    url:'getListMM.php',
+                    dataType:'json',
+                    data:{'ids':$('#dialogParCtr input:checkbox:checked').map(function(){return $(this).val()}).get().join(',')},
+                    success: function(data){
+                        // Boucle sur les checkboxes des MM et pour chaque cb vérifie si son id a été renvoyé
+                        $('#dialogMMCtr input:checkbox').each(function(){
+                            $(this).attr('checked',false);
+                            var idMM = $(this).val();
+                            for (var i in data){
+                                if(data[i]==idMM) $(this).attr('checked',true);
+                            }
+                        });
+                    }
+            });
+            $('#CTRL select#Par option').remove();
+            $('#dialogParCtr input:checkbox:checked').each(function(){
+                $('#CTRL select#Par').append("<option>"+ $(this).parent().next().text() +"</option>");
+            });
+            $('#dialogParCtr').dialog('close');
+        });
+        
+        // CTRL ajout Moyen de mesure
+        $('#dialogMMCtr button.submit').click(function(){
+            $('#CTRL select#MM option').remove();
+            $('#dialogParMM input:checkbox:checked').each(function(){
+                $('#CTRL select#MM').append("<option>"+ $(this).parent().next().text() +"</option>");
+            });
+            $('#dialogMMCtr').dialog('close');
+        });
+        
+        // Affichage ajout Ctrl
     	$('#CTRL table tr:not(.menu)').hide();
 	    $('#CTRL .menu.type .radio input:radio').change(function(){
 	        var affichClass=$(this).attr('affichClass');
@@ -101,12 +135,15 @@ $(document).ready(function(){
 	    });
 	    $('#ajoutParCtr').click(function(){
 	        $('#dialogParCtr').dialog('open');
+	        $('#dialogParCtr').dialog({'title':'Paramètres vérifiés:'});
 	    });
 	    $('#ajoutMMCtr').click(function(){
 	        $('#dialogMMCtr').dialog('open');
+	        $('#dialogMMCtr').dialog({'title':'Moyens de mesure employés:'});
 	    });
 	
     }
+
     
     function updateSubmitClick(php, cssButton, formData){
         if(cssButton === undefined) cssButton = tab.dialogId+' button.submit';
@@ -134,7 +171,6 @@ $(document).ready(function(){
         $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
         $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
     });
-    ajoutParCtr
 	// retourne le contenue textuel d'un élément Enfant
 	function getChildText(parentEl,id){
 		return parentEl.children('td#'+id).text();
@@ -189,7 +225,7 @@ $(document).ready(function(){
 	$.datepicker.setDefaults($.datepicker.regional['fr']);
 	
 });
-//////////////    Initialisation des combobox autocomplete    ////////////////
+//////////////    Initialisation des combobox autocomplete    ////////////////dialogParCtr
 
 (function( $ ) {
 	$.widget( "ui.combobox", {

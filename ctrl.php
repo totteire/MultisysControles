@@ -69,7 +69,7 @@
         </tr>
         <tr class='veri etal'>
             <td><label class="titre">Moyens de mesure:</label></td>
-            <td><select id="MM" class="combobox" name="Par"></select><a id="ajoutMMCtr" href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
+            <td><select id="MM" class="combobox" name="MM"></select><a id="ajoutMMCtr" href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
         </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Technicien:</label></td>
