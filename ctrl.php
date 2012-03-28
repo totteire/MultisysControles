@@ -2,10 +2,10 @@
     include('connect.php');
 ?>
 <div id="CTRL">
-    <table style="width: 600px;margin: auto;">
+    <table>
         <tr class='static menu type'>
             <td><label class="titre">Type: </label></td>
-            <td>
+            <td colspan=7>
                 <div class="radio">
 		            <input type="radio" id="brEssai" name="radio1" affichClass='essa'/><label for="brEssai">Essai</label>
 		            <input type="radio" id="brVerif" name="radio1" affichClass='veri'/><label for="brVerif">Vérification</label>
@@ -15,7 +15,7 @@
         </tr>
         <tr class='static menu lieu'>
             <td><label class="titre">Lieu:</label></td>
-            <td>	
+            <td colspan=7>	
                 <div class="radio">
 		            <input type="radio" id="site" name="radio2" /><label for="site">Sur site</label>
 		            <input type="radio" id="atelier" name="radio2" /><label for="atelier">Atelier</label>
@@ -24,11 +24,11 @@
         </tr>
         <tr class='static'>
             <td><label class="titre">Numéro:</label></td>
-            <td><input type='text' class="ui-corner-all" name='num' id='num' defaut=<?php include('getCtrlNum.php');?>></td>
+            <td colspan=7><input type='text' class="ui-corner-all" name='num' id='num' defaut=<?php include('getCtrlNum.php');?>></td>
         </tr>
 	    <tr class='static'>
             <td><label class="titre">Client:</label></td>
-            <td>
+            <td colspan=7>
                 <select id="cli" class="combobox" name='cli'>
                 <option value=""></option>
                 <?php 
@@ -42,14 +42,38 @@
         	</td>
 	    </tr>
 	    <tr class='static'>
-	        <td><label class="titre">Appareil:</label></td>
+	        <td><label class="titre">Désignation:</label></td>
             <td><select id="App" class="combobox" name='App'>
                 <option value=""></option>
                 <?php 
-                    $reqApp="SELECT ID, DESIGNATION FROM APPAREIL;";
+                    $reqApp="SELECT DISTINCT DESIGNATION FROM APPAREIL;";
                     $resultApp = mysql_query($reqApp)or die(mysql_error());
                     while($res = mysql_fetch_array($resultApp)){
-                        echo "<option value='".$res['ID']."'>".$res['DESIGNATION']."</option>";
+                        echo "<option value='".$res['DESIGNATION']."'>".$res['DESIGNATION']."</option>";
+                    }
+                ?>
+	            </select>
+	        </td>
+	        <td><label class="titre">Marque:</label></td>
+            <td><select id="App" class="combobox" name='App'>
+                <option value=""></option>
+                <?php 
+                    $reqApp="SELECT DISTINCT MARQUE FROM APPAREIL;";
+                    $resultApp = mysql_query($reqApp)or die(mysql_error());
+                    while($res = mysql_fetch_array($resultApp)){
+                        echo "<option value='".$res['MARQUE']."'>".$res['MARQUE']."</option>";
+                    }
+                ?>
+	            </select>
+	        </td>
+	        <td><label class="titre">Type:</label></td>
+            <td><select id="App" class="combobox" name='App'>
+                <option value=""></option>
+                <?php 
+                    $reqApp="SELECT ID, TYPE FROM APPAREIL;";
+                    $resultApp = mysql_query($reqApp)or die(mysql_error());
+                    while($res = mysql_fetch_array($resultApp)){
+                        echo "<option value='".$res['ID']."'>".$res['TYPE']."</option>";
                     }
                 ?>
 	            </select>
@@ -65,15 +89,15 @@
         </tr>
         <tr class='veri etal'>
             <td><label class="titre">Paramètres:</label></td>
-            <td><select id="Par" class="combobox" name="Par"></select><a id="ajoutParCtr" href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
+            <td colspan=7><select id="Par" class="combobox" name="Par"></select><a id="ajoutParCtr" href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
         </tr>
         <tr class='veri etal'>
             <td><label class="titre">Moyens de mesure:</label></td>
-            <td><select id="MM" class="combobox" name="MM"></select><a id="ajoutMMCtr" href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
+            <td colspan=7><select id="MM" class="combobox" name="MM"></select><a id="ajoutMMCtr" href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
         </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Technicien:</label></td>
-	        <td><select id="cli" class="combobox" name='cli'><option></option><option>Claude</option></select></td>
+	        <td colspan=7><select id="cli" class="combobox" name='cli'><option></option><option>Claude</option></select></td>
 	    </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Date:</label></td>
@@ -81,7 +105,7 @@
 	    </tr>
 	    <tr class='essa veri'>
             <td><label class="titre">Jugement:</label></td>
-            <td><select class="combobox" id='jugement' name='jugement'>
+            <td colspan=7><select class="combobox" id='jugement' name='jugement'>
                 <option></option>
                 <option>Appareil conforme</option>
                 <option>Appareil conforme après réparation</option>
@@ -90,7 +114,7 @@
         </tr>
 	    <tr class='static'>
             <td><label class="titre">Observation:</label></td>
-            <td><textarea type='textarea' class="ui-corner-all" name='numS' id='numS'></textarea></td>
+            <td colspan=7><textarea type='textarea' class="ui-corner-all" name='numS' id='numS'></textarea></td>
         </tr>
         <tr class='static'><td></td><td><button class="submit">Enregistrer</button></td></tr>
         </table>
@@ -108,7 +132,7 @@
                 if($Par['LIBELLE'] != $prevLib){
                     $nb++;
                     echo "<tr>
-                            <td><input type='checkbox' name='".$Par['ID']."' value='".$Par['ID']."'></td>
+                            <td><input type='checkbox' name='para".$Par['ID']."' value='".$Par['ID']."'></td>
                             <td>".$Par['LIBELLE']."</td>
                         </tr>";
                 }
@@ -131,7 +155,7 @@
                 if($MM['LIBELLE'] != $prevLib){
                     $nb++;
                     echo "<tr>
-                            <td><input type='checkbox' name='".$MM['ID']."' value='".$MM['ID']."'></td>
+                            <td><input type='checkbox' name='mmes".$MM['ID']."' value='".$MM['ID']."'></td>
                             <td>".$MM['LIBELLE']."</td>
                         </tr>";
                 }

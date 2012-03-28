@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':''};
+    var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':'','needReload':''};
     $(".tabs" ).tabs({'selected':5});
     reloadContent();
     updateTAb();
@@ -95,11 +95,16 @@ $(document).ready(function(){
                                 if(data[i]==idMM) $(this).attr('checked',true);
                             }
                         });
+                        // Vide et rerempli les lists déroulantes
+                        $('#CTRL select#Par option').remove();
+                        $('#dialogParCtr input:checkbox:checked').each(function(){
+                            $('#CTRL select#Par').append("<option>"+ $(this).parent().next().text() +"</option>");
+                        });
+                        $('#CTRL select#MM option').remove();
+                        $('#dialogMMCtr input:checkbox:checked').each(function(){
+                            $('#CTRL select#MM').append("<option>"+ $(this).parent().next().text() +"</option>");
+                        });
                     }
-            });
-            $('#CTRL select#Par option').remove();
-            $('#dialogParCtr input:checkbox:checked').each(function(){
-                $('#CTRL select#Par').append("<option>"+ $(this).parent().next().text() +"</option>");
             });
             $('#dialogParCtr').dialog('close');
         });
@@ -107,7 +112,7 @@ $(document).ready(function(){
         // CTRL ajout Moyen de mesure
         $('#dialogMMCtr button.submit').click(function(){
             $('#CTRL select#MM option').remove();
-            $('#dialogParMM input:checkbox:checked').each(function(){
+            $('#dialogMMCtr input:checkbox:checked').each(function(){
                 $('#CTRL select#MM').append("<option>"+ $(this).parent().next().text() +"</option>");
             });
             $('#dialogMMCtr').dialog('close');
@@ -164,12 +169,15 @@ $(document).ready(function(){
         tab.suppr = $('.ui-tabs-panel:visible').attr('suppr');
         tab.modif = $('.ui-tabs-panel:visible').attr('modif');
         tab.dialogId = $('.ui-tabs-panel:visible').attr('dialogId');
+        tab.needReload = $('.ui-tabs-panel:visible').attr('needReload');
     }
     // fonction changeant les variables de tabs
     $('ul.ui-tabs-nav a').click(function(){
         updateTAb();
-        $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
-        $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
+        // Vérifier si la tab necessite d'etre rechargé
+        if(tab.needReload == "true"){
+            $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
+        }
     });
 	// retourne le contenue textuel d'un élément Enfant
 	function getChildText(parentEl,id){

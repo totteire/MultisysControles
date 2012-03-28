@@ -29,12 +29,12 @@
 	        	<li><input type="text" id="search" class="ui-corner-all" style="margin:0 0 0 5px;"/></li>
 	        	<li style="float:right;"><a href="#tabCtrl">+CONTROLE</a></li>
         	</ul>
-	        <div id="tabCli" page='client.php' dialogId='#dialogCli' ajout='client/ajoutCli.php' suppr='client/supprCli.php' modif='client/modifCli.php'>
+	        <div id="tabCli" page='client.php' dialogId='#dialogCli' ajout='client/ajoutCli.php' suppr='client/supprCli.php' modif='client/modifCli.php' needReload='false'>
 		        <?php 
 		            include("client.php");
 	            ?>
 	        </div>
-        	<div id="tabApp" page='appareil.php' dialogId='#dialogApp' ajout='appareil/ajoutApp.php' suppr='appareil/supprApp.php' modif='appareil/modifApp.php'>
+        	<div id="tabApp" page='appareil.php' dialogId='#dialogApp' ajout='appareil/ajoutApp.php' suppr='appareil/supprApp.php' modif='appareil/modifApp.php' needReload='false'>
 		        <?php 
 		            include("appareil.php");
 		        ?>
@@ -44,17 +44,17 @@
 		            include("controle.php");
 		        ?>
         	</div>
-        	<div id="tabMes" page='moyenMesure.php' dialogId='#dialogMes' ajout='moyenMesure/ajoutMes.php' suppr='moyenMesure/supprMes.php' modif='moyenMesure/modifMes.php'>
+        	<div id="tabMes" page='moyenMesure.php' dialogId='#dialogMes' ajout='moyenMesure/ajoutMes.php' suppr='moyenMesure/supprMes.php' modif='moyenMesure/modifMes.php' needReload='false'>
 		        <?php 
 		            include("moyenMesure.php");
 		        ?>
         	</div>
-        	<div id="tabPar" page='parametre.php' dialogId='#dialogPar' ajout='parametre/ajoutPar.php' suppr='parametre/supprPar.php' modif='parametre/modifPar.php'>
+        	<div id="tabPar" page='parametre.php' dialogId='#dialogPar' ajout='parametre/ajoutPar.php' suppr='parametre/supprPar.php' modif='parametre/modifPar.php' needReload='true'>
 		        <?php 
 		            include("parametre.php");
 		        ?>
         	</div>
-	        <div id="tabCtrl" page='ctrl.php' dialogId='#CTRL' ajout='client/ajoutCli.php' suppr='controle/supprCtr.php' modif='controle/modifCtr.php'>
+	        <div id="tabCtrl" page='ctrl.php' dialogId='#CTRL' ajout='client/ajoutCli.php' suppr='controle/supprCtr.php' modif='controle/modifCtr.php' needReload='true'>
 		        <?php
 		            include("ctrl.php");
 	            ?>
@@ -62,4 +62,6 @@
 	    </div>
 	</div>
 </body>
+
 </html>
+

@@ -160,7 +160,7 @@ label.titre{
     margin: 10px 10px;
 }
 #CTRL td>label{
-    width:200px;
+    width:100px;
 }
 #CTRL input,textarea{
     border:solid 1px #aacfe4;
@@ -177,4 +177,8 @@ label.titre{
 }
 #CTRL .radio label:not(.ui-state-active) span{
     opacity:0.5;
+}
+#CTRL table{
+    width: 600px;
+    margin: auto auto auto 30px;
 }
