@@ -1,4 +1,4 @@
-$(document).ready(function(){
+function _init(){
     var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':'','needReload':''};
     $(".tabs" ).tabs({'selected':5});
     reloadContent();
@@ -244,18 +244,18 @@ $(document).ready(function(){
 //	});
 
 	
-});
-//////////////    Initialisation des combobox autocomplete    ////////////////dialogParCtr
+}
+//////////////    Initialisation des combobox autocomplete    ////////////////
 
 (function( $ ) {
     function comboSelectDefault(select){
-        console.log(select+"has options " + $(select + ' option').size());
        if($(select + ' option').size() == 1) {
             $(select + ' option').attr("selected","selected");
             $(select).next().val($(select + ' option:selected').text());
-        } 
+        }
     }
 	function comboboxSelect(ui, input){
+	    console.log("ComboSelect :)");
 	    var select = $(input).prev();
 	    var option = escape(ui.item.value);
 	    var id = select.attr('id');
