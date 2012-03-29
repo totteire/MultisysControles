@@ -7,7 +7,6 @@ $(document).ready(function(){
     function reloadContent(){
         $(".datepicker" ).datepicker();
         $(".tableau").tablesorter();
-        $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
         $("button").button();
         $(".combobox").combobox();
         $(".radio").buttonset();
@@ -146,7 +145,8 @@ $(document).ready(function(){
 	        $('#dialogMMCtr').dialog('open');
 	        $('#dialogMMCtr').dialog({'title':'Moyens de mesure employés:'});
 	    });
-	
+	    
+	    $('#AppMarq').change(function(){alert('event Triggered');});
     }
 
     
@@ -178,6 +178,7 @@ $(document).ready(function(){
         if(tab.needReload == "true"){
             $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
         }
+        $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
     });
 	// retourne le contenue textuel d'un élément Enfant
 	function getChildText(parentEl,id){
@@ -232,10 +233,55 @@ $(document).ready(function(){
 	};
 	$.datepicker.setDefaults($.datepicker.regional['fr']);
 	
+//	$( "#remotecombobox" ).autocomplete({
+//		source: "searchApp.php",
+//		minLength: 2,
+//		select: function( event, ui ) {
+//			log( ui.item ?
+//					"Selected: " + ui.item.value + " aka " + ui.item.id :
+//					"Nothing selected, input was " + this.value );
+//		}
+//	});
+
+	
 });
 //////////////    Initialisation des combobox autocomplete    ////////////////dialogParCtr
 
 (function( $ ) {
+    function comboSelectDefault(select){
+        console.log(select+"has options " + $(select + ' option').size());
+       if($(select + ' option').size() == 1) {
+            $(select + ' option').attr("selected","selected");
+            $(select).next().val($(select + ' option:selected').text());
+        } 
+    }
+	function comboboxSelect(ui, input){
+	    var select = $(input).prev();
+	    var option = escape(ui.item.value);
+	    var id = select.attr('id');
+	    switch (id){
+	        case "AppDesi":
+	            $('select#AppMarq').load("comboSearchApp.php?field=MARQUE&knownField=DESIGNATION&term="+option, 
+	                                    function(){comboSelectDefault('select#AppMarq');});
+	            $('select#AppType').load("comboSearchApp.php?field=TYPE&knownField=DESIGNATION&term="+option, 
+	                                    function(){comboSelectDefault('select#AppType');});
+	            break;
+	            
+	        case "AppMarq":
+	            $('select#AppDesi').load("comboSearchApp.php?field=DESIGNATION&knownField=MARQUE&term="+option, 
+                                        function(){comboSelectDefault('select#AppDesi');});
+	            $('select#AppType').load("comboSearchApp.php?field=TYPE&knownField=MARQUE&term="+option, 
+	                                    function(){comboSelectDefault('select#AppType');});
+	            break;
+	            
+	        case "AppType":
+	            $('select#AppDesi').load("comboSearchApp.php?field=DESIGNATION&knownField=TYPE&term="+option, 
+	                                    function(){comboSelectDefault('select#AppDesi');});
+	            $('select#AppMarq').load("comboSearchApp.php?field=MARQUE&knownField=TYPE&term="+option, 
+	                                    function(){comboSelectDefault('select#AppMarq');});
+	            break;
+	    }
+	}
 	$.widget( "ui.combobox", {
 		_create: function() {
 			var self = this,
@@ -270,6 +316,8 @@ $(document).ready(function(){
 						self._trigger( "selected", event, {
 							item: ui.item.option
 						});
+						
+						comboboxSelect(ui, this);
 					},
 					change: function( event, ui ) {
 						if ( !ui.item ) {

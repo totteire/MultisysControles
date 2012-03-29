@@ -32,7 +32,7 @@
                 <select id="cli" class="combobox" name='cli'>
                 <option value=""></option>
                 <?php 
-                    $reqCli="SELECT ID, NOM FROM CLIENT;";
+                    $reqCli="SELECT ID, NOM FROM CLIENT ORDER BY NOM;";
                     $resultCli = mysql_query($reqCli)or die(mysql_error());
                     while($res = mysql_fetch_array($resultCli)){
                         echo "<option value='".$res['ID']."'>".$res['NOM']."</option>";
@@ -43,10 +43,10 @@
 	    </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Désignation:</label></td>
-            <td><select id="App" class="combobox" name='App'>
+            <td><select id="AppDesi" class="combobox" name='App'>
                 <option value=""></option>
                 <?php 
-                    $reqApp="SELECT DISTINCT DESIGNATION FROM APPAREIL;";
+                    $reqApp="SELECT DISTINCT DESIGNATION FROM APPAREIL ORDER BY DESIGNATION;";
                     $resultApp = mysql_query($reqApp)or die(mysql_error());
                     while($res = mysql_fetch_array($resultApp)){
                         echo "<option value='".$res['DESIGNATION']."'>".$res['DESIGNATION']."</option>";
@@ -55,10 +55,10 @@
 	            </select>
 	        </td>
 	        <td><label class="titre">Marque:</label></td>
-            <td><select id="App" class="combobox" name='App'>
+            <td><select id="AppMarq" class="combobox" name='App'>
                 <option value=""></option>
                 <?php 
-                    $reqApp="SELECT DISTINCT MARQUE FROM APPAREIL;";
+                    $reqApp="SELECT DISTINCT MARQUE FROM APPAREIL ORDER BY MARQUE;";
                     $resultApp = mysql_query($reqApp)or die(mysql_error());
                     while($res = mysql_fetch_array($resultApp)){
                         echo "<option value='".$res['MARQUE']."'>".$res['MARQUE']."</option>";
@@ -67,10 +67,10 @@
 	            </select>
 	        </td>
 	        <td><label class="titre">Type:</label></td>
-            <td><select id="App" class="combobox" name='App'>
+            <td><select id="AppType" class="combobox" name='App'>
                 <option value=""></option>
                 <?php 
-                    $reqApp="SELECT ID, TYPE FROM APPAREIL;";
+                    $reqApp="SELECT ID, TYPE FROM APPAREIL ORDER BY TYPE;";
                     $resultApp = mysql_query($reqApp)or die(mysql_error());
                     while($res = mysql_fetch_array($resultApp)){
                         echo "<option value='".$res['ID']."'>".$res['TYPE']."</option>";
