@@ -43,7 +43,7 @@
 	    </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Désignation:</label></td>
-            <td><select id="AppDesi" class="combobox" name='App'>
+            <td class='minWidth'><select id="AppDesi" class="combobox" name='App'>
                 <option value=""></option>
                 <?php 
                     $reqApp="SELECT DISTINCT DESIGNATION FROM APPAREIL ORDER BY DESIGNATION;";
@@ -55,7 +55,7 @@
 	            </select>
 	        </td>
 	        <td><label class="titre">Marque:</label></td>
-            <td><select id="AppMarq" class="combobox" name='App'>
+            <td class='minWidth'><select id="AppMarq" class="combobox" name='App'>
                 <option value=""></option>
                 <?php 
                     $reqApp="SELECT DISTINCT MARQUE FROM APPAREIL ORDER BY MARQUE;";
@@ -67,7 +67,7 @@
 	            </select>
 	        </td>
 	        <td><label class="titre">Type:</label></td>
-            <td><select id="AppType" class="combobox" name='App'>
+            <td class='minWidth'><select id="AppType" class="combobox" name='App'>
                 <option value=""></option>
                 <?php 
                     $reqApp="SELECT ID, TYPE FROM APPAREIL ORDER BY TYPE;";

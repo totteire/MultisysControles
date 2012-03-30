@@ -176,6 +176,7 @@ function _init(){
         updateTAb();
         // Vérifier si la tab necessite d'etre rechargé
         if(tab.needReload == "true"){
+            $('.ui-tabs-panel:visible').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
             $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
         }
         $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
@@ -262,23 +263,23 @@ function _init(){
 	    switch (id){
 	        case "AppDesi":
 	            $('select#AppMarq').load("comboSearchApp.php?field=MARQUE&knownField=DESIGNATION&term="+option, 
-	                                    function(){comboSelectDefault('select#AppMarq');});
+	                                    function(){$('select#AppMarq').next().val("");comboSelectDefault('select#AppMarq');});
 	            $('select#AppType').load("comboSearchApp.php?field=TYPE&knownField=DESIGNATION&term="+option, 
-	                                    function(){comboSelectDefault('select#AppType');});
+	                                    function(){$('select#AppType').next().val("");comboSelectDefault('select#AppType');});
 	            break;
 	            
 	        case "AppMarq":
 	            $('select#AppDesi').load("comboSearchApp.php?field=DESIGNATION&knownField=MARQUE&term="+option, 
-                                        function(){comboSelectDefault('select#AppDesi');});
+                                        function(){$('select#AppDesi').next().val("");comboSelectDefault('select#AppDesi');});
 	            $('select#AppType').load("comboSearchApp.php?field=TYPE&knownField=MARQUE&term="+option, 
-	                                    function(){comboSelectDefault('select#AppType');});
+	                                    function(){$('select#AppType').next().val("");comboSelectDefault('select#AppType');});
 	            break;
 	            
 	        case "AppType":
 	            $('select#AppDesi').load("comboSearchApp.php?field=DESIGNATION&knownField=TYPE&term="+option, 
-	                                    function(){comboSelectDefault('select#AppDesi');});
+	                                    function(){$('select#AppDesi').next().val("");comboSelectDefault('select#AppDesi');});
 	            $('select#AppMarq').load("comboSearchApp.php?field=MARQUE&knownField=TYPE&term="+option, 
-	                                    function(){comboSelectDefault('select#AppMarq');});
+	                                    function(){$('select#AppMarq').next().val("");comboSelectDefault('select#AppMarq');});
 	            break;
 	    }
 	}
