@@ -1,5 +1,5 @@
 <table id="tableau" class="tableau tablesorter">
-	<thead><tr><th class="topLeft">Numéro</th><th>Lieu</th><th>Client</th><th>Appareil</th><th>Date</th><th>Technicien</th><th>Jugement</th><th>Observation</th><th>Chassis</th><th class="topRight">Série</th></tr></thead>
+	<thead><tr><th class='info'></th><th class="topLeft">Numéro</th><th>Lieu</th><th>Client</th><th>Appareil</th><th>Date</th><th>Technicien</th><th>Jugement</th><th>Observation</th><th>Chassis</th><th class="topRight">Série</th></tr></thead>
     <tbody>
 	<?php
 		include('connect.php');

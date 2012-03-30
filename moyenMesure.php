@@ -1,6 +1,6 @@
 <button class="btAjout"><h1> + Moyen de Mesure</h1></button>
 <table id="tableau" class="tableau tablesorter">
-	<thead><tr><th class="topLeft">Libellé</th><th>Vérification</th><th class="topRight">Numéro & Date</th></tr></thead>
+	<thead><tr><th class='info'></th><th class="topLeft">Libellé</th><th>Vérification</th><th class="topRight">Numéro & Date</th></tr></thead>
     <tbody>
 	<?php
 		include('connect.php');
