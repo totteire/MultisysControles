@@ -101,17 +101,19 @@ function _init(){
                         // Vide et rerempli les lists déroulantes
                         $('#CTRL select#Par option').remove();
                         $('#dialogParCtr input:checkbox:checked').each(function(){
-                            $('#CTRL select#Par').append("<option>"+ $(this).parent().next().text() +"</option>");
                             ParNbChecked = ParNbChecked + 1;
+							$('#CTRL select#Par').append("<option>"+ $(this).parent().next().text() +"</option>");
+							$(this).parent().next().css('color','#EB8F00');
                         });
-                        $('#CTRL select#Par').next().val(ParNbChecked+" paramètre(s) selectionné(s)");
+                        $('#CTRL select#Par').next().val(ParNbChecked+" selection"+((ParNbChecked>1)? "s":""));
                         $('#CTRL select#MM option').remove();
-                        $('#CTRL select#MM').next().val(MMnbChecked+" moyen(s) de mesure");
+                        $('#CTRL select#MM').next().val(MMnbChecked+" selection"+((MMnbChecked>1)? "s":""));
                         $('#dialogMMCtr input:checkbox:checked').each(function(){
-                            $('#CTRL select#MM').append("<option>"+ $(this).parent().next().text() +"</option>");
                             MMnbChecked = MMnbChecked + 1;
+							$('#CTRL select#MM').append("<option>"+ $(this).parent().next().text() +"</option>");
+							$(this).parent().next().css('color','#EB8F00');
                         });
-                        $('#CTRL select#MM').next().val(MMnbChecked+" moyen(s) de mesure selectionné(s)");
+                        $('#CTRL select#MM').next().val(MMnbChecked+" selection"+((ParNbChecked>1)? "s":""));
                     }
             });
             $('#dialogParCtr').dialog('close');
@@ -122,10 +124,11 @@ function _init(){
             $('#CTRL select#MM option').remove();
             var MMnbChecked = 0;
             $('#dialogMMCtr input:checkbox:checked').each(function(){
-                $('#CTRL select#MM').append("<option>"+ $(this).parent().next().text() +"</option>");
                 MMnbChecked = MMnbChecked + 1;
+				$('#CTRL select#MM').append("<option>"+ $(this).parent().next().text() +"</option>");
+				$(this).parent().next().css('color','#EB8F00');
             });
-            $('#CTRL select#MM').next().val(MMnbChecked+" moyen(s) de mesure selectionné(s)");
+            $('#CTRL select#MM').next().val(MMnbChecked+" selection"+((MMnbChecked>1)? "s":""));
             $('#dialogMMCtr').dialog('close');
         });
         
@@ -157,8 +160,12 @@ function _init(){
 	        $('#dialogMMCtr').dialog('open');
 	        $('#dialogMMCtr').dialog({'title':'Moyens de mesure employés:'});
 	    });
-	    
-	    $('#AppMarq').change(function(){alert('event Triggered');});
+	    $('.dialog input:checkbox').change(function(){
+			if($(this).attr('checked')=='checked')
+				$(this).parent().next().css('color','#EB8F00');
+			else 
+				$(this).parent().next().css('color','black');
+		});
     }
     
     

@@ -52,7 +52,7 @@
                     while($res = mysql_fetch_array($resultApp)){
                         echo "<option value='".$res['DESIGNATION']."'>".$res['DESIGNATION']."</option>";
                     }
-                ?>radioLieu
+                ?>
 	            </select>
 	        </td>
 	        <td><label class="titre">Marque:</label></td>
@@ -118,9 +118,8 @@
             <td colspan=7><textarea type='textarea' class="ui-corner-all" name='observation' id='observation'></textarea></td>
         </tr>
         <tr class='static'><td></td><td><button class="submit">Enregistrer</button></td></tr>
-        </table>
-
-    </div>
+	</table>
+	</form>
     <div id="dialogParCtr" class="dialog">
         <table class="inline">
         <?php 
@@ -163,8 +162,8 @@
                 $prevLib = $MM['LIBELLE'];
                 if($nb == $middleRow)echo "</table><table class='inline'>";
             };
-        ?>
-    </table>
-    </form>
-    <button class="submit">Enregistrer</button>
+        ?>	
+		</table>
+		<button class="submit">Enregistrer</button>
+	</div>
 </div>
