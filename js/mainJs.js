@@ -87,22 +87,31 @@ function _init(){
                     data:{'ids':$('#dialogParCtr input:checkbox:checked').map(function(){return $(this).val()}).get().join(',')},
                     success: function(data){
                         // Boucle sur les checkboxes des MM et pour chaque cb vérifie si son id a été renvoyé
+                        var MMnbChecked = 0;
+                        var ParNbChecked = 0;
                         $('#dialogMMCtr input:checkbox').each(function(){
                             $(this).attr('checked',false);
                             var idMM = $(this).val();
                             for (var i in data){
-                                if(data[i]==idMM) $(this).attr('checked',true);
+                                if(data[i]==idMM){
+                                    $(this).attr('checked',true);
+                                }
                             }
                         });
                         // Vide et rerempli les lists déroulantes
                         $('#CTRL select#Par option').remove();
                         $('#dialogParCtr input:checkbox:checked').each(function(){
                             $('#CTRL select#Par').append("<option>"+ $(this).parent().next().text() +"</option>");
+                            ParNbChecked = ParNbChecked + 1;
                         });
+                        $('#CTRL select#Par').next().val(ParNbChecked+" paramètre(s) selectionné(s)");
                         $('#CTRL select#MM option').remove();
+                        $('#CTRL select#MM').next().val(MMnbChecked+" moyen(s) de mesure");
                         $('#dialogMMCtr input:checkbox:checked').each(function(){
                             $('#CTRL select#MM').append("<option>"+ $(this).parent().next().text() +"</option>");
+                            MMnbChecked = MMnbChecked + 1;
                         });
+                        $('#CTRL select#MM').next().val(MMnbChecked+" moyen(s) de mesure selectionné(s)");
                     }
             });
             $('#dialogParCtr').dialog('close');
@@ -111,9 +120,12 @@ function _init(){
         // CTRL ajout Moyen de mesure
         $('#dialogMMCtr button.submit').click(function(){
             $('#CTRL select#MM option').remove();
+            var MMnbChecked = 0;
             $('#dialogMMCtr input:checkbox:checked').each(function(){
                 $('#CTRL select#MM').append("<option>"+ $(this).parent().next().text() +"</option>");
+                MMnbChecked = MMnbChecked + 1;
             });
+            $('#CTRL select#MM').next().val(MMnbChecked+" moyen(s) de mesure selectionné(s)");
             $('#dialogMMCtr').dialog('close');
         });
         
