@@ -11,9 +11,9 @@
 		{
 			echo "<tr>
     			<td id='id' class='info'>".$res['ID']."</td>
-				<td id='libelle'>".$res['LIBELLE']."</a></td>
-				<td id='nomVerif'>".$res['NOM_VERIF']."</td>
-				<td id='numDateVerif'>".$res["NUM_DATE_VERIF"]."</td>
+				<td id='libelle'>".htmlentities($res['LIBELLE'])."</a></td>
+				<td id='nomVerif'>".htmlentities($res['NOM_VERIF'])."</td>
+				<td id='numDateVerif'>".htmlentities($res["NUM_DATE_VERIF"])."</td>
 				<td id='modif' class='modifCell'><img class='modif' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
 			</tr>";
 			$nb++;

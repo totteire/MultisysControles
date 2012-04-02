@@ -2,14 +2,15 @@
     include('connect.php');
 ?>
 <div id="CTRL">
+    <form id="ctrlForm" class="formulaire">
     <table>
         <tr class='static menu type'>
             <td><label class="titre">Type: </label></td>
             <td colspan=7>
                 <div class="radio">
-		            <input type="radio" id="brEssai" name="radio1" affichClass='essa'/><label for="brEssai">Essai</label>
-		            <input type="radio" id="brVerif" name="radio1" affichClass='veri'/><label for="brVerif">Vérification</label>
-		            <input type="radio" id="brEtal" name="radio1" affichClass='etal'/><label for="brEtal">Etalonnage</label>
+		            <input type="radio" id="brEssai" name="radioType" affichClass='essa'/><label for="brEssai">Essai</label>
+		            <input type="radio" id="brVerif" name="radioType" affichClass='veri'/><label for="brVerif">Vérification</label>
+		            <input type="radio" id="brEtal" name="radioType" affichClass='etal'/><label for="brEtal">Etalonnage</label>
                 </div>
             </td>
         </tr>
@@ -17,8 +18,8 @@
             <td><label class="titre">Lieu:</label></td>
             <td colspan=7>	
                 <div class="radio">
-		            <input type="radio" id="site" name="radio2" /><label for="site">Sur site</label>
-		            <input type="radio" id="atelier" name="radio2" /><label for="atelier">Atelier</label>
+		            <input type="radio" id="site" name="radioLieu" /><label for="site">Sur site</label>
+		            <input type="radio" id="atelier" name="radioLieu" /><label for="atelier">Atelier</label>
 	            </div>
             </td>
         </tr>
@@ -51,7 +52,7 @@
                     while($res = mysql_fetch_array($resultApp)){
                         echo "<option value='".$res['DESIGNATION']."'>".$res['DESIGNATION']."</option>";
                     }
-                ?>
+                ?>radioLieu
 	            </select>
 	        </td>
 	        <td><label class="titre">Marque:</label></td>
@@ -97,7 +98,7 @@
         </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Technicien:</label></td>
-	        <td colspan=7><select id="cli" class="combobox" name='cli'><option></option><option>Claude</option></select></td>
+	        <td colspan=7><select id="technicien" class="combobox" name='technicien'><option></option><option>Claude</option></select></td>
 	    </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Date:</label></td>
@@ -114,7 +115,7 @@
         </tr>
 	    <tr class='static'>
             <td><label class="titre">Observation:</label></td>
-            <td colspan=7><textarea type='textarea' class="ui-corner-all" name='numS' id='numS'></textarea></td>
+            <td colspan=7><textarea type='textarea' class="ui-corner-all" name='observation' id='observation'></textarea></td>
         </tr>
         <tr class='static'><td></td><td><button class="submit">Enregistrer</button></td></tr>
         </table>
@@ -145,7 +146,7 @@
     </div>
     <div id="dialogMMCtr" class="dialog">
         <table class="inline">
-        <?php 
+        <?php
             $req4="SELECT ID, LIBELLE FROM MOYEN_MESURE;";
             $result4=mysql_query($req4)or die(mysql_error());
             $middleRow = ceil(mysql_num_rows(mysql_query($req4)) / 2);
@@ -164,5 +165,6 @@
             };
         ?>
     </table>
+    </form>
     <button class="submit">Enregistrer</button>
 </div>

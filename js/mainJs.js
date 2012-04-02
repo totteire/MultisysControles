@@ -3,7 +3,7 @@ function _init(){
     $(".tabs" ).tabs({'selected':5});
     reloadContent();
     updateTAb();
-    updateSubmitClick(tab.modif);
+    updateSubmitClick(tab.ajout);
     function reloadContent(){
         $(".datepicker" ).datepicker();
         $(".tableau").tablesorter();
@@ -15,7 +15,7 @@ function _init(){
             autoOpen: false,
             width: 'auto',
             modal: true,
-            close: function(event, ui) {$(".datepicker" ).datepicker();
+            close: function(event, ui) {
                 if(tab.dialogId != '#CTRL') $(tab.dialogId+' form.formulaire').get(0).reset();
             }
         });
@@ -148,7 +148,7 @@ function _init(){
 	    
 	    $('#AppMarq').change(function(){alert('event Triggered');});
     }
-
+    
     
     function updateSubmitClick(php, cssButton, formData){
         if(cssButton === undefined) cssButton = tab.dialogId+' button.submit';
