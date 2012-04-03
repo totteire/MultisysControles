@@ -28,7 +28,7 @@
 	            include("appareil.php");
 	        ?>
     	</div>
-    	<div id="tabCtr">
+    	<div id="tabCtr" page='controle.php' dialogId='' ajout='' suppr='controle/supprCtrl' modif='controle/modifCtrl' needReload='true'>
 	        <?php
 	            include("controle.php");
 	        ?>

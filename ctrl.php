@@ -8,9 +8,9 @@
             <td><label class="titre">Type: </label></td>
             <td colspan=7>
                 <div class="radio">
-		            <input type="radio" id="brEssai" name="radioType" affichClass='essa'/><label for="brEssai">Essai</label>
-		            <input type="radio" id="brVerif" name="radioType" affichClass='veri'/><label for="brVerif">Vérification</label>
-		            <input type="radio" id="brEtal" name="radioType" affichClass='etal'/><label for="brEtal">Etalonnage</label>
+		            <input type="radio" id="brEssai" name="radioType" value="essa" affichClass='essa'/><label for="brEssai">Essai</label>
+		            <input type="radio" id="brVerif" name="radioType" value="veri" affichClass='veri'/><label for="brVerif">Vérification</label>
+		            <input type="radio" id="brEtal" name="radioType" value="etal" affichClass='etal'/><label for="brEtal">Etalonnage</label>
                 </div>
             </td>
         </tr>
@@ -18,8 +18,8 @@
             <td><label class="titre">Lieu:</label></td>
             <td colspan=7>	
                 <div class="radio">
-		            <input type="radio" id="site" name="radioLieu" /><label for="site">Sur site</label>
-		            <input type="radio" id="atelier" name="radioLieu" /><label for="atelier">Atelier</label>
+		            <input type="radio" id="site" value="S" name="radioLieu" /><label for="site">Sur site</label>
+		            <input type="radio" id="atelier" value="A" name="radioLieu" /><label for="atelier">Atelier</label>
 	            </div>
             </td>
         </tr>
@@ -44,7 +44,7 @@
 	    </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Désignation:</label></td>
-            <td class='minWidth'><select id="AppDesi" class="combobox" name='App'>
+            <td class='minWidth'><select id="AppDesi" class="combobox">
                 <option value=""></option>
                 <?php 
                     $reqApp="SELECT DISTINCT DESIGNATION FROM APPAREIL ORDER BY DESIGNATION;";
@@ -56,7 +56,7 @@
 	            </select>
 	        </td>
 	        <td><label class="titre">Marque:</label></td>
-            <td class='minWidth'><select id="AppMarq" class="combobox" name='App'>
+            <td class='minWidth'><select id="AppMarq" class="combobox">
                 <option value=""></option>
                 <?php 
                     $reqApp="SELECT DISTINCT MARQUE FROM APPAREIL ORDER BY MARQUE;";
@@ -68,7 +68,7 @@
 	            </select>
 	        </td>
 	        <td><label class="titre">Type:</label></td>
-            <td class='minWidth'><select id="AppType" class="combobox" name='App'>
+            <td class='minWidth'><select id="AppType" class="combobox" name='app'>
                 <option value=""></option>
                 <?php 
                     $reqApp="SELECT ID, TYPE FROM APPAREIL ORDER BY TYPE;";
@@ -98,7 +98,7 @@
         </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Technicien:</label></td>
-	        <td colspan=7><select id="technicien" class="combobox" name='technicien'><option></option><option>Claude</option></select></td>
+	        <td colspan=7><select id="technicien" class="combobox" name='tech'><option></option><option>Claude</option></select></td>
 	    </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Date:</label></td>
@@ -108,9 +108,9 @@
             <td><label class="titre">Jugement:</label></td>
             <td colspan=7><select class="combobox" id='jugement' name='jugement'>
                 <option></option>
-                <option>Appareil conforme</option>
-                <option>Appareil conforme après réparation</option>
-                <option>Appareil non conforme</option>
+                <option value="1">Appareil conforme</option>
+                <option value="2">Appareil conforme après réparation</option>
+                <option value="3">Appareil non conforme</option>
             </select></td>
         </tr>
 	    <tr class='static'>

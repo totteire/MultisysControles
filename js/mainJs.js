@@ -10,6 +10,7 @@ function _init(){
         $("button").button();
         $(".combobox").combobox();
         $(".radio").buttonset();
+        $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
         $(".dialog").dialog('destroy');
         $(".dialog").dialog({
             autoOpen: false,
@@ -169,15 +170,16 @@ function _init(){
 				$(this).parent().next().css('color','black');
 		});
 
-		// Boutton glissants
-		placerBtAjout();
-		
-	    $('button.btAjout').stop().animate({'marginRight':'0'},1000);
-	    $('button.btAjout').hover(function(){
-	        $(this).stop().animate({'marginRight':($(this).width()-45)+'px'},200);
-	    },function(){
-	        $(this).stop().animate({'marginRight':'0'},200);
-	    });
+		// BOUTTONS GLISSANTS ////////////////////////////////////////////////////////////
+		placerBtAjout();                                                               ///
+		                                                                               ///
+	    $('button.btAjout').stop().animate({'marginRight':'0'},1000);                  ///
+	    $('button.btAjout').hover(function(){                                          ///
+	        $(this).stop().animate({'marginRight':($(this).width()-45)+'px'},200);     ///
+	    },function(){                                                                  ///
+	        $(this).stop().animate({'marginRight':'0'},200);                           ///
+	    });                                                                            ///
+	    //////////////////////////////////////////////////////////////////////////////////
     }
     
     
@@ -188,8 +190,8 @@ function _init(){
         $(cssButton).click(function(e){
             e.preventDefault();
             // if(validateForm()){
-            formData = eval(formData);
-            submitForm(formData, php);
+            dataSend = eval(formData);
+            submitForm(dataSend, php);
             $('.dialog').dialog('close');
             // }else{$('#Formulaire #response').removeClass().addClass('error').html('Remplissez le formulaire comme demand\351!').fadeIn('fast');}
         });
@@ -202,13 +204,16 @@ function _init(){
         tab.dialogId = $('.ui-tabs-panel:visible').attr('dialogId');
         tab.needReload = $('.ui-tabs-panel:visible').attr('needReload');
     }
-    // fonction changeant les variables de tabs
+    // CLICK SUR TAB ////////////////////////////////////////////////////////////////////////////
     $('ul.ui-tabs-nav a').click(function(){
         updateTAb();
         // Vérifier si la tab necessite d'etre rechargé
         if(tab.needReload == "true"){
             $('.ui-tabs-panel:visible').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
             $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
+        }
+        if(tab.page == 'ctrl.php'){
+            updateSubmitClick(tab.ajout);
         }
         $('input#search').val('');
         $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
@@ -294,7 +299,6 @@ function _init(){
         }
     }
 	function comboboxSelect(ui, input){
-	    console.log("ComboSelect :)");
 	    var select = $(input).prev();
 	    var option = escape(ui.item.value);
 	    var id = select.attr('id');

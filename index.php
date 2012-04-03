@@ -19,6 +19,5 @@
     <div id="loader" style="width:100%;height:100%;background-color:black"><div style="width:300px;height:300px;margin:auto;"><img src="img/loading.gif" /></div></div>
     <div id="page"></div>
 </body>
-
 </html>
 
