@@ -1,5 +1,7 @@
 <div id="header"></div>
-
+<?php 
+    header('Content-Type: text/html; charset=utf-8');
+?>
 <div id="page-content">
     <div class="tabs">
         <div id="message" class="ui-state-highlight ui-corner-all"></div>

@@ -1,4 +1,4 @@
-<?php header('Content-Type: text/html; charset=windows-1252'); ?>
+
 <button class="btAjout"><h1> + Paramètre</h1></button>
 <table id="tableau" class="tableau tablesorter">
 	<thead><tr><th class='info'></th><th class="topLeft">Libellé</th><th class="topRight">Moyen de mesure</th></tr></thead>
