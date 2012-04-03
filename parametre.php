@@ -1,5 +1,5 @@
 
-<button class="btAjout"><h1> + Paramètre</h1></button>
+<button class="btAjout"><h1> +&nbsp; &nbsp; Paramètre</h1></button>
 <table id="tableau" class="tableau tablesorter">
 	<thead><tr><th class='info'></th><th class="topLeft">Libellé</th><th class="topRight">Moyen de mesure</th></tr></thead>
     <tbody>

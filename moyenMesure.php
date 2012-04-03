@@ -1,4 +1,4 @@
-<button class="btAjout"><h1> + Moyen de Mesure</h1></button>
+<button class="btAjout"><h1> +&nbsp; &nbsp; Moyen de Mesure</h1></button>
 <table id="tableau" class="tableau tablesorter">
 	<thead><tr><th class='info'></th><th class="topLeft">Libellé</th><th>Vérification</th><th class="topRight">Numéro & Date</th></tr></thead>
     <tbody>

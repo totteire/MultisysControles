@@ -94,8 +94,10 @@ table.inline{
 /*----------- boutton ajout --------*/
 .btAjout{
     top: 15%;
-    left: 85%;
+    display: block;
+/*    right: -100px;*/
     position: fixed !important;
+
 }
 /* ----------- messageDiv ----------- */
 #message{

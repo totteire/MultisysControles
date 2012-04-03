@@ -1,4 +1,4 @@
-<button class="btAjout"><h1> + Appareil</h1></button>
+<button class="btAjout"><h1> +&nbsp; &nbsp; Appareil</h1></button>
 <table id="tableau" class="tableau tablesorter">
 	<thead><tr><th class='info'></th><th class="topLeft">Désignation</th><th>Marque</th><th class="topRight">Type</th></tr></thead>
     <tbody>

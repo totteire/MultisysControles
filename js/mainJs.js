@@ -22,7 +22,7 @@ function _init(){
         
         $("#dialog-confirm").dialog({
             autoOpen: false,
-            width: 'auto',
+        	width: 'auto',
 			modal: true,
 			title: 'Suppression!'
 		});
@@ -74,7 +74,10 @@ function _init(){
             $(this).parent().parent().children(':nth-child(3)').children('select').children('option').each(function(){
                 var idMM = $(this).val();
                 $('#dialogParMM input:checkbox').each(function(){
-                    if($(this).val() == idMM) $(this).attr('checked',true);
+                    if($(this).val() == idMM) {
+                        $(this).attr('checked',true);
+                        $(this).parent().next().css('color','#EB8F00');
+                    }
                 });
             });
         });
@@ -131,7 +134,6 @@ function _init(){
             $('#CTRL select#MM').next().val(MMnbChecked+" selection"+((MMnbChecked>1)? "s":""));
             $('#dialogMMCtr').dialog('close');
         });
-        
         // Affichage ajout Ctrl
     	$('#CTRL table tr:not(.menu)').hide();
 	    $('#CTRL .menu.type .radio input:radio').change(function(){
@@ -166,6 +168,16 @@ function _init(){
 			else 
 				$(this).parent().next().css('color','black');
 		});
+
+		// Boutton glissants
+		placerBtAjout();
+		
+	    $('button.btAjout').stop().animate({'marginRight':'0'},1000);
+	    $('button.btAjout').hover(function(){
+	        $(this).stop().animate({'marginRight':($(this).width()-45)+'px'},200);
+	    },function(){
+	        $(this).stop().animate({'marginRight':'0'},200);
+	    });
     }
     
     
@@ -198,7 +210,9 @@ function _init(){
             $('.ui-tabs-panel:visible').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
             $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
         }
+        $('input#search').val('');
         $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
+        placerBtAjout();
     });
 	// retourne le contenue textuel d'un élément Enfant
 	function getChildText(parentEl,id){
@@ -252,6 +266,11 @@ function _init(){
 		yearSuffix: ''
 	};
 	$.datepicker.setDefaults($.datepicker.regional['fr']);
+	
+	function placerBtAjout(){
+        $('.ui-tabs-panel:visible .btAjout').css('right','-'+($('.ui-tabs-panel:visible .btAjout').width()-45)+'px');
+	}
+
 	
 //	$( "#remotecombobox" ).autocomplete({
 //		source: "searchApp.php",
