@@ -24,6 +24,5 @@ if($num&&$type&&$lieu&&$cli&&$app&&$tech&&$date&&$jugement){
     $return['msg']="tous les champs ne sont pas remplis!";
 }
 
-
 echo json_encode($return);
 ?>

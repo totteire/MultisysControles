@@ -43,7 +43,7 @@
 	            include("parametre.php");
 	        ?>
     	</div>
-        <div id="tabCtrl" page='ctrl.php' dialogId='#CTRL' ajout='controle/ajoutCtrl.php' suppr='controle/supprCtrl.php' modif='controle/modifCtrl.php' needReload='true'>
+        <div id="tabCtrl" page='ctrl.php' dialogId='#CTRL' ajout='controle/ajoutCtrl.php' suppr='controle/supprCtrl.php' modif='controle/modifCtrl.php' needReload='false'>
 	        <?php
 	            include("ctrl.php");
             ?>

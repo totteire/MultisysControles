@@ -135,6 +135,7 @@ function _init(){
             $('#CTRL select#MM').next().val(MMnbChecked+" selection"+((MMnbChecked>1)? "s":""));
             $('#dialogMMCtr').dialog('close');
         });
+        
         // Affichage ajout Ctrl
     	$('#CTRL table tr:not(.menu)').hide();
 	    $('#CTRL .menu.type .radio input:radio').change(function(){
@@ -214,6 +215,11 @@ function _init(){
         }
         if(tab.page == 'ctrl.php'){
             updateSubmitClick(tab.ajout);
+            if(AClass = $('#CTRL .menu .radio input:radio:checked').val()){
+                $('#CTRL tr:not(.'+AClass+')').hide();
+                $('#CTRL tr.static').show();
+                console.log('#CTRL tr:not(.'+AClass+')');
+            }
         }
         $('input#search').val('');
         $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
@@ -298,30 +304,34 @@ function _init(){
             $(select).next().val($(select + ' option:selected').text());
         }
     }
+    // on SELECT sur une des 3 select pour APPAREIL
 	function comboboxSelect(ui, input){
 	    var select = $(input).prev();
 	    var option = escape(ui.item.value);
 	    var id = select.attr('id');
 	    switch (id){
 	        case "AppDesi":
-	            $('select#AppMarq').load("comboSearchApp.php?field=MARQUE&knownField=DESIGNATION&term="+option, 
+	            $('select#AppMarq').load("comboSearchApp.php?field=MARQUE&knownField=DESIGNATION&term="+option,
 	                                    function(){$('select#AppMarq').next().val("");comboSelectDefault('select#AppMarq');});
-	            $('select#AppType').load("comboSearchApp.php?field=TYPE&knownField=DESIGNATION&term="+option, 
+	            $('select#AppType').load("comboSearchApp.php?field=TYPE&knownField=DESIGNATION&term="+option,
 	                                    function(){$('select#AppType').next().val("");comboSelectDefault('select#AppType');});
 	            break;
 	            
 	        case "AppMarq":
-	            $('select#AppDesi').load("comboSearchApp.php?field=DESIGNATION&knownField=MARQUE&term="+option, 
-                                        function(){$('select#AppDesi').next().val("");comboSelectDefault('select#AppDesi');});
-	            $('select#AppType').load("comboSearchApp.php?field=TYPE&knownField=MARQUE&term="+option, 
+	            if($('select#AppDesi').next().val() == "")
+	                $('select#AppDesi').load("comboSearchApp.php?field=DESIGNATION&knownField=MARQUE&term="+option,
+                                            function(){$('select#AppDesi').next().val("");comboSelectDefault('select#AppDesi');});
+	            $('select#AppType').load("comboSearchApp.php?field=TYPE&knownField=MARQUE&term="+option,
 	                                    function(){$('select#AppType').next().val("");comboSelectDefault('select#AppType');});
 	            break;
 	            
 	        case "AppType":
-	            $('select#AppDesi').load("comboSearchApp.php?field=DESIGNATION&knownField=TYPE&term="+option, 
-	                                    function(){$('select#AppDesi').next().val("");comboSelectDefault('select#AppDesi');});
-	            $('select#AppMarq').load("comboSearchApp.php?field=MARQUE&knownField=TYPE&term="+option, 
-	                                    function(){$('select#AppMarq').next().val("");comboSelectDefault('select#AppMarq');});
+	            if($('select#AppDesi').next().val() == "")
+    	            $('select#AppDesi').load("comboSearchApp.php?field=DESIGNATION&knownField=TYPE&term="+option,
+	                                        function(){$('select#AppDesi').next().val("");comboSelectDefault('select#AppDesi');});
+                if($('select#AppMarq').next().val() == "")
+    	            $('select#AppMarq').load("comboSearchApp.php?field=MARQUE&knownField=TYPE&term="+option,
+	                                        function(){$('select#AppMarq').next().val("");comboSelectDefault('select#AppMarq');});
 	            break;
 	    }
 	}

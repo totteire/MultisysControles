@@ -117,7 +117,7 @@
             <td><label class="titre">Observation:</label></td>
             <td colspan=7><textarea type='textarea' class="ui-corner-all" name='observation' id='observation'></textarea></td>
         </tr>
-        <tr class='static'><td></td><td><button class="submit">Enregistrer</button></td></tr>
+        <tr class='static'><td></td><td><button class="submit">Enregistrer</button><button class="submit">Vider<button></td><td></td></tr>
 	</table>
 	</form>
     <div id="dialogParCtr" class="dialog">
