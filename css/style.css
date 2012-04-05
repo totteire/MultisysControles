@@ -174,7 +174,7 @@ label.titre{
 #CTRL td a{
     margin-left: 10px;
 }
-#CTRL button:not(.submit) span{
+#CTRL button span + span{
     padding: .1em;
 }
 #CTRL .radio label:not(.ui-state-active) span{

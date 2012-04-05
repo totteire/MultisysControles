@@ -19,8 +19,8 @@
 				<td id='appD'>".$res['MARQUE']."</td>
 				<td id='appT'>".$res['TYPE']."</td>
 				<td id='lieu'>".$res['LIEU']."</td>
-				<td id='pdfEdit'>".$res['PDF_EDIT']."</a></td>
-				<td id='modif' class='modifCell'><img class='modif' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
+				<td id='pdfEdit'>".$res['PDF_EDIT']."</td>
+				<td id='modif' class='modifCell'><img class='modifCtrl' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
 			</tr>";
 			$nb++;
 		}

@@ -1,5 +1,9 @@
 <?php 
     include('connect.php');
+    $id = $_POST['ID'];
+    $reqCtrl = "SELECT * FROM CONTROLE, APPAREIL WHERE ID = $id, APPAREIL.ID = ID_CONCERNER;";
+    $ctrl = mysql_query($reqCtrl)or die(mysql_error());
+    $ctrl = mysql_fetch_array($ctrl);
 ?>
 <div id="CTRL">
     <form id="ctrlForm" class="formulaire">
@@ -8,9 +12,9 @@
             <td><label class="titre">Type: </label></td>
             <td colspan=7>
                 <div class="radio">
-		            <input type="radio" id="brEssai" name="radioType" value="essa" affichClass='essa'/><label for="brEssai">Essai</label>
-		            <input type="radio" id="brVerif" name="radioType" value="veri" affichClass='veri'/><label for="brVerif">Vérification</label>
-		            <input type="radio" id="brEtal" name="radioType" value="etal" affichClass='etal'/><label for="brEtal">Etalonnage</label>
+		            <input type="radio" id="brEssai" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'essa')echo "checked=true" ?> value="essa" affichClass='essa'/><label for="brEssai">Essai</label>
+		            <input type="radio" id="brVerif" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'veri')echo "checked=true" ?> value="veri" affichClass='veri'/><label for="brVerif">Vérification</label>
+		            <input type="radio" id="brEtal" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'etal')echo "checked=true" ?> value="etal" affichClass='etal'/><label for="brEtal">Etalonnage</label>
                 </div>
             </td>
         </tr>
@@ -18,62 +22,70 @@
             <td><label class="titre">Lieu:</label></td>
             <td colspan=7>	
                 <div class="radio">
-		            <input type="radio" id="site" value="S" name="radioLieu" /><label for="site">Sur site</label>
-		            <input type="radio" id="atelier" value="A" name="radioLieu" /><label for="atelier">Atelier</label>
+		            <input type="radio" id="site" value="S" <?php if($ctrl['LIEU'] == 'S')echo "checked=true" ?> name="radioLieu" /><label for="site">Sur site</label>
+		            <input type="radio" id="atelier" value="A" <?php if($ctrl['LIEU'] == 'A')echo "checked=true" ?> name="radioLieu" /><label for="atelier">Atelier</label>
 	            </div>
             </td>
         </tr>
         <tr class='static'>
             <td><label class="titre">Numéro:</label></td>
-            <td colspan=7><input type='text' class="ui-corner-all" name='num' id='num' defaut=<?php include('getCtrlNum.php');?>></td>
+            <td colspan=7><input type='text' class="ui-corner-all" value=<?php echo $ctrl['NUM'] ?> name='num' id='num' defaut=<?php include('getCtrlNum.php');?>></td>
         </tr>
 	    <tr class='static'>
             <td><label class="titre">Client:</label></td>
             <td colspan=7>
                 <select id="cli" class="combobox" name='cli'>
-                <option value=""></option>
                 <?php 
                     $reqCli="SELECT ID, NOM FROM CLIENT ORDER BY NOM;";
                     $resultCli = mysql_query($reqCli)or die(mysql_error());
                     while($res = mysql_fetch_array($resultCli)){
-                        echo "<option value='".$res['ID']."'>".$res['NOM']."</option>";
+                        if ($res['ID'] == $ctrl['ID'])
+                            echo "<option checked='true' value='".$res['ID']."'>".$res['NOM']."</option>";
+                        else
+                            echo "<option value='".$res['ID']."'>".$res['NOM']."</option>";
                     }
                 ?>
-	            </select>	
+	            </select>
         	</td>
 	    </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Désignation:</label></td>
             <td class='minWidth'><select id="AppDesi" class="combobox">
-                <option value=""></option>
                 <?php 
                     $reqApp="SELECT DISTINCT DESIGNATION FROM APPAREIL ORDER BY DESIGNATION;";
                     $resultApp = mysql_query($reqApp)or die(mysql_error());
                     while($res = mysql_fetch_array($resultApp)){
-                        echo "<option value='".$res['DESIGNATION']."'>".$res['DESIGNATION']."</option>";
+                        if($res['DESIGNATION'] == $ctrl['DESIGNATION'])
+                            echo "<option checked='true' value='".$res['DESIGNATION']."'>".$res['DESIGNATION']."</option>";
+                        else
+                            echo "<option value='".$res['DESIGNATION']."'>".$res['DESIGNATION']."</option>";
                     }
                 ?>
 	            </select>
 	        </td>
 	        <td><label class="titre">Marque:</label></td>
             <td class='minWidth'><select id="AppMarq" class="combobox">
-                <option value=""></option>
-                <?php 
+                <?php
                     $reqApp="SELECT DISTINCT MARQUE FROM APPAREIL ORDER BY MARQUE;";
                     $resultApp = mysql_query($reqApp)or die(mysql_error());
                     while($res = mysql_fetch_array($resultApp)){
-                        echo "<option value='".$res['MARQUE']."'>".$res['MARQUE']."</option>";
+                        if($res['MARQUE'] == $ctrl['MARQUE'])
+                            echo "<option checked='true' value='".$res['MARQUE']."'>".$res['MARQUE']."</option>";
+                        else
+                            echo "<option value='".$res['MARQUE']."'>".$res['MARQUE']."</option>";
                     }
                 ?>
 	            </select>
 	        </td>
 	        <td><label class="titre">Type:</label></td>
             <td class='minWidth'><select id="AppType" class="combobox" name='app'>
-                <option value=""></option>
-                <?php 
+                <?php
                     $reqApp="SELECT ID, TYPE FROM APPAREIL ORDER BY TYPE;";
                     $resultApp = mysql_query($reqApp)or die(mysql_error());
                     while($res = mysql_fetch_array($resultApp)){
+                    if($res['ID'] == $ctrl['ID'])
+                        echo "<option checked='true' value='".$res['ID']."'>".$res['TYPE']."</option>";
+                    else
                         echo "<option value='".$res['ID']."'>".$res['TYPE']."</option>";
                     }
                 ?>
@@ -82,11 +94,11 @@
 	    </tr>
 	    <tr class='static'>
             <td><label class="titre">Num Série:</label></td>
-            <td><input type='text' class="ui-corner-all" name='numS' id='numS'/></td>
+            <td><input type='text' value=<?php echo $ctrl['NUM_SERIE'] ?> class="ui-corner-all" name='numS' id='numS'/></td>
         </tr>
 	    <tr class='static'>
             <td><label class="titre">Num Chassis:</label></td>
-            <td><input type='text' class="ui-corner-all" name='numC' id='numC'/></td>
+            <td><input type='text' value=<?php echo $ctrl['NUM_CHASSIS'] ?> class="ui-corner-all" name='numC' id='numC'/></td>
         </tr>
         <tr class='veri etal'>
             <td><label class="titre">Paramètres:</label></td>

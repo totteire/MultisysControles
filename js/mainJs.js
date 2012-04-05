@@ -48,6 +48,17 @@ function _init(){
             }
         });
         
+        $('img.modifCtrl').click(function(){
+            updateSubmitClick(tab.modif,'#CTRL .submit');
+            var par = $(this).parent().parent();
+            // Remplir les champs en fonction 
+            $(tab.dialogId+' .formulaire input').each(function(){
+                $(this).val(getChildText(par,$(this).attr('id')));
+            });
+            $(tab.dialogId+' form h1').html('MODIFICATION ' + $('ul .ui-state-active a').html());
+            $(tab.dialogId).dialog('open');
+        });
+        
         $('img.suppr').click(function(){
             if($('.dialog').dialog('isOpen')) return false;
             else{
@@ -205,6 +216,7 @@ function _init(){
         tab.dialogId = $('.ui-tabs-panel:visible').attr('dialogId');
         tab.needReload = $('.ui-tabs-panel:visible').attr('needReload');
     }
+
     // CLICK SUR TAB ////////////////////////////////////////////////////////////////////////////
     $('ul.ui-tabs-nav a').click(function(){
         updateTAb();
@@ -214,17 +226,29 @@ function _init(){
             $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
         }
         if(tab.page == 'ctrl.php'){
+            function refreshTable(){
+                if(AClass = $('#CTRL .menu .radio input:radio:checked').val()){
+                    $('#CTRL tr:not(.'+AClass+')').hide();
+                    $('#CTRL tr.static').show();
+                }else{
+                    $('#CTRL tr:not(.menu)').hide();
+                }
+            }   
             updateSubmitClick(tab.ajout);
-            if(AClass = $('#CTRL .menu .radio input:radio:checked').val()){
-                $('#CTRL tr:not(.'+AClass+')').hide();
-                $('#CTRL tr.static').show();
-                console.log('#CTRL tr:not(.'+AClass+')');
-            }
+            // Delai car tout element de la tab deviennent visible après le click
+            var wait = setTimeout(refreshTable,10);
         }
         $('input#search').val('');
         $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
         placerBtAjout();
     });
+
+    
+    $('#CtrlClear').click(function(){
+        $('.ui-tabs-panel:visible').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
+        $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
+    });
+    
 	// retourne le contenue textuel d'un élément Enfant
 	function getChildText(parentEl,id){
 		return parentEl.children('td#'+id).text();
@@ -282,16 +306,7 @@ function _init(){
         $('.ui-tabs-panel:visible .btAjout').css('right','-'+($('.ui-tabs-panel:visible .btAjout').width()-45)+'px');
 	}
 
-	
-//	$( "#remotecombobox" ).autocomplete({
-//		source: "searchApp.php",
-//		minLength: 2,
-//		select: function( event, ui ) {
-//			log( ui.item ?
-//					"Selected: " + ui.item.value + " aka " + ui.item.id :
-//					"Nothing selected, input was " + this.value );
-//		}
-//	});
+
 
 	
 }
