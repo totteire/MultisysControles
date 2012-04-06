@@ -8,9 +8,9 @@
             <td><label class="titre">Type: </label></td>
             <td colspan=7>
                 <div class="radio">
-		            <input type="radio" id="brEssai" name="radioType" value="essa" affichClass='essa'/><label for="brEssai">Essai</label>
-		            <input type="radio" id="brVerif" name="radioType" value="veri" affichClass='veri'/><label for="brVerif">Vérification</label>
-		            <input type="radio" id="brEtal" name="radioType" value="etal" affichClass='etal'/><label for="brEtal">Etalonnage</label>
+		            <input type="radio" id="brEssai" name="radioType" value="essa"/><label for="brEssai">Essai</label>
+		            <input type="radio" id="brVerif" name="radioType" value="veri"/><label for="brVerif">Vérification</label>
+		            <input type="radio" id="brEtal" name="radioType" value="etal"/><label for="brEtal">Etalonnage</label>
                 </div>
             </td>
         </tr>

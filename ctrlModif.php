@@ -12,9 +12,9 @@
             <td><label class="titre">Type: </label></td>
             <td colspan=7>
                 <div class="radio">
-		            <input type="radio" id="brEssai" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'essa')echo "checked=true" ?> value="essa" affichClass='essa'/><label for="brEssai">Essai</label>
-		            <input type="radio" id="brVerif" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'veri')echo "checked=true" ?> value="veri" affichClass='veri'/><label for="brVerif">Vérification</label>
-		            <input type="radio" id="brEtal" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'etal')echo "checked=true" ?> value="etal" affichClass='etal'/><label for="brEtal">Etalonnage</label>
+		            <input type="radio" id="brEssai" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'essa')echo "checked=true" ?> value="essa"/><label for="brEssai">Essai</label>
+		            <input type="radio" id="brVerif" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'veri')echo "checked=true" ?> value="veri"/><label for="brVerif">Vérification</label>
+		            <input type="radio" id="brEtal" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'etal')echo "checked=true" ?> value="etal"/><label for="brEtal">Etalonnage</label>
                 </div>
             </td>
         </tr>

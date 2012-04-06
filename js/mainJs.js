@@ -1,8 +1,8 @@
 function _init(){
     var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':'','needReload':''};
     $(".tabs" ).tabs({'selected':5});
-    reloadContent();
     updateTAb();
+    reloadContent();
     updateSubmitClick(tab.ajout);
     function reloadContent(){
         $(".datepicker" ).datepicker();
@@ -51,10 +51,102 @@ function _init(){
         $('img.modifCtrl').click(function(){
             updateSubmitClick(tab.modif,'#CTRL .submit');
             $(".tabs").tabs({'selected':5});
+            updateTAb();
+            $('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
             var id = getChildText($(this).parent().parent(),'id');
             $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){reloadContent();refreshCtrlTable()});
         });
         
+        if(tab.page == "ctrl.php"){
+            // CTRL ajout Paramètre
+            $('#dialogParCtr button.submit').click(function(){
+                $.ajax({type:'POST',
+                        url:'getListMM.php',
+                        dataType:'json',
+                        data:{'ids':$('#dialogParCtr input:checkbox:checked').map(function(){return $(this).val()}).get().join(',')},
+                        success: function(data){
+                            // Boucle sur les checkboxes des MM et pour chaque cb vérifie si son id a été renvoyé
+                            var MMnbChecked = 0;
+                            var ParNbChecked = 0;
+                            $('#dialogMMCtr input:checkbox').each(function(){
+                                $(this).attr('checked',false);
+                                var idMM = $(this).val();
+                                for (var i in data){
+                                    if(data[i]==idMM){
+                                        $(this).attr('checked',true);
+                                    }
+                                }
+                            });
+                            // Vide et rerempli les lists déroulantes
+                            $('#CTRL select#Par option').remove();
+                            $('#dialogParCtr input:checkbox:checked').each(function(){
+                                ParNbChecked = ParNbChecked + 1;
+							    $('#CTRL select#Par').append("<option>"+ $(this).parent().next().text() +"</option>");
+							    $(this).parent().next().css('color','#EB8F00');
+                            });
+                            $('#CTRL select#Par').next().val(ParNbChecked+" selection"+((ParNbChecked>1)? "s":""));
+                            $('#CTRL select#MM option').remove();
+                            $('#CTRL select#MM').next().val(MMnbChecked+" selection"+((MMnbChecked>1)? "s":""));
+                            $('#dialogMMCtr input:checkbox:checked').each(function(){
+                                MMnbChecked = MMnbChecked + 1;
+							    $('#CTRL select#MM').append("<option>"+ $(this).parent().next().text() +"</option>");
+							    $(this).parent().next().css('color','#EB8F00');
+                            });
+                            $('#CTRL select#MM').next().val(MMnbChecked+" selection"+((ParNbChecked>1)? "s":""));
+                        }
+                });
+                $('#dialogParCtr').dialog('close');
+            });
+            
+            // CTRL ajout Moyen de mesure
+            $('#dialogMMCtr button.submit').click(function(){
+                $('#CTRL select#MM option').remove();
+                var MMnbChecked = 0;
+                $('#dialogMMCtr input:checkbox:checked').each(function(){
+                    MMnbChecked = MMnbChecked + 1;
+				    $('#CTRL select#MM').append("<option>"+ $(this).parent().next().text() +"</option>");
+				    $(this).parent().next().css('color','#EB8F00');
+                });
+                $('#CTRL select#MM').next().val(MMnbChecked+" selection"+((MMnbChecked>1)? "s":""));
+                $('#dialogMMCtr').dialog('close');
+            });
+            
+            // Affichage ajout Ctrl
+        	$('#CTRL table tr:not(.menu)').hide();
+	        $('#CTRL .menu.type .radio input:radio').change(function(){
+	            var affichClass=$(this).val();
+                $('#CTRL tr:not(.'+affichClass+')').hide();
+	            $('#CTRL tr.'+affichClass).show();
+	            $('#CTRL tr.static').show();
+	        });
+
+	        $('#CTRL tr.menu.lieu .radio input:radio').change(function(){
+	            var lieu=($(this).attr('id'));
+	            switch (lieu){
+        	        case 'site':
+            	        var num = $('#CTRL input#num').attr('defaut');
+        	            $('#CTRL input#num').val(num);
+        	            break;
+        	        case 'atelier':
+        	            $('#CTRL input#num').val('');
+        	            break;
+	            }
+	        });
+	        
+            $('#CtrlClear').click(function(){
+                $('.ui-tabs-panel:visible').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
+                $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
+            });
+	        
+	        $('#ajoutParCtr').click(function(){
+	            $('#dialogParCtr').dialog('open');
+	            $('#dialogParCtr').dialog({'title':'Paramètres vérifiés:'});
+	        });
+	        $('#ajoutMMCtr').click(function(){
+	            $('#dialogMMCtr').dialog('open');
+	            $('#dialogMMCtr').dialog({'title':'Moyens de mesure employés:'});
+	        });
+        }
         $('img.suppr').click(function(){
             if($('.dialog').dialog('isOpen')) return false;
             else{
@@ -90,87 +182,6 @@ function _init(){
             });
         });
         
-        // CTRL ajout Paramètre
-        $('#dialogParCtr button.submit').click(function(){
-            $.ajax({type:'POST',
-                    url:'getListMM.php',
-                    dataType:'json',
-                    data:{'ids':$('#dialogParCtr input:checkbox:checked').map(function(){return $(this).val()}).get().join(',')},
-                    success: function(data){
-                        // Boucle sur les checkboxes des MM et pour chaque cb vérifie si son id a été renvoyé
-                        var MMnbChecked = 0;
-                        var ParNbChecked = 0;
-                        $('#dialogMMCtr input:checkbox').each(function(){
-                            $(this).attr('checked',false);
-                            var idMM = $(this).val();
-                            for (var i in data){
-                                if(data[i]==idMM){
-                                    $(this).attr('checked',true);
-                                }
-                            }
-                        });
-                        // Vide et rerempli les lists déroulantes
-                        $('#CTRL select#Par option').remove();
-                        $('#dialogParCtr input:checkbox:checked').each(function(){
-                            ParNbChecked = ParNbChecked + 1;
-							$('#CTRL select#Par').append("<option>"+ $(this).parent().next().text() +"</option>");
-							$(this).parent().next().css('color','#EB8F00');
-                        });
-                        $('#CTRL select#Par').next().val(ParNbChecked+" selection"+((ParNbChecked>1)? "s":""));
-                        $('#CTRL select#MM option').remove();
-                        $('#CTRL select#MM').next().val(MMnbChecked+" selection"+((MMnbChecked>1)? "s":""));
-                        $('#dialogMMCtr input:checkbox:checked').each(function(){
-                            MMnbChecked = MMnbChecked + 1;
-							$('#CTRL select#MM').append("<option>"+ $(this).parent().next().text() +"</option>");
-							$(this).parent().next().css('color','#EB8F00');
-                        });
-                        $('#CTRL select#MM').next().val(MMnbChecked+" selection"+((ParNbChecked>1)? "s":""));
-                    }
-            });
-            $('#dialogParCtr').dialog('close');
-        });
-        
-        // CTRL ajout Moyen de mesure
-        $('#dialogMMCtr button.submit').click(function(){
-            $('#CTRL select#MM option').remove();
-            var MMnbChecked = 0;
-            $('#dialogMMCtr input:checkbox:checked').each(function(){
-                MMnbChecked = MMnbChecked + 1;
-				$('#CTRL select#MM').append("<option>"+ $(this).parent().next().text() +"</option>");
-				$(this).parent().next().css('color','#EB8F00');
-            });
-            $('#CTRL select#MM').next().val(MMnbChecked+" selection"+((MMnbChecked>1)? "s":""));
-            $('#dialogMMCtr').dialog('close');
-        });
-        
-        // Affichage ajout Ctrl
-    	$('#CTRL table tr:not(.menu)').hide();
-	    $('#CTRL .menu.type .radio input:radio').change(function(){
-	        var affichClass=$(this).attr('affichClass');
-            $('#CTRL tr:not(.'+affichClass+')').hide();
-	        $('#CTRL tr.'+affichClass).show();
-	        $('#CTRL tr.static').show();
-	    });
-	    $('#CTRL tr.menu.lieu .radio input:radio').change(function(){
-	        var lieu=($(this).attr('id'));
-	        switch (lieu){
-    	        case 'site':
-        	        var num = $('#CTRL input#num').attr('defaut');
-    	            $('#CTRL input#num').val(num);
-    	            break;
-    	        case 'atelier':
-    	            $('#CTRL input#num').val('');
-    	            break;
-	        }
-	    });
-	    $('#ajoutParCtr').click(function(){
-	        $('#dialogParCtr').dialog('open');
-	        $('#dialogParCtr').dialog({'title':'Paramètres vérifiés:'});
-	    });
-	    $('#ajoutMMCtr').click(function(){
-	        $('#dialogMMCtr').dialog('open');
-	        $('#dialogMMCtr').dialog({'title':'Moyens de mesure employés:'});
-	    });
 	    $('.dialog input:checkbox').change(function(){
 			if($(this).attr('checked')=='checked')
 				$(this).parent().next().css('color','#EB8F00');
@@ -235,16 +246,13 @@ function _init(){
         if(AClass = $('#CTRL .menu .radio input:radio:checked').val()){
             $('#CTRL tr:not(.'+AClass+')').hide();
             $('#CTRL tr.static').show();
+            $('#CTRL tr.'+AClass).show();
         }else{
             $('#CTRL tr:not(.menu)').hide();
         }
     }
 
 
-    $('#CtrlClear').click(function(){
-        $('.ui-tabs-panel:visible').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
-        $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
-    });
     
 	// retourne le contenue textuel d'un élément Enfant
 	function getChildText(parentEl,id){
@@ -274,8 +282,8 @@ function _init(){
 		});
 	}
 	function displayMess(mess, Class, timeOut){
-	    $('#message').html(mess).removeClass('ui-state-highlight ui-state-error').addClass(Class + ' ui-corner-all').fadeIn('slow');
-	    setTimeout(function(){$('#message').fadeOut('slow');},timeOut);
+	    $('#message').html(mess).removeClass('ui-state-highlight ui-state-error').addClass(Class + ' ui-corner-all').show();
+	    setTimeout(function(){$('#message').hide();},timeOut);
 	}
 	
 	$.datepicker.regional['fr'] = {
