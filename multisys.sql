@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Jeu 05 Avril 2012 à 09:59
+-- Généré le : Ven 06 Avril 2012 à 10:13
 -- Version du serveur: 5.5.16
 -- Version de PHP: 5.3.8
 
@@ -2411,6 +2411,18 @@ INSERT INTO `PARAMETRE` (`ID`, `LIBELLE`) VALUES
 (40, 'Temps/Période'),
 (41, 'Tensions'),
 (42, 'Thermocouples');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `TECHNICIEN`
+--
+
+CREATE TABLE IF NOT EXISTS `TECHNICIEN` (
+  `ID` int(5) NOT NULL AUTO_INCREMENT,
+  `TECH` varchar(5) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
