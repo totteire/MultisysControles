@@ -50,13 +50,9 @@ function _init(){
         
         $('img.modifCtrl').click(function(){
             updateSubmitClick(tab.modif,'#CTRL .submit');
-            var par = $(this).parent().parent();
-            // Remplir les champs en fonction 
-            $(tab.dialogId+' .formulaire input').each(function(){
-                $(this).val(getChildText(par,$(this).attr('id')));
-            });
-            $(tab.dialogId+' form h1').html('MODIFICATION ' + $('ul .ui-state-active a').html());
-            $(tab.dialogId).dialog('open');
+            $(".tabs").tabs({'selected':5});
+            var id = getChildText($(this).parent().parent(),'id');
+            $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){reloadContent();refreshCtrlTable()});
         });
         
         $('img.suppr').click(function(){
@@ -226,24 +222,25 @@ function _init(){
             $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
         }
         if(tab.page == 'ctrl.php'){
-            function refreshTable(){
-                if(AClass = $('#CTRL .menu .radio input:radio:checked').val()){
-                    $('#CTRL tr:not(.'+AClass+')').hide();
-                    $('#CTRL tr.static').show();
-                }else{
-                    $('#CTRL tr:not(.menu)').hide();
-                }
-            }   
             updateSubmitClick(tab.ajout);
             // Delai car tout element de la tab deviennent visible après le click
-            var wait = setTimeout(refreshTable,10);
+            var wait = setTimeout(refreshCtrlTable,10);
         }
         $('input#search').val('');
         $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
         placerBtAjout();
-    });
-
+    });      
     
+    function refreshCtrlTable(){
+        if(AClass = $('#CTRL .menu .radio input:radio:checked').val()){
+            $('#CTRL tr:not(.'+AClass+')').hide();
+            $('#CTRL tr.static').show();
+        }else{
+            $('#CTRL tr:not(.menu)').hide();
+        }
+    }
+
+
     $('#CtrlClear').click(function(){
         $('.ui-tabs-panel:visible').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
         $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
