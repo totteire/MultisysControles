@@ -183,7 +183,7 @@
                 $prevLib = $MM['LIBELLE'];
                 if($nb == $middleRow)echo "</table><table class='inline'>";
             };
-        ?>	
+        ?>
 		</table>
 		<button class="submit">Enregistrer</button>
 	</div>

@@ -3,8 +3,9 @@ function _init(){
     $(".tabs" ).tabs({'selected':5});
     updateTAb();
     reloadContent();
-    updateSubmitClick(tab.ajout);
+    CTRL_UpdateSubmitClick();
     function reloadContent(){
+    
         $(".datepicker" ).datepicker();
         $(".tableau").tablesorter();
         $("button").button();
@@ -57,7 +58,9 @@ function _init(){
             $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){reloadContent();refreshCtrlTable()});
         });
         
+        // REGROUPE INSTRUCTIONS CTRL POUR OPTIMISATION
         if(tab.page == "ctrl.php"){
+
             // CTRL ajout Paramètre
             $('#dialogParCtr button.submit').click(function(){
                 $.ajax({type:'POST',
@@ -215,6 +218,14 @@ function _init(){
             // }else{$('#Formulaire #response').removeClass().addClass('error').html('Remplissez le formulaire comme demand\351!').fadeIn('fast');}
         });
     }
+    function CTRL_UpdateSubmitClick(){
+         updateSubmitClick(
+            tab.ajout,
+            tab.dialogId+' button.submit',
+            "$(tab.dialogId+' form.formulaire').first().serialize() + '&PAR=' + $('#dialogParCtr input:checkbox:checked').map(function(){return $(this).val()}).get().join(',') + '&MM=' + $('#dialogMMCtr input:checkbox:checked').map(function(){return $(this).val()}).get().join(',');"
+         );
+    }
+    
     function updateTAb(){
         tab.page = $('.ui-tabs-panel:visible').attr('page');
         tab.ajout = $('.ui-tabs-panel:visible').attr('ajout');
@@ -223,7 +234,7 @@ function _init(){
         tab.dialogId = $('.ui-tabs-panel:visible').attr('dialogId');
         tab.needReload = $('.ui-tabs-panel:visible').attr('needReload');
     }
-
+    
     // CLICK SUR TAB ////////////////////////////////////////////////////////////////////////////
     $('ul.ui-tabs-nav a').click(function(){
         updateTAb();
@@ -233,14 +244,15 @@ function _init(){
             $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
         }
         if(tab.page == 'ctrl.php'){
-            updateSubmitClick(tab.ajout);
+            $("li.search").hide();
+            CTRL_UpdateSubmitClick();
             // Delai car tout element de la tab deviennent visible après le click
             var wait = setTimeout(refreshCtrlTable,10);
-        }
+        }else $("li.search").show();
         $('input#search').val('');
         $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
         placerBtAjout();
-    });      
+    });
     
     function refreshCtrlTable(){
         if(AClass = $('#CTRL .menu .radio input:radio:checked').val()){
@@ -252,8 +264,6 @@ function _init(){
         }
     }
 
-
-    
 	// retourne le contenue textuel d'un élément Enfant
 	function getChildText(parentEl,id){
 		return parentEl.children('td#'+id).text();
@@ -310,9 +320,6 @@ function _init(){
 	function placerBtAjout(){
         $('.ui-tabs-panel:visible .btAjout').css('right','-'+($('.ui-tabs-panel:visible .btAjout').width()-45)+'px');
 	}
-
-
-
 	
 }
 //////////////    Initialisation des combobox autocomplete    ////////////////
