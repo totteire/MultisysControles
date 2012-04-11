@@ -12,15 +12,15 @@
 		    if($res['PDF_EDIT']=='0000-00-00') $res['PDF_EDIT'] = 'NON';
 			echo "<tr>
 			    <td id='id' class='info'>".$res['ID']."</td>
-				<td id='num'>".$res['NUM']."</td>
-				<td id='type'>".$res['TYPE_CTRL']."</td>
-				<td id='date'>".$res['DATE']."</td>
-				<td id='cli'>".$res['NOM']."</td>
-				<td id='appN'>".$res['DESIGNATION']."</td>
-				<td id='appD'>".$res['MARQUE']."</td>
-				<td id='appT'>".$res['TYPE']."</td>
-				<td id='lieu'>".$res['LIEU']."</td>
-				<td id='pdfEdit'>".$res['PDF_EDIT']."</td>
+				<td id='TDnum'>".$res['NUM']."</td>
+				<td id='TDtype'>".$res['TYPE_CTRL']."</td>
+				<td id='TDdate'>".$res['DATE']."</td>
+				<td id='TDcli'>".$res['NOM']."</td>
+				<td id='TDappN'>".$res['DESIGNATION']."</td>
+				<td id='TDappD'>".$res['MARQUE']."</td>
+				<td id='TDappT'>".$res['TYPE']."</td>
+				<td id='TDlieu'>".$res['LIEU']."</td>
+				<td id='TDpdfEdit'>".$res['PDF_EDIT']."</td>
 				<td id='modif' class='modifCell'><img class='modifCtrl' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
 			</tr>";
 			$nb++;

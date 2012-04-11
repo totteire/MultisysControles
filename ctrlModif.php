@@ -124,7 +124,7 @@
 	    </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Date:</label></td>
-	        <td><input type="text" id="date" class='datepicker ui-corner-all' name="date" size="20" value=<?php echo $ctrl['DATE'] ?>></td>
+	        <td><input type="text" id="date" class='datepicker ui-corner-all' name="date" size="20" value=<?php echo date('d-m-Y',$ctrl['DATE']) ?>></td>
 	    </tr>
 	    <tr class='essa veri'>
             <td><label class="titre">Jugement:</label></td>
