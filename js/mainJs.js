@@ -5,8 +5,8 @@ function _init(){
     reloadContent();
     CTRL_UpdateSubmitClick();
     function reloadContent(){
-    
-        $(".datepicker" ).datepicker();
+        
+        $(".datepicker").datepicker();
         $(".tableau").tablesorter();
         $("button").button();
         $(".combobox").combobox();
@@ -138,7 +138,7 @@ function _init(){
 	        
             $('#CtrlClear').click(function(){
                 $('.ui-tabs-panel:visible').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
-                $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
+                $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();CTRL_UpdateSubmitClick();});
             });
 	        
 	        $('#ajoutParCtr').click(function(){

@@ -1,4 +1,3 @@
 bug:
-    - tries sur colonnes
     - si formulaire non rempli réafficher les champs remplis
-    - trier tableau par ordre alphabétique
+    - date bug
