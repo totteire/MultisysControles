@@ -3,7 +3,7 @@ function _init(){
     $(".tabs" ).tabs({'selected':5});
     updateTAb();
     reloadContent();
-    CTRL_UpdateSubmitClick();
+    CTRL_UpdateSubmitClick(tab.ajout);
     function reloadContent(){
         
         $(".datepicker").datepicker();
@@ -55,14 +55,14 @@ function _init(){
             updateTAb();
             $('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
             var id = getChildText($(this).parent().parent(),'id');
-            $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){reloadContent();refreshCtrlTable()});
+            $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){reloadContent();refreshCtrlTable();CTRL_UpdateSubmitClick(tab.modif);});
         });
         
         // REGROUPE INSTRUCTIONS CTRL POUR OPTIMISATION
         if(tab.page == "ctrl.php"){
-
             // CTRL ajout Paramètre
             $('#dialogParCtr button.submit').click(function(){
+            
                 $.ajax({type:'POST',
                         url:'getListMM.php',
                         dataType:'json',
@@ -71,11 +71,13 @@ function _init(){
                             // Boucle sur les checkboxes des MM et pour chaque cb vérifie si son id a été renvoyé
                             var MMnbChecked = 0;
                             var ParNbChecked = 0;
+                            console.log(data);
                             $('#dialogMMCtr input:checkbox').each(function(){
                                 $(this).attr('checked',false);
                                 var idMM = $(this).val();
                                 for (var i in data){
                                     if(data[i]==idMM){
+                                        console.log(i);
                                         $(this).attr('checked',true);
                                     }
                                 }
@@ -138,7 +140,7 @@ function _init(){
 	        
             $('#CtrlClear').click(function(){
                 $('.ui-tabs-panel:visible').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
-                $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();CTRL_UpdateSubmitClick();});
+                $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();CTRL_UpdateSubmitClick(tab.ajout);});
             });
 	        
 	        $('#ajoutParCtr').click(function(){
@@ -149,6 +151,11 @@ function _init(){
 	            $('#dialogMMCtr').dialog('open');
 	            $('#dialogMMCtr').dialog({'title':'Moyens de mesure employés:'});
 	        });
+	        // Colorer les CB checked dans les dialogs
+	        $('.dialog input:checkbox:checked').each(function(){
+	            $(this).parent().next().css('color','#EB8F00');
+	        });
+	        $("li.search").hide();
         }
         $('img.suppr').click(function(){
             if($('.dialog').dialog('isOpen')) return false;
@@ -218,9 +225,9 @@ function _init(){
             // }else{$('#Formulaire #response').removeClass().addClass('error').html('Remplissez le formulaire comme demand\351!').fadeIn('fast');}
         });
     }
-    function CTRL_UpdateSubmitClick(){
+    function CTRL_UpdateSubmitClick(action){
          updateSubmitClick(
-            tab.ajout,
+            action,
             tab.dialogId+' button.submit',
             "$(tab.dialogId+' form.formulaire').first().serialize() + '&PAR=' + $('#dialogParCtr input:checkbox:checked').map(function(){return $(this).val()}).get().join(',') + '&MM=' + $('#dialogMMCtr input:checkbox:checked').map(function(){return $(this).val()}).get().join(',');"
          );
@@ -245,7 +252,7 @@ function _init(){
         }
         if(tab.page == 'ctrl.php'){
             $("li.search").hide();
-            CTRL_UpdateSubmitClick();
+//            CTRL_UpdateSubmitClick(tab.ajout);
             // Delai car tout element de la tab deviennent visible après le click
             var wait = setTimeout(refreshCtrlTable,10);
         }else $("li.search").show();
@@ -270,6 +277,7 @@ function _init(){
 	}
     
 	function submitForm(formData, URL){
+	    console.log(formData + " " + URL);
 		$.ajax({
 			type: 'POST',
 			url: URL,
@@ -430,7 +438,7 @@ function _init(){
 
 			this.button = $( "<button type='button'>&nbsp;</button>" )
 				.attr( "tabIndex", -1 )
-				.attr( "title", "Show All Items" )
+				.attr( "title", "Tout afficher" )
 				.insertAfter( input )
 				.button({
 					icons: {

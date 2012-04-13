@@ -7,11 +7,12 @@
         <tr class='static menu type'>
             <td><label class="titre">Type: </label></td>
             <td colspan=7>
-                <div class="radio">
+                <div class="radio" style="display:inline;">
 		            <input type="radio" id="brEssai" name="radioType" value="essa"/><label for="brEssai">Essai</label>
 		            <input type="radio" id="brVerif" name="radioType" value="veri"/><label for="brVerif">Vérification</label>
 		            <input type="radio" id="brEtal" name="radioType" value="etal"/><label for="brEtal">Etalonnage</label>
                 </div>
+                <h2 style="color:#EB8F00;display:inline;margin-left:150px;">Ajout Contrôle</h2>
             </td>
         </tr>
         <tr class='static menu lieu'>
@@ -55,7 +56,7 @@
                 ?>
 	            </select>
 	        </td>
-	        <td><label class="titre">Marque:</label></td>
+	        <td><label class="titre narrow">Marque:</label></td>
             <td class='minWidth'><select id="AppMarq" class="combobox">
                 <option value=""></option>
                 <?php 
@@ -67,7 +68,7 @@
                 ?>
 	            </select>
 	        </td>
-	        <td><label class="titre">Type:</label></td>
+	        <td><label class="titre  narrow">Type:</label></td>
             <td class='minWidth'><select id="AppType" class="combobox" name='app'>
                 <option value=""></option>
                 <?php 
@@ -98,7 +99,18 @@
         </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Technicien:</label></td>
-	        <td colspan=7><select id="technicien" class="combobox" name='tech'><option></option><option>Claude</option></select></td>
+	        <td colspan=7>
+	            <select id="technicien" class="combobox" name='tech'>
+	                <option></option>
+                    <?php 
+                        $reqTech="SELECT ID, TECH FROM TECHNICIEN ORDER BY TECH;";
+                        $resultTech = mysql_query($reqTech)or die(mysql_error());
+                        while($res = mysql_fetch_array($resultTech)){
+                            echo "<option value='".$res['ID']."'>".$res['TECH']."</option>";
+                        }
+                    ?>
+	            </select>
+	        </td>
 	    </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Date:</label></td>

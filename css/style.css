@@ -117,7 +117,7 @@ table.inline{
 }
 #stylized h1 {
     font-size:14px;
-    font-weight:bold;
+    font-weight:bold;  narrow
     margin-bottom:8px;
 }
 p{
@@ -166,7 +166,7 @@ label.titre{
 }
 #CTRL input,textarea{
     border:solid 1px #aacfe4;
-    width:200px;
+    width:150px;
 }
 #CTRL td span{
     display:inline-block;
@@ -181,12 +181,15 @@ label.titre{
     opacity:0.5;
 }
 #CTRL table{
-    width: 600px;
+    min-width: 600px;
     margin: auto auto auto 30px;
 }
 .ui-autocomplete-loading {
     background: white url('../img/ui-anim_basic_16x16.gif') right center no-repeat !important;
 }
 #CTRL table td.minWidth{
-    min-width: 250px;
+    min-width: 200px;
+}
+.narrow{
+    width: 70px !important;
 }

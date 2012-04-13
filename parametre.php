@@ -6,7 +6,6 @@
 	<?php
 		include('connect.php');
 		$req="SELECT * FROM PARAMETRE;";
-		$nb=0;
 		$result=mysql_query($req) or die(mysql_error());
 		
 		while($res=mysql_fetch_array($result))
@@ -18,13 +17,13 @@
     			<td id='id' class='info'>".$res['ID']."</td>
 				<td id='libelle'>".$res['LIBELLE']."</a></td>
 				<td id='MoyenMes'><select>";
+		    echo "<option>".mysql_num_rows($result2)." selections</option>";
 		    while($MM=mysql_fetch_array($result2)){
 		        echo "<option value='".$MM['ID']."'>".$MM['LIBELLE']."</option>";
 		    };
 			echo "</select><a class='parModifMM' href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
 				<td id='modif' class='modifCell'><img class='modif' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
 			</tr>";
-			$nb++;
 		}
 	?>
 	</tbody>
