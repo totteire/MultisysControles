@@ -28,7 +28,7 @@
 	            include("appareil.php");
 	        ?>
     	</div>
-    	<div id="tabCtr" page='controle.php' dialogId='' ajout='' suppr='controle/supprCtrl' modif='controle/modifCtrl' needReload='true'>
+    	<div id="tabCtr" page='controle.php' dialogId='' ajout='' suppr='controle/supprCtrl.php' modif='controle/modifCtrl.php' needReload='true'>
 	        <?php
 	            include("controle.php");
 	        ?>
@@ -43,7 +43,7 @@
 	            include("parametre.php");
 	        ?>
     	</div>
-        <div id="tabCtrl" page='ctrl.php' dialogId='#CTRL' ajout='controle/ajoutCtrl.php' suppr='controle/supprCtrl.php' modif='controle/modifCtrl.php' needReload='false'>
+        <div id="tabCtrl" page='ctrl.php' dialogId='#CTRL' ajout='controle/ajoutCtrl.php' suppr='' modif='' needReload='false'>
 	        <?php
 	            include("ctrl.php");
             ?>

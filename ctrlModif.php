@@ -5,7 +5,7 @@
     $ctrl = mysql_query($reqCtrl)or die(mysql_error());
     $ctrl = mysql_fetch_array($ctrl);
 ?>
-<div id="CTRL">
+<div id="CTRL" class="modifCtrl">
     <div id="dialogParCtr" class="dialog">
         <table class="inline">
         <?php
@@ -40,9 +40,9 @@
         <table class="inline">
         <?php
             $resultCheckedMM=mysql_query("SELECT ID_1 FROM UTILISER WHERE ID = $id;")or die(mysql_error());
-            $checkId = array();
+            $checkedId = array();
             while($resCheckedId=mysql_fetch_array($resultCheckedMM))
-                array_push($checkId, $resCheckedId['ID_1']);
+                array_push($checkedId, $resCheckedId['ID_1']);
             $reqMM="SELECT ID,LIBELLE FROM MOYEN_MESURE;";
             $resultMM=mysql_query($reqMM)or die(mysql_error());
             $middleRow = ceil(mysql_num_rows(mysql_query($reqMM)) / 2);
@@ -72,6 +72,7 @@
     <form id="ctrlForm" class="formulaire">
     <table>
         <tr style="display:none;"><td><input type="text" name="id" value="<?php echo $id;?>"/></td></tr>
+        <tr style="display:none;"><td><input type="text" name="pdf_edit" value="<?php echo $ctrl['PDF_EDIT'];?>"/></td></tr>
         <tr class='static menu type'>
             <td><label class="titre">Type: </label></td>
             <td colspan=7>

@@ -1,7 +1,7 @@
 <?php 
     include('connect.php');
 ?>
-<div id="CTRL">
+<div id="CTRL" class="ajoutCtrl">
     <form id="ctrlForm" class="formulaire">
     <table>
         <tr class='static menu type'>

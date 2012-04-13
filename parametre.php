@@ -5,7 +5,7 @@
     <tbody>
 	<?php
 		include('connect.php');
-		$req="SELECT * FROM PARAMETRE;";
+		$req="SELECT * FROM PARAMETRE ORDER BY LIBELLE;";
 		$result=mysql_query($req) or die(mysql_error());
 		
 		while($res=mysql_fetch_array($result))

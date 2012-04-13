@@ -4,7 +4,7 @@
     <tbody>
 	<?php
 		include('connect.php');
-		$req="SELECT * FROM APPAREIL;";
+		$req="SELECT * FROM APPAREIL ORDER BY DESIGNATION;";
 		$nb=0;
 		$result=mysql_query($req) or die(mysql_error());
 		while($res=mysql_fetch_array($result))

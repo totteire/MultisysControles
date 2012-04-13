@@ -4,7 +4,7 @@
     <tbody>
 	<?php
 		include('connect.php');
-		$req="SELECT * FROM MOYEN_MESURE;";
+		$req="SELECT * FROM MOYEN_MESURE ORDER BY LIBELLE;";
 		$nb=0;
 		$result=mysql_query($req) or die(mysql_error());
 		while($res=mysql_fetch_array($result))
