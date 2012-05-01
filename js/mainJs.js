@@ -1,7 +1,22 @@
 function _init(){
-    var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':'','needReload':''};
+    var tab = {'page':'',
+			   'ajout':'',
+			   'suppr':'',
+			   'modif':'',
+			   'dialogId':'',
+			   'needReload':'',
+			   'update':function(){
+						alert("mlkj");
+						this.page = $('.ui-tabs-panel:visible').attr('page');
+						this.ajout = $('.ui-tabs-panel:visible').attr('ajout');
+						this.suppr = $('.ui-tabs-panel:visible').attr('suppr');
+						this.modif = $('.ui-tabs-panel:visible').attr('modif');
+						this.dialogId = $('.ui-tabs-panel:visible').attr('dialogId');
+						this.needReload = $('.ui-tabs-panel:visible').attr('needReload');
+					}
+   };
     $(".tabs" ).tabs({'selected':5});
-    updateTAb();
+    tab.update();
     reloadContent();
     CTRL_UpdateSubmitClick(tab.ajout);
     function reloadContent(){
@@ -52,7 +67,7 @@ function _init(){
         $('img.modifCtrl').click(function(){
             updateSubmitClick(tab.modif,'#CTRL .submit');
             $(".tabs").tabs({'selected':5});
-            updateTAb();
+            tab.update();
             $('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
             var id = getChildText($(this).parent().parent(),'id');
             $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){reloadContent();refreshCtrlTable();CTRL_UpdateSubmitClick(tab.modif);console.log('tab.modif: '+tab.modif);});
@@ -245,18 +260,9 @@ function _init(){
          );
     }
     
-    function updateTAb(){
-        tab.page = $('.ui-tabs-panel:visible').attr('page');
-        tab.ajout = $('.ui-tabs-panel:visible').attr('ajout');
-        tab.suppr = $('.ui-tabs-panel:visible').attr('suppr');
-        tab.modif = $('.ui-tabs-panel:visible').attr('modif');
-        tab.dialogId = $('.ui-tabs-panel:visible').attr('dialogId');
-        tab.needReload = $('.ui-tabs-panel:visible').attr('needReload');
-    }
-    
     // CLICK SUR TAB ////////////////////////////////////////////////////////////////////////////
     $('ul.ui-tabs-nav a').click(function(){
-        updateTAb();
+        tab.update();
         // Vérifier si la tab necessite d'etre rechargé
         if(tab.needReload == "true"){
             $('.ui-tabs-panel:visible').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
