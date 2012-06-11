@@ -193,3 +193,9 @@ label.titre{
 .narrow{
     width: 70px !important;
 }
+.tabParSelect{
+    max-width: 125px;
+}
+#tabPar select{
+    max-width: 125px;
+}

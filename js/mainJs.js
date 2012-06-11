@@ -168,7 +168,8 @@ function _init(){
 	            $(this).parent().next().css('color','#EB8F00');
 	        });
 	        $("li.search").hide();
-        }
+        } // FIN INSTRUCTIONS CTRL
+        
         $('img.suppr').click(function(){
             if($('.dialog').dialog('isOpen')) return false;
             else{
@@ -194,6 +195,7 @@ function _init(){
                 $(this).attr('checked',false);
             });
             $(this).parent().parent().children(':nth-child(3)').children('select').children('option').each(function(){
+                console.log(this);
                 var idMM = $(this).val();
                 $('#dialogParMM input:checkbox').each(function(){
                     if($(this).val() == idMM) {
@@ -214,7 +216,7 @@ function _init(){
 		// BOUTTONS GLISSANTS ////////////////////////////////////////////////////////////
 		placerBtAjout();                                                               ///
 		                                                                               ///
-	    $('button.btAjout').stop().animate({'marginRight':'0'},1000);                  ///
+//	    $('button.btAjout').stop().animate({'marginRight':'0'},1000);                  ///
 	    $('button.btAjout').hover(function(){                                          ///
 	        $(this).stop().animate({'marginRight':($(this).width()-45)+'px'},200);     ///
 	    },function(){                                                                  ///
@@ -341,6 +343,27 @@ function _init(){
         $('.ui-tabs-panel:visible .btAjout').css('right','-'+($('.ui-tabs-panel:visible .btAjout').width()-45)+'px');
 	}
 	
+	function SYNC(){
+        $.ajax({type:'POST',
+            url:'syncGetModif.php',
+            dataType:'json',
+            success: function(data) {
+                for (var i in data)
+                    execModif(data[i]);
+            }
+        });
+    }
+    function execModif(dataModif){
+        $.ajax({
+            url:"http://88.191.153.53/MultisysControles/syncModif.php",
+            dataType:'jsonp',
+            data: dataModif,
+            jsonp:'callback',
+            success: function(data) {
+                console.log(data);
+            }
+        });
+    }
 }
 //////////////    Initialisation des combobox autocomplete    ////////////////
 
@@ -356,6 +379,7 @@ function _init(){
 	    var select = $(input).prev();
 	    var option = escape(ui.item.value);
 	    var id = select.attr('id');
+	    console.log(ui.item.value);
 	    switch (id){
 	        case "AppDesi":
 	            $('select#AppMarq').load("comboSearchApp.php?field=MARQUE&knownField=DESIGNATION&term="+option,
