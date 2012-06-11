@@ -143,6 +143,20 @@ function _init(){
         	        case 'site':
             	        var num = $('#CTRL input#num').attr('defaut');
         	            $('#CTRL input#num').val(num);
+        	            // Tester si on peut préselectionner le client
+        	            $.ajax({
+            			    type: 'GET',
+			                url: "testCliSite.php",
+			                data: {date:$('#CTRL #date').val()},
+			                dataType: 'json',
+			                cache: false,
+			                timeout: 7000,
+			                success: function(data) {
+        	                    console.log(data.cli);
+        	                    $("#CTRL select#cli option[value='" + data.cli + "']").attr("selected","selected");
+        	                    $("#CTRL select#cli").next().val($('#CTRL select#cli option:selected').text());
+			                }
+        	            });
         	            break;
         	        case 'atelier':
         	            $('#CTRL input#num').val('');
@@ -168,6 +182,8 @@ function _init(){
 	            $(this).parent().next().css('color','#EB8F00');
 	        });
 	        $("li.search").hide();
+	        
+	        
         } // FIN INSTRUCTIONS CTRL
         
         $('img.suppr').click(function(){

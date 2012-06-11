@@ -46,6 +46,11 @@
                         <td><input type='checkbox' name='".$MM['ID']."' value='".$MM['ID']."'></td>
                         <td>".$MM['LIBELLE']."</td>
                     </tr>";
+            }else{
+                echo "<tr style='display:none;'>
+                        <td><input type='checkbox' name='".$MM['ID']."' value='".$MM['ID']."'></td>
+                        <td>".$MM['LIBELLE']."</td>
+                    </tr>";
             }
             $prevLib = $MM['LIBELLE'];
             if($nb == $middleRow)echo "</table><table class='inline'>";
