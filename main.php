@@ -14,6 +14,7 @@
         	<li><a href="#tabCtr">CONTROLE</a></li>
         	<li><a href="#tabMes">MOYEN MESURE</a></li>
         	<li><a href="#tabPar">PARAMETRE</a></li>
+        	<li><a href="#tabOpt">OPTIONS</a></li>
         	<li class="info search" style="margin-left:15px;top:6px;">Rechercher:</li>
         	<li class="info search"><input type="text" id="search" class="ui-corner-all" style="margin:0 0 0 5px;"/></li>
         	<li style="float:right;"><a href="#tabCtrl">+CONTROLE</a></li>
@@ -41,6 +42,11 @@
     	<div id="tabPar" page='parametre.php' dialogId='#dialogPar' ajout='parametre/ajoutPar.php' suppr='parametre/supprPar.php' modif='parametre/modifPar.php' needReload='true'>
 	        <?php 
 	            include("parametre.php");
+	        ?>
+    	</div>
+    	<div id="tabOpt" page='option.php' dialogId='#dialogOpt' ajout='technicien/ajoutTech.php' suppr='technicien/supprTech.php' modif='technicien/modifTech.php' needReload='false'>
+	        <?php
+	            include("option.php");
 	        ?>
     	</div>
         <div id="tabCtrl" page='ctrl.php' dialogId='#CTRL' ajout='controle/ajoutCtrl.php' suppr='' modif='controle/modifCtrl.php' needReload='false'>

@@ -1,6 +1,6 @@
 function _init(){
     var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':'','needReload':''};
-    $(".tabs" ).tabs({'selected':5});
+    $(".tabs" ).tabs({'selected':6});
     updateTAb();
     reloadContent();
     CTRL_UpdateSubmitClick(tab.ajout);

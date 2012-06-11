@@ -22,28 +22,28 @@ td    { vertical-align: top; }
     <br>
     <table cellspacing="0" style="width: 100%; text-align: left; font-size: 11pt;">
         <tr>
-            <td style="width:50%;"></td>
-            <td style="width:14%; ">Client :</td>
-            <td style="width:36%">M. Albert Dupont</td>
+            <td></td>
+            <td>Client :</td>
+            <td>M. Albert Dupont</td>
         </tr>
         <tr>
-            <td style="width:50%;"></td>
-            <td style="width:14%; ">Adresse :</td>
-            <td style="width:36%">
+            <td></td>
+            <td>Adresse :</td>
+            <td>
                 Résidence perdue<br>
                 1, rue sans nom<br>
                 00 000 - Pas de Ville<br>
             </td>
         </tr>
         <tr>
-            <td style="width:50%;"></td>
-            <td style="width:14%; ">Email :</td>
-            <td style="width:36%">nomail@domain.com</td>
+            <td></td>
+            <td>Email :</td>
+            <td>nomail@domain.com</td>
         </tr>
         <tr>
-            <td style="width:50%;"></td>
-            <td style="width:14%; ">Tel :</td>
-            <td style="width:36%">33 (0) 1 00 00 00 00</td>
+            <td></td>
+            <td>Tel :</td>
+            <td>33 (0) 1 00 00 00 00</td>
         </tr>
     </table>
     <br>
