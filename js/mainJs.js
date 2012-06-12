@@ -51,7 +51,7 @@ function _init(){
         
         $('img.modifCtrl').click(function(){
             updateSubmitClick(tab.modif,'#CTRL .submit');
-            $(".tabs").tabs({'selected':5});
+            $(".tabs").tabs({'selected':6});
             updateTAb();
             $('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
             var id = getChildText($(this).parent().parent(),'id');
