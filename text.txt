@@ -1,3 +1,7 @@
-bug:
-    - si formulaire non rempli réafficher les champs remplis
-    - date bug
+À FAIRE:
+    . Créer les variable en php
+    . Dissocier App et faire en sorte de pouvoir ajouter nvx appareils
+    . Traduction
+    . Rentrer **** automatiquement pour * ou ** ou *** + forcer les maj
+    . Possibilité de préremplir les controles (sans tech) à valider par les tech!
+    . Possibilité de dupliquer les controles

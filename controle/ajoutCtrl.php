@@ -10,6 +10,7 @@ $app = $_POST['app'];
 $numS = $_POST['numS'];
 $numC = $_POST['numC'];
 $date = date("Y-m-d", strtotime($_POST['date']));
+$temp = $_POST['temp'];
 $tech = $_POST['tech'];
 $jugement = $_POST['jugement'];
 $observation = $_POST['observation'];
@@ -18,13 +19,13 @@ $MM = $_POST['MM'];
 
 switch($type){
     case "essa":
-        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app&&($numC||$numS)&&$tech&&$date&&$jugement)? true : false;
+        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app&&$tech&&$date&&$jugement)? true : false;
         break;
     case "veri":
-        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app&&($numC||$numS)&&$PAR&&$MM&&$tech&&$date&&$jugement)? true : false;
+        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app&&$PAR&&$MM&&$tech&&$date&&$jugement)? true : false;
         break;
     case "etal":
-        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app&&($numC||$numS)&&$PAR&&$MM&&$tech&&$date)? true : false;
+        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app&&$PAR&&$MM&&$tech&&$date)? true : false;
         break;
     default:
         $verifChamps = false;
@@ -33,7 +34,7 @@ switch($type){
 if($verifChamps){
     $test = mysql_query("SELECT NUM FROM CONTROLE WHERE NUM = $num;") or die(mysql_error());
     if (mysql_num_rows($test)==0){
-        $reqInserCtrl = mysql_query("INSERT INTO CONTROLE VALUES (NULL,'$num','$app','$cli','$type','$date','$tech','$lieu','$jugement','$observation','$numS','$numC','',0);") or die(mysql_error());
+        $reqInserCtrl = mysql_query("INSERT INTO CONTROLE VALUES (NULL,'$num','$app','$cli','$type','$date','$tech','$temp','$lieu','$jugement','$observation','$numS','$numC','',0);") or die(mysql_error());
         $reqID = mysql_query("SELECT ID FROM CONTROLE WHERE NUM=$num;")or die(mysql_error());
         $resID = mysql_fetch_array($reqID);
         if(!$PAR) $PAR = array();
