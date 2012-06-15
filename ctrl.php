@@ -45,7 +45,7 @@
 	    </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Désignation:</label></td>
-            <td class='minWidth'><select id="AppDesi" class="combobox">
+            <td class='minWidth'><select id="AppDesi" name="appDesi" class="combobox">
                 <option value=""></option>
                 <?php 
                     $reqApp="SELECT * FROM APP_DESI ORDER BY DESIGNATION;";
@@ -57,7 +57,7 @@
 	            </select>
 	        </td>
 	        <td><label class="titre narrow">Marque:</label></td>
-            <td class='minWidth'><select id="AppMarq" class="combobox">
+            <td class='minWidth'><select id="AppMarq" name="appMarque" class="combobox">
                 <option value=""></option>
                 <?php 
                     $reqApp="SELECT * FROM APP_MARQUE ORDER BY MARQUE;";
@@ -69,7 +69,7 @@
 	            </select>
 	        </td>
 	        <td><label class="titre  narrow">Type:</label></td>
-            <td class='minWidth'><select id="AppType" class="combobox" name='app'>
+            <td class='minWidth'><select id="AppType" class="combobox" name='appType'>
                 <option value=""></option>
                 <?php 
                     $reqApp="SELECT * FROM APP_TYPE ORDER BY TYPE;";
