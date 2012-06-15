@@ -113,7 +113,7 @@
             </tr>
             <tr>
                 <td>Ce constat comprend :</td>
-                <td><b>1 pages</b></td>
+                <td><b>1 page</b></td>
                 <td style='padding-left:40px;'><b>Date de vérification : <?php echo date("d-m-Y",strtotime($res["DATE"]))?></b></td>
             </tr>
         </table>

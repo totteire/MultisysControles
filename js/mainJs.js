@@ -6,7 +6,14 @@ function _init(tabNum){
     reloadContent();
     CTRL_UpdateSubmitClick(tab.ajout);
     function reloadContent(){
+        $.ajax({type:'POST',
+                url:'getApps.php',
+                dataType:'json',
+                success: function(data){
+                   console.log(data);
+                }
         
+        });
         $(".datepicker").datepicker();
         $(".tableau").tablesorter();
         $("button, a.button").button();
@@ -428,47 +435,47 @@ function _init(tabNum){
 }
 
 
-//////////////    Initialisation des combobox autocomplete    ////////////////
+////////////////    Initialisation des combobox autocomplete    ////////////////
 
 (function( $ ) {
-    function comboSelectDefault(select){
-       if($(select + ' option').size() == 1) {
-            $(select + ' option').attr("selected","selected");
-            $(select).next().val($(select + ' option:selected').text());
-        }
-    }
-    // on SELECT sur une des 3 select pour APPAREIL
-	function comboboxSelect(ui, input){
-	    var select = $(input).prev();
-	    var option = escape(ui.item.value);
-	    var id = select.attr('id');
-	    console.log(ui.item.value);
-	    switch (id){
-	        case "AppDesi":
-	            $('select#AppMarq').load("comboSearchApp.php?field=MARQUE&knownField=DESIGNATION&term="+option,
-	                                    function(){$('select#AppMarq').next().val("");comboSelectDefault('select#AppMarq');});
-	            $('select#AppType').load("comboSearchApp.php?field=TYPE&knownField=DESIGNATION&term="+option,
-	                                    function(){$('select#AppType').next().val("");comboSelectDefault('select#AppType');});
-	            break;
-	            
-	        case "AppMarq":
-	            if($('select#AppDesi').next().val() == "")
-	                $('select#AppDesi').load("comboSearchApp.php?field=DESIGNATION&knownField=MARQUE&term="+option,
-                                            function(){$('select#AppDesi').next().val("");comboSelectDefault('select#AppDesi');});
-	            $('select#AppType').load("comboSearchApp.php?field=TYPE&knownField=MARQUE&term="+option,
-	                                    function(){$('select#AppType').next().val("");comboSelectDefault('select#AppType');});
-	            break;
-	            
-	        case "AppType":
-	            if($('select#AppDesi').next().val() == "")
-    	            $('select#AppDesi').load("comboSearchApp.php?field=DESIGNATION&knownField=TYPE&term="+option,
-	                                        function(){$('select#AppDesi').next().val("");comboSelectDefault('select#AppDesi');});
-                if($('select#AppMarq').next().val() == "")
-    	            $('select#AppMarq').load("comboSearchApp.php?field=MARQUE&knownField=TYPE&term="+option,
-	                                        function(){$('select#AppMarq').next().val("");comboSelectDefault('select#AppMarq');});
-	            break;
-	    }
-	}
+//    function comboSelectDefault(select){
+//       if($(select + ' option').size() == 1) {
+//            $(select + ' option').attr("selected","selected");
+//            $(select).next().val($(select + ' option:selected').text());
+//        }
+//    }
+//    // on SELECT sur une des 3 select pour APPAREIL
+//	function comboboxSelect(ui, input){
+//	    var select = $(input).prev();
+//	    var option = escape(ui.item.value);
+//	    var id = select.attr('id');
+//	    console.log(ui.item.value);
+//	    switch (id){
+//	        case "AppDesi":
+//	            $('select#AppMarq').load("comboSearchApp.php?field=MARQUE&knownField=DESIGNATION&term="+option,
+//	                                    function(){$('select#AppMarq').next().val("");comboSelectDefault('select#AppMarq');});
+//	            $('select#AppType').load("comboSearchApp.php?field=TYPE&knownField=DESIGNATION&term="+option,
+//	                                    function(){$('select#AppType').next().val("");comboSelectDefault('select#AppType');});
+//	            break;
+//	            
+//	        case "AppMarq":
+//	            if($('select#AppDesi').next().val() == "")
+//	                $('select#AppDesi').load("comboSearchApp.php?field=DESIGNATION&knownField=MARQUE&term="+option,
+//                                            function(){$('select#AppDesi').next().val("");comboSelectDefault('select#AppDesi');});
+//	            $('select#AppType').load("comboSearchApp.php?field=TYPE&knownField=MARQUE&term="+option,
+//	                                    function(){$('select#AppType').next().val("");comboSelectDefault('select#AppType');});
+//	            break;
+//	            
+//	        case "AppType":
+//	            if($('select#AppDesi').next().val() == "")
+//    	            $('select#AppDesi').load("comboSearchApp.php?field=DESIGNATION&knownField=TYPE&term="+option,
+//	                                        function(){$('select#AppDesi').next().val("");comboSelectDefault('select#AppDesi');});
+//                if($('select#AppMarq').next().val() == "")
+//    	            $('select#AppMarq').load("comboSearchApp.php?field=MARQUE&knownField=TYPE&term="+option,
+//	                                        function(){$('select#AppMarq').next().val("");comboSelectDefault('select#AppMarq');});
+//	            break;
+//	    }
+//	}
 	$.widget( "ui.combobox", {
 		_create: function() {
 			var self = this,
@@ -504,7 +511,7 @@ function _init(tabNum){
 							item: ui.item.option
 						});
 						
-						comboboxSelect(ui, this);
+//						comboboxSelect(ui, this);
 					},
 					change: function( event, ui ) {
 						if ( !ui.item ) {

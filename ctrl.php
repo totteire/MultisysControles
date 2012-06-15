@@ -48,10 +48,10 @@
             <td class='minWidth'><select id="AppDesi" class="combobox">
                 <option value=""></option>
                 <?php 
-                    $reqApp="SELECT DISTINCT DESIGNATION FROM APPAREIL ORDER BY DESIGNATION;";
+                    $reqApp="SELECT * FROM APP_DESI ORDER BY DESIGNATION;";
                     $resultApp = mysql_query($reqApp)or die(mysql_error());
                     while($res = mysql_fetch_array($resultApp)){
-                        echo "<option value='".$res['DESIGNATION']."'>".$res['DESIGNATION']."</option>";
+                        echo "<option value='".$res['ID']."'>".$res['DESIGNATION']."</option>";
                     }
                 ?>
 	            </select>
@@ -60,10 +60,10 @@
             <td class='minWidth'><select id="AppMarq" class="combobox">
                 <option value=""></option>
                 <?php 
-                    $reqApp="SELECT DISTINCT MARQUE FROM APPAREIL ORDER BY MARQUE;";
+                    $reqApp="SELECT * FROM APP_MARQUE ORDER BY MARQUE;";
                     $resultApp = mysql_query($reqApp)or die(mysql_error());
                     while($res = mysql_fetch_array($resultApp)){
-                        echo "<option value='".$res['MARQUE']."'>".$res['MARQUE']."</option>";
+                        echo "<option value='".$res['ID']."'>".$res['MARQUE']."</option>";
                     }
                 ?>
 	            </select>
@@ -72,7 +72,7 @@
             <td class='minWidth'><select id="AppType" class="combobox" name='app'>
                 <option value=""></option>
                 <?php 
-                    $reqApp="SELECT ID, TYPE FROM APPAREIL ORDER BY TYPE;";
+                    $reqApp="SELECT * FROM APP_TYPE ORDER BY TYPE;";
                     $resultApp = mysql_query($reqApp)or die(mysql_error());
                     while($res = mysql_fetch_array($resultApp)){
                         echo "<option value='".$res['ID']."'>".$res['TYPE']."</option>";
