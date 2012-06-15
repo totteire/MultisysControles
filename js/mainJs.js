@@ -1,6 +1,7 @@
-function _init(){
+function _init(tabNum){
+    if(tabNum === undefined) tabNum = 6;
     var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':'','needReload':''};
-    $(".tabs" ).tabs({'selected':6});
+    $(".tabs" ).tabs({'selected':tabNum});
     updateTAb();
     reloadContent();
     CTRL_UpdateSubmitClick(tab.ajout);
@@ -8,7 +9,7 @@ function _init(){
         
         $(".datepicker").datepicker();
         $(".tableau").tablesorter();
-        $("button").button();
+        $("button, a.button").button();
         $(".combobox").combobox();
         $(".radio").buttonset();
         $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
@@ -25,8 +26,7 @@ function _init(){
         $("#dialog-confirm").dialog({
             autoOpen: false,
         	width: 'auto',
-			modal: true,
-			title: 'Suppression!'
+			modal: true
 		});
         
         $('.btAjout').click(function(){
@@ -60,6 +60,11 @@ function _init(){
         
         // REGROUPE INSTRUCTIONS CTRL POUR OPTIMISATION
         if(tab.page == "ctrl.php"){
+        
+            $(".pdfEdit").click(function(e){
+                e.preventDefault();
+                $.get('generatePdf.php?id=13');
+            });
             // CTRL ajout Paramètre
             
             // Fonction appellé du callback ajax
@@ -136,6 +141,17 @@ function _init(){
 	            $('#CTRL tr.'+affichClass).show();
 	            $('#CTRL tr.static').show();
 	        });
+	        $('#CTRL .menu.lieu .radio input:radio').change(function(){
+	            var affichClass=$(this).val();
+	            // Si le bt radio verification est coché:
+	            if ($("input:radio[value='veri']").next().attr('aria-pressed')){
+	                if (affichClass == 'S')
+	                    $('#CTRL tr.site').show();
+	                else
+	                    $('#CTRL tr.site').hide();
+	            }
+
+	        });
 
 	        $('#CTRL tr.menu.lieu .radio input:radio').change(function(){
 	            var lieu=($(this).attr('id'));
@@ -152,7 +168,6 @@ function _init(){
 			                cache: false,
 			                timeout: 7000,
 			                success: function(data) {
-        	                    console.log(data.cli);
         	                    $("#CTRL select#cli option[value='" + data.cli + "']").attr("selected","selected");
         	                    $("#CTRL select#cli").next().val($('#CTRL select#cli option:selected').text());
 			                }
@@ -191,12 +206,19 @@ function _init(){
             else{
                 var par = $(this).parent().parent();
                 $("#dialog-confirm #confirmMess").html("Voulez-vous vraiment supprimer "+par.children(':nth-child(2)').text()+"?");
-                $("#dialog-confirm").dialog("option","buttons",{"Supprimer":function(){
-                                                                    submitForm('id='+getChildText(par,'id'),tab.suppr);
-                                                                    $("#dialog-confirm").dialog('close');
-                                                                },"Annuler":function(){
-                                                                    $("#dialog-confirm").dialog('close');
-                                                                }});
+                $("#dialog-confirm").dialog("option","title","Suppréssion!");
+                $("#dialog-confirm").dialog(
+                    "option",
+                    "buttons",{
+                        "Supprimer":function(){
+                            submitForm('id='+getChildText(par,'id'),tab.suppr);
+                            $("#dialog-confirm").dialog('close');
+                        },
+                        "Annuler":function(){
+                            $("#dialog-confirm").dialog('close');
+                        }
+                    }
+                );
                 $("#dialog-confirm").dialog('open');
             }
         });
@@ -228,6 +250,22 @@ function _init(){
 			else 
 				$(this).parent().next().css('color','black');
 		});
+        // appel du generatePdf.php
+        $("a.pdfEdit").click(function(e){
+            e.preventDefault();
+            lien = $(this).attr('href');
+            $("#dialog-confirm #confirmMess").html("Voulez vous intégrer l'en-tête en fond du PDF?");
+            $("#dialog-confirm").dialog("option","title","PDF avec en-tête?");
+            $("#dialog-confirm").dialog("option","buttons",
+                                                            {"Oui":function(){
+                                                                window.open(lien+"&bg=1");
+                                                                $("#dialog-confirm").dialog('close');
+                                                            },"Non":function(){
+                                                                window.open(lien+"&bg=0");
+                                                                $("#dialog-confirm").dialog('close');
+                                                            }});
+            $("#dialog-confirm").dialog('open');
+        })
 
 		// BOUTTONS GLISSANTS ////////////////////////////////////////////////////////////
 		placerBtAjout();                                                               ///
@@ -292,10 +330,17 @@ function _init(){
     });
     
     function refreshCtrlTable(){
-        if(AClass = $('#CTRL .menu .radio input:radio:checked').val()){
+        if(AClass = $('#CTRL .menu.type .radio input:radio:checked').val()){
             $('#CTRL tr:not(.'+AClass+')').hide();
             $('#CTRL tr.static').show();
             $('#CTRL tr.'+AClass).show();
+            // Afficher/Cacher Température
+            if(AClass == 'veri'){
+                if($('.menu.lieu .radio input:radio:checked').val() == 'S')
+                    $('#CTRL tr.site').show();
+                else
+                    $('#CTRL tr.site').hide();
+            }
         }else{
             $('#CTRL tr:not(.menu)').hide();
         }
@@ -381,6 +426,8 @@ function _init(){
         });
     }
 }
+
+
 //////////////    Initialisation des combobox autocomplete    ////////////////
 
 (function( $ ) {

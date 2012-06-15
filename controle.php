@@ -9,7 +9,7 @@
 		while($res=mysql_fetch_array($result))
 		{
 		    $res['DATE'] = date("d-m-Y",strtotime($res["DATE"]));
-		    if($res['PDF_EDIT']=='0000-00-00') $res['PDF_EDIT'] = 'NON';
+		    if($res['PDF_EDIT']=='0000-00-00') $res['PDF_EDIT'] = 'NON'; else $res['PDF_EDIT'] = date("d-m-Y",strtotime($res['PDF_EDIT']));
 			echo "<tr>
 			    <td id='id' class='info'>".$res['ID']."</td>
 				<td id='TDnum'>".$res['NUM']."</td>
@@ -20,7 +20,7 @@
 				<td id='TDappD'>".$res['MARQUE']."</td>
 				<td id='TDappT'>".$res['TYPE']."</td>
 				<td id='TDlieu'>".$res['LIEU']."</td>
-				<td id='TDpdfEdit'>".$res['PDF_EDIT']."</td>
+				<td id='TDpdfEdit'><a href='generatePdf.php?id=".$res['ID']."' onclick='' class='pdfEdit'>".$res['PDF_EDIT']."</a></td>
 				<td id='modif' class='modifCell'><img class='modifCtrl' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
 			</tr>";
 			$nb++;

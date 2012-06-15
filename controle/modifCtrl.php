@@ -11,6 +11,7 @@ $app = $_POST['app'];
 $numS = $_POST['numS'];
 $numC = $_POST['numC'];
 $date = date("Y-m-d", strtotime($_POST['date']));
+$temp = $_POST['temp'];
 if(!isset($_POST['tech'])) $tech = ""; else $tech = $_POST['tech'];
 $jugement = $_POST['jugement'];
 $observation = $_POST['observation'];
@@ -19,13 +20,13 @@ $MM = $_POST['MM'];
 
 switch($type){
     case "essa":
-        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app&&($numC||$numS)&&$tech&&$date&&$jugement)? true : false;
+        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app&&$tech&&$date&&$jugement)? true : false;
         break;
     case "veri":
-        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app&&($numC||$numS)&&$PAR&&$MM&&$tech&&$date&&$jugement)? true : false;
+        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app&&$PAR&&$MM&&$tech&&$date&&$jugement)? true : false;
         break;
     case "etal":
-        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app&&($numC||$numS)&&$PAR&&$MM&&$tech&&$date)? true : false;
+        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app&&$PAR&&$MM&&$tech&&$date)? true : false;
         break;
     default:
         $verifChamps = false;
@@ -34,7 +35,7 @@ switch($type){
 if($verifChamps){
     $test = mysql_query("SELECT NUM FROM CONTROLE WHERE NUM = $num AND ID <> $id;") or die(mysql_error());
     if (mysql_num_rows($test)==0){
-        $reqModifCtrl = mysql_query("UPDATE CONTROLE SET NUM='$num', ID_CONCERNER='$app', ID_AVOIR='$cli', TYPE_CTRL='$type', DATE='$date', TECHNICIEN='$tech', LIEU='$lieu', JUGEMENT='$jugement', OBSERVATION='$observation', NUM_SERIE='$numS', NUM_CHASSIS='$numC', PDF_EDIT='$pdf_edit', EX=0 WHERE ID='$id';") or die(mysql_error());
+        $reqModifCtrl = mysql_query("UPDATE CONTROLE SET NUM='$num', ID_CONCERNER='$app', ID_AVOIR='$cli', TYPE_CTRL='$type', DATE='$date', TECHNICIEN='$tech', TEMPERATURE='$temp', LIEU='$lieu', JUGEMENT='$jugement', OBSERVATION='$observation', NUM_SERIE='$numS', NUM_CHASSIS='$numC', PDF_EDIT='$pdf_edit', EX=0 WHERE ID='$id';") or die(mysql_error());
 #        $reqID = mysql_query("SELECT ID FROM CONTROLE WHERE NUM=$num;")or die(mysql_error());
 #        $resID = mysql_fetch_array($reqID);
         $reqDelFKmm = mysql_query("DELETE FROM UTILISER WHERE ID=$id;") or die(mysql_error());
