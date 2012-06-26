@@ -7,7 +7,9 @@ if(isset($_POST['radioType'])) $type = $_POST['radioType']; else $type = "";
 if(isset($_POST['radioLieu'])) $lieu = $_POST['radioLieu']; else $lieu = "";
 $num = $_POST['num'];
 $cli = $_POST['cli'];
-$app = $_POST['app'];
+$app_desi = $_POST['appDesi'];
+$app_marque = $_POST['appMarque'];
+$app_type = $_POST['appType'];
 $numS = $_POST['numS'];
 $numC = $_POST['numC'];
 $date = date("Y-m-d", strtotime($_POST['date']));
@@ -20,22 +22,36 @@ $MM = $_POST['MM'];
 
 switch($type){
     case "essa":
-        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app&&$tech&&$date&&$jugement)? true : false;
+        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$tech&&$date&&$jugement)? true : false;
         break;
     case "veri":
-        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app&&$PAR&&$MM&&$tech&&$date&&$jugement)? true : false;
+        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$PAR&&$MM&&$tech&&$date&&$jugement)? true : false;
         break;
     case "etal":
-        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app&&$PAR&&$MM&&$tech&&$date)? true : false;
+        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$PAR&&$MM&&$tech&&$date)? true : false;
         break;
     default:
         $verifChamps = false;
 }
 
 if($verifChamps){
+
     $test = mysql_query("SELECT NUM FROM CONTROLE WHERE NUM = $num AND ID <> $id;") or die(mysql_error());
     if (mysql_num_rows($test)==0){
-        $reqModifCtrl = mysql_query("UPDATE CONTROLE SET NUM='$num', ID_CONCERNER='$app', ID_AVOIR='$cli', TYPE_CTRL='$type', DATE='$date', TECHNICIEN='$tech', TEMPERATURE='$temp', LIEU='$lieu', JUGEMENT='$jugement', OBSERVATION='$observation', NUM_SERIE='$numS', NUM_CHASSIS='$numC', PDF_EDIT='$pdf_edit', EX=0 WHERE ID='$id';") or die(mysql_error());
+
+        # Check if there is a new app to add
+        if (strpbrk($app_desi, '%')){
+            $app_desi = strtoupper(str_replace('%', '', $app_desi));
+            mysql_query("INSERT INTO APP_DESI VALUES ('NULL','$app_desi')");
+#            $getIdDesi = mysql_query("SELECT ID FROM APP_DESI WHERE DESIGNATION=$app_desi;") or die(mysql_error());
+#            $app_desi = mysql_fetch_array($getIdDesi);
+            die($app_desi['ID']." ajouté");
+        }else if (strpbrk($app_marque, '%')){
+            $app_marque = str_replace('%', '', $app_marque);
+        }else if (strpbrk($app_type, '%')){
+            $app_type = str_replace('%', '', $app_type);
+        }
+        $reqModifCtrl = mysql_query("UPDATE CONTROLE SET NUM='$num', ID_APP_DESI='$app_desi',ID_APP_MARQUE='$app_marque',ID_APP_TYPE='$app_type', ID_AVOIR='$cli', TYPE_CTRL='$type', DATE='$date', TECHNICIEN='$tech', TEMPERATURE='$temp', LIEU='$lieu', JUGEMENT='$jugement', OBSERVATION='$observation', NUM_SERIE='$numS', NUM_CHASSIS='$numC', PDF_EDIT='$pdf_edit', EX=0 WHERE ID='$id';") or die(mysql_error());
 #        $reqID = mysql_query("SELECT ID FROM CONTROLE WHERE NUM=$num;")or die(mysql_error());
 #        $resID = mysql_fetch_array($reqID);
         $reqDelFKmm = mysql_query("DELETE FROM UTILISER WHERE ID=$id;") or die(mysql_error());

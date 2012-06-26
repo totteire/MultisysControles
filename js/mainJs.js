@@ -520,14 +520,22 @@ function _init(tabNum){
 							select.children( "option" ).each(function() {
 								if ( $( this ).text().match( matcher ) ) {
 									this.selected = valid = true;
+									// Make it white in case it wasn't
+//									$(this).css('background','white');
+//									console.log("lkj");
 									return false;
 								}
 							});
 							if ( !valid ) {
 								// remove invalid value, as it didn't match anything
-								$( this ).val( "" );
-								select.val( "" );
-								input.data( "autocomplete" ).term = "";
+//								$( this ).val( "" );
+//								select.val( "" );
+//								console.log(input);
+//								input.data( "autocomplete" ).term = "";
+                                select.children("option:selected").removeAttr("selected");
+                                
+                                $(this).css('background','orange');
+                                $(select).append("<option selected='selected' value='%"+$(this).val()+"'></option>");
 								return false;
 							}
 						}

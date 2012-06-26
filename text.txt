@@ -1,5 +1,4 @@
 À FAIRE:
-    . Créer les variable en php
     . Dissocier App et faire en sorte de pouvoir ajouter nvx appareils
     . Traduction
     . Rentrer **** automatiquement pour * ou ** ou *** + forcer les maj

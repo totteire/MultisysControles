@@ -1,7 +1,7 @@
 <?php 
     include('connect.php');
     $id = $_POST['ID'];
-    $reqCtrl = "SELECT * FROM CONTROLE AS C, APPAREIL AS A WHERE C.ID = $id AND C.ID_CONCERNER = A.ID;";
+    $reqCtrl = "SELECT * FROM CONTROLE AS C, APP_DESI, APP_MARQUE, APP_TYPE WHERE C.ID = $id AND APP_DESI.ID=C.ID_APP_DESI AND APP_MARQUE.ID=C.ID_APP_MARQUE AND APP_TYPE.ID=C.ID_APP_TYPE;";
     $ctrl = mysql_query($reqCtrl)or die(mysql_error());
     $ctrl = mysql_fetch_array($ctrl);
 ?>
@@ -116,37 +116,37 @@
 	    </tr>
 	    <tr class='static'>
 	        <td><label class="titre">Désignation:</label></td>
-            <td class='minWidth'><select id="AppDesi" class="combobox">
+            <td class='minWidth'><select id="AppDesi" class="combobox" name='appDesi'>
                 <?php 
-                    $reqApp="SELECT DISTINCT DESIGNATION FROM APPAREIL ORDER BY DESIGNATION;";
+                    $reqApp="SELECT * FROM APP_DESI ORDER BY DESIGNATION;";
                     $resultApp = mysql_query($reqApp)or die(mysql_error());
                     while($res = mysql_fetch_array($resultApp)){
                         if($res['DESIGNATION'] == $ctrl['DESIGNATION'])
-                            echo "<option selected='selected' value='".$res['DESIGNATION']."'>".$res['DESIGNATION']."</option>";
+                            echo "<option selected='selected' value='".$res['ID']."'>".$res['DESIGNATION']."</option>";
                         else
-                            echo "<option value='".$res['DESIGNATION']."'>".$res['DESIGNATION']."</option>";
+                            echo "<option value='".$res['ID']."'>".$res['DESIGNATION']."</option>";
                     }
                 ?>
 	            </select>
 	        </td>
 	        <td><label class="titre  narrow">Marque:</label></td>
-            <td class='minWidth'><select id="AppMarq" class="combobox">
+            <td class='minWidth'><select id="AppMarq" class="combobox" name='appMarque'>
                 <?php
-                    $reqApp="SELECT DISTINCT MARQUE FROM APPAREIL ORDER BY MARQUE;";
+                    $reqApp="SELECT * FROM APP_MARQUE ORDER BY MARQUE;";
                     $resultApp = mysql_query($reqApp)or die(mysql_error());
                     while($res = mysql_fetch_array($resultApp)){
                         if($res['MARQUE'] == $ctrl['MARQUE'])
-                            echo "<option selected='selected'selected='selected' value='".$res['MARQUE']."'>".$res['MARQUE']."</option>";
+                            echo "<option selected='selected'selected='selected' value='".$res['ID']."'>".$res['MARQUE']."</option>";
                         else
-                            echo "<option value='".$res['MARQUE']."'>".$res['MARQUE']."</option>";
+                            echo "<option value='".$res['ID']."'>".$res['MARQUE']."</option>";
                     }
                 ?>
 	            </select>
 	        </td>
 	        <td><label class="titre  narrow">Type:</label></td>
-            <td class='minWidth'><select id="AppType" class="combobox" name='app'>
+            <td class='minWidth'><select id="AppType" class="combobox" name='appType'>
                 <?php
-                    $reqApp="SELECT ID, TYPE FROM APPAREIL ORDER BY TYPE;";
+                    $reqApp="SELECT * FROM APP_TYPE ORDER BY TYPE;";
                     $resultApp = mysql_query($reqApp)or die(mysql_error());
                     while($res = mysql_fetch_array($resultApp)){
                         if($res['ID'] == $ctrl['ID'])
@@ -210,7 +210,7 @@
         </tr>
 	    <tr class='static'>
             <td><label class="titre">Observation:</label></td>
-            <td colspan=7><textarea type='textarea' value='<?php echo $ctrl['OBSERVATION'] ?>' class="ui-corner-all" name='observation' id='observation'></textarea></td>
+            <td colspan=7><textarea type='textarea' class="ui-corner-all" name='observation' id='observation'><?php echo $ctrl['OBSERVATION'] ?></textarea></td>
         </tr>
         <tr class='static'><td colspan=7><button class="submit">Enregistrer</button><button id="CtrlClear">Vider/Rafraîchir</button><a href="generatePdf.php?id=<?php echo $id?>" onclick='' class="button pdfEdit">Editer PDF</a></td></tr>
 	</table>
