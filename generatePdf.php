@@ -35,5 +35,5 @@
     $pdf->WriteHTML($content);
     $pdf->Output($res['NUM'].'.pdf');
     
-    # echo $content;
+#     echo $content;
 ?>

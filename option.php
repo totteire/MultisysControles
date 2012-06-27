@@ -1,7 +1,7 @@
 <button class="btAjout"><h1> +&nbsp; &nbsp; Technicien</button>
 <H2>Techniciens:</H2>
 <table id="tableau" class="tableau tablesorter">
-	<thead><tr><th class=info></th><th class="topLeft topRight">Nom</th></tr></thead>
+	<thead><tr><th class=info></th><th class="topLeftRight">Nom</th></tr></thead>
     <tbody>
 	<?php
 		include('connect.php');

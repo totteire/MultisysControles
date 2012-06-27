@@ -92,6 +92,11 @@ table.inline{
 	-webkit-border-radius:0 10px 0 0;
 	border-radius:0 10px 0 0;
 }
+.topLeftRight{
+	-moz-border-radius:10px 10px 0 0;
+	-webkit-border-radius:10px 10px 0 0;
+	border-radius:10px 10px 0 0;
+}
 /*----------- boutton ajout --------*/
 .btAjout{
     top: 15%;

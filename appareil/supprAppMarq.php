@@ -1,11 +1,11 @@
 <?php
 $num = $_POST['id'];
 include("../connect.php");
-$req1 = "DELETE FROM APPAREIL WHERE ID = $num";
+$req1 = "DELETE FROM APP_MARQUE WHERE ID = $num";
 $res1 = mysql_query($req1) or die(mysql_error());
 if($res1){
 	$return['error'] = false;
-	$return['msg'] = "L'appareil a bien été supprimé!";
+	$return['msg'] = "La marque a bien été supprimé!";
 }else{
 	$return['error'] = true;
 	$return['msg'] = "Il y a eu une erreur!";

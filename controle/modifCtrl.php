@@ -43,17 +43,24 @@ if($verifChamps){
         if (strpbrk($app_desi, '%')){
             $app_desi = strtoupper(str_replace('%', '', $app_desi));
             mysql_query("INSERT INTO APP_DESI VALUES ('NULL','$app_desi')");
-#            $getIdDesi = mysql_query("SELECT ID FROM APP_DESI WHERE DESIGNATION=$app_desi;") or die(mysql_error());
-#            $app_desi = mysql_fetch_array($getIdDesi);
-            die($app_desi['ID']." ajouté");
-        }else if (strpbrk($app_marque, '%')){
-            $app_marque = str_replace('%', '', $app_marque);
-        }else if (strpbrk($app_type, '%')){
-            $app_type = str_replace('%', '', $app_type);
+            $getIdDesi = mysql_query("SELECT ID FROM APP_DESI WHERE DESIGNATION='$app_desi';") or die(mysql_error());
+            $app_desi = mysql_result($getIdDesi,0);
+        }
+        if (strpbrk($app_marque, '%')){
+            $app_marque = strtoupper(str_replace('%', '', $app_marque));
+            mysql_query("INSERT INTO APP_MARQUE VALUES ('NULL','$app_marque')");
+            $getIdMarq = mysql_query("SELECT ID FROM APP_MARQUE WHERE MARQUE='$app_marque';") or die(mysql_error());
+            $app_marque = mysql_result($getIdMarq,0);
+        }
+        if (strpbrk($app_type, '%')){
+            $app_type = strtoupper(str_replace('%', '', $app_type));
+            mysql_query("INSERT INTO APP_TYPE VALUES ('NULL','$app_type')");
+            $getIdType = mysql_query("SELECT ID FROM APP_TYPE WHERE TYPE='$app_type';") or die(mysql_error());
+            $app_type = mysql_result($getIdType,0);
         }
         $reqModifCtrl = mysql_query("UPDATE CONTROLE SET NUM='$num', ID_APP_DESI='$app_desi',ID_APP_MARQUE='$app_marque',ID_APP_TYPE='$app_type', ID_AVOIR='$cli', TYPE_CTRL='$type', DATE='$date', TECHNICIEN='$tech', TEMPERATURE='$temp', LIEU='$lieu', JUGEMENT='$jugement', OBSERVATION='$observation', NUM_SERIE='$numS', NUM_CHASSIS='$numC', PDF_EDIT='$pdf_edit', EX=0 WHERE ID='$id';") or die(mysql_error());
-#        $reqID = mysql_query("SELECT ID FROM CONTROLE WHERE NUM=$num;")or die(mysql_error());
-#        $resID = mysql_fetch_array($reqID);
+        $reqID = mysql_query("SELECT ID FROM CONTROLE WHERE NUM=$num;")or die(mysql_error());
+        $resID = mysql_fetch_array($reqID);
         $reqDelFKmm = mysql_query("DELETE FROM UTILISER WHERE ID=$id;") or die(mysql_error());
         $reqDelFKpar = mysql_query("DELETE FROM VERIFIER WHERE ID=$id;") or die(mysql_error());
         if(!$PAR) $PAR = array();

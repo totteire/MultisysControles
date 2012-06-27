@@ -1,19 +1,21 @@
 function _init(tabNum){
     if(tabNum === undefined) tabNum = 6;
     var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':'','needReload':''};
-    $(".tabs" ).tabs({'selected':tabNum});
+    $(".tabs").tabs({'selected':tabNum});
     updateTAb();
     reloadContent();
     CTRL_UpdateSubmitClick(tab.ajout);
     function reloadContent(){
-        $.ajax({type:'POST',
-                url:'getApps.php',
-                dataType:'json',
-                success: function(data){
-                   console.log(data);
-                }
-        
-        });
+//        $.ajax({type:'POST',
+//                url:'getApps.php',
+//                dataType:'json',
+//                success: function(data){
+//                   console.log(data);
+//                }
+//        
+//        });
+        refreshTabClick();
+        if(tab.page == "appareil.php") {$(".subtabs").tabs();}
         $(".datepicker").datepicker();
         $(".tableau").tablesorter();
         $("button, a.button").button();
@@ -213,7 +215,7 @@ function _init(tabNum){
             else{
                 var par = $(this).parent().parent();
                 $("#dialog-confirm #confirmMess").html("Voulez-vous vraiment supprimer "+par.children(':nth-child(2)').text()+"?");
-                $("#dialog-confirm").dialog("option","title","Suppréssion!");
+                $("#dialog-confirm").dialog("option","title","Suppression!");
                 $("#dialog-confirm").dialog(
                     "option",
                     "buttons",{
@@ -309,32 +311,36 @@ function _init(tabNum){
     }
     
     function updateTAb(){
-        tab.page = $('.ui-tabs-panel:visible').attr('page');
-        tab.ajout = $('.ui-tabs-panel:visible').attr('ajout');
-        tab.suppr = $('.ui-tabs-panel:visible').attr('suppr');
-        tab.modif = $('.ui-tabs-panel:visible').attr('modif');
-        tab.dialogId = $('.ui-tabs-panel:visible').attr('dialogId');
-        tab.needReload = $('.ui-tabs-panel:visible').attr('needReload');
+        tab.page = $('.ui-tabs-panel:visible').last().attr('page');
+        tab.ajout = $('.ui-tabs-panel:visible').last().attr('ajout');
+        tab.suppr = $('.ui-tabs-panel:visible').last().attr('suppr');
+        tab.modif = $('.ui-tabs-panel:visible').last().attr('modif');
+        tab.dialogId = $('.ui-tabs-panel:visible').last().attr('dialogId');
+        tab.needReload = $('.ui-tabs-panel:visible').last().attr('needReload');
     }
-    
-    // CLICK SUR TAB ////////////////////////////////////////////////////////////////////////////
-    $('ul.ui-tabs-nav a').click(function(){
-        updateTAb();
-        // Vérifier si la tab necessite d'etre rechargé
-        if(tab.needReload == "true"){
-            $('.ui-tabs-panel:visible').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
-            $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
-        }
-        if(tab.page == 'ctrl.php'){
-            $("li.search").hide();
-//            CTRL_UpdateSubmitClick(tab.ajout);
-            // Delai car tout element de la tab deviennent visible après le click
-            var wait = setTimeout(refreshCtrlTable,10);
-        }else $("li.search").show();
-        $('input#search').val('');
-        $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
-        placerBtAjout();
-    });
+    function refreshTabClick(){
+        // CLICK SUR TAB ////////////////////////////////////////////////////////////////////////////
+        $('ul.ui-tabs-nav a').click(function(){
+            updateTAb();
+            console.log(tab.dialogId);
+            // Vérifier si la tab necessite d'etre rechargé
+            if(tab.needReload == "true"){
+                $('.ui-tabs-panel:visible').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
+                $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
+            }
+            if(tab.page == 'ctrl.php'){
+                $("li.search").hide();
+    //            CTRL_UpdateSubmitClick(tab.ajout);
+                // Delai car tout element de la tab deviennent visible après le click
+                var wait = setTimeout(refreshCtrlTable,10);
+            }else $("li.search").show();
+            $('input#search').val('');
+            $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
+            placerBtAjout();
+            console.log("click sur tab!");
+        });
+    }
+
     
     function refreshCtrlTable(){
         if(AClass = $('#CTRL .menu.type .radio input:radio:checked').val()){
@@ -408,7 +414,9 @@ function _init(tabNum){
 	$.datepicker.setDefaults($.datepicker.regional['fr']);
 	
 	function placerBtAjout(){
-        $('.ui-tabs-panel:visible .btAjout').css('right','-'+($('.ui-tabs-panel:visible .btAjout').width()-45)+'px');
+        $('.btAjout').each(function(){
+            $(this).css('right','-'+($(this).width()-45)+'px')
+        });
 	}
 	
 	function SYNC(){
@@ -533,7 +541,6 @@ function _init(tabNum){
 //								console.log(input);
 //								input.data( "autocomplete" ).term = "";
                                 select.children("option:selected").removeAttr("selected");
-                                
                                 $(this).css('background','orange');
                                 $(select).append("<option selected='selected' value='%"+$(this).val()+"'></option>");
 								return false;

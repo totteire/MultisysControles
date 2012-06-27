@@ -1,5 +1,5 @@
 À FAIRE:
-    . Dissocier App et faire en sorte de pouvoir ajouter nvx appareils
+    . Régler le pblm de couleur lorsqu'on remet un champs d'app connue
     . Traduction
     . Rentrer **** automatiquement pour * ou ** ou *** + forcer les maj
     . Possibilité de préremplir les controles (sans tech) à valider par les tech!
