@@ -1,7 +1,7 @@
 <?php
 
 $id=trim($_POST['id']);
-$marque=trim($_POST['marque']);
+$marque=trim(strtoupper($_POST['marque']));
 
 if ($marque){
     include("../connect.php");

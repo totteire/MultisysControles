@@ -1,9 +1,9 @@
 <?php
 
 $id=trim($_POST['id']);
-$libelle=trim($_POST['libelle']);
-$nomVerif=trim($_POST['nomVerif']);
-$numDateVerif=trim($_POST['numDateVerif']);
+$libelle=trim(strtoupper($_POST['libelle']));
+$nomVerif=trim(strtoupper($_POST['nomVerif']));
+$numDateVerif=trim(strtoupper($_POST['numDateVerif']));
 
 if ($libelle && $nomVerif && $numDateVerif){
     include("../connect.php");

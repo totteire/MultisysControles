@@ -1,10 +1,11 @@
 <?php
+
 $id=trim($_POST['id']);
-$nom=trim($_POST['nom']);
-$ad1=trim($_POST['ad1']);
-$ad2=trim($_POST['ad2']);
-$adVille=trim($_POST['adVille']);
-$adCP=trim($_POST['adCP']);
+$nom=trim(strtoupper($_POST['nom']));
+$ad1=trim(strtoupper($_POST['ad1']));
+$ad2=trim(strtoupper($_POST['ad2']));
+$adVille=trim(strtoupper($_POST['adVille']));
+$adCP=trim(strtoupper($_POST['adCP']));
 
 if (!$id||!$nom||!$ad1||!$adVille||!$adCP){
 	$return['error'] = true;

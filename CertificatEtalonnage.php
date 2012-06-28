@@ -3,7 +3,7 @@
         font-size: 11pt;
     }
     .small{
-        font-size: 6pt;
+        font-size: 7pt;
     }
     h2{
         font-style: italic;
@@ -29,7 +29,7 @@
     .titre{
         margin: auto;
         margin-top: 100px;
-        margin-bottom: 10px;
+        margin-bottom: 0px;
         width: 100%;
         text-align: center;
     }
@@ -40,8 +40,20 @@
         text-align:center;
     }
     .fauxFooter{
+        padding: 5px;
+        width: 430px;
+        margin-left: 100px;
         position: absolute;
         bottom: 70px;
+        margin: auto;
+        border: 1px solid black;
+    }
+    .trad{
+        font-style: italic;
+        font-size: 9px;
+    }
+    h2{
+        margin-bottom:0 ;
     }
     
 </style>
@@ -54,6 +66,7 @@
 <page orientation='portrait' format='A4' style='' <?php if($EnTete == 1) echo "backimg='./img/PAPIERENTETE.jpg'";?>>
     <div class='container' style=''>
         <div class='titre' style=''><h1><?php echo $titre;?></h1></div>
+        <div class='' style='width:100%;margin:auto;text-align:center;font-size:15px;font-style:italic;'>Calibration Certificate</div>
         <div class='numero' style=''><h1>N°<?php echo " ".$res['NUM'];?></h1></div>
 
         <table class='normale' cellspacing='0' style='text-align: left;'>
@@ -62,7 +75,7 @@
                 <td style='padding-left:15px;'><b><?php echo $res['NOM']?></b></td>
             </tr>
             <tr>
-                <td></td>
+                <td class='trad'>Issued to: </td>
                 <td style='padding-left:15px;'>
                     <?php 
             		    $ad=explode('$',$res["ADRESSE"]);
@@ -74,31 +87,32 @@
             </tr>
         </table>
         <h2>¤ APPAREIL DE MESURE VERIFIE ¤</h2>
+        <div class='trad' style='margin-left:20px;'>Equipment identification</div>
         <table cellspacing='0' style='width: 100%;'>
         <tr>
             <td style='width:40%'>
                 <table class='normale spaced' cellspacing='0' style='text-align: left; float: left;display: inline;'>
                     <tr style=''>
-                        <td style=''>Désignation:</td>
+                        <td style=''>Désignation:<br><span class='trad'>Description</span></td>
                         <td style=''><b><?php echo $res['DESIGNATION']?></b></td>
                     </tr>
                     <tr style=>
-                        <td style=''>Constructeur:</td>
+                        <td style=''>Constructeur:<br><span class='trad'>Manufacturer</span></td>
                         <td style=''><b><?php echo $res['MARQUE']?></b></td>
                     </tr>
                 </table>
             </td><td style='width:40%'>
                 <table class='normale spaced' cellspacing='0' style='display: inline;text-align: left;'>
                     <tr style=''>
-                        <td>Type:</td>
+                        <td>Type:<br><span class='trad'>Model</span></td>
                         <td style=''><b><?php echo $res['TYPE']?></b></td>
                     </tr>
                     <tr style=''>
-                        <td>N° de série:</td>
+                        <td>N° de série:<br><span class='trad'>Serial Number</span></td>
                         <td style=''><b><?php echo $res['NUM_SERIE']?></b></td>
                     </tr>
                     <tr style=''>
-                        <td>N° de Chassis:</td>
+                        <td>N° de Chassis:<br><span class='trad'>Customer n°</span></td>
                         <td style=''><b><?php echo $res['NUM_CHASSIS']?></b></td>
                     </tr>
                 </table>
@@ -106,6 +120,7 @@
         </tr>
         </table>
         <h2>¤ MOYEN D'ÉTALONNAGE - RACCORDEMENT ¤</h2>
+        <div class='trad' style='margin-left:20px;'>Calibration equipment - Connection</div>
         <table class='normale MM' cellspacing='0' style='width: 100%;'>
             <?php 
                 while($resMM = mysql_fetch_array($resultMM)){
@@ -114,27 +129,28 @@
             ?>
         </table>
         <h2>¤ TECHNICIEN RESPONSABLE DE LA VÉRIFICATION ¤</h2>
+        <div class='trad' style='margin-left:20px;'>Operator identification</div>
         <table class='normale spaced' cellspacing='0' style=''>
             <tr>
-                <td>Nom :</td>
+                <td>Nom :<br><span class='trad'>Name</span></td>
                 <td><b><?php echo $res['TECH']?></b></td>
             </tr>
             <tr>
-                <td>Signature :</td>
+                <td>Signature :<br><span class='trad'>Signature</span></td>
                 <td></td>
             </tr>
             <tr>
-                <td>Ce constat comprend :</td>
+                <td>Ce constat comprend :<br><span class='trad'>This certificate includes</span></td>
                 <td><b>1 page</b></td>
-                <td style='padding-left:40px;'><b>Date de vérification : <?php echo date("d-m-Y",strtotime($res["DATE"]))?></b></td>
+                <td style='padding-left:40px;'><b>Date de vérification : <?php echo date("d-m-Y",strtotime($res["DATE"]))?></b><br><span class='trad'>Verification date</span></td>
             </tr>
         </table>
-        <div class='fauxFooter'>
-            <div class='small' style='width:350px;margin:auto;text-align:center;'>
-                La reproduction de ce document n'est autorisée que sous forme de fac-similé photographique intégral.
+        <div class='fauxFooter small'>
+            <div style=''>
+                - La reproduction de ce document n'est autorisée que sous forme de fac-similé photographique intégral.<br><span class='trad' style='margin-left:5px'>The reproduction of this certificate is only permitted through an integral facsimile</span>
             </div>
-            <div class='small' style='margin-top: 15px;'>
-                1-Ce document ne peut être utilisé en lieu et place d'un certificat d'étalonnage COFRAC.
+            <div style=''>
+                - Ce document ne peut être utilisé en lieu et place d'un certificat d'étalonnage.<br><span class='trad' style='margin-left:5px'>This document cannot be used in place of a calibration certificate.</span>
             </div>
         </div>
         <table class='small footer' cellspacing='0' style=''>

@@ -5,20 +5,24 @@ $id = $_POST['id'];
 $pdf_edit = $_POST['pdf_edit'];
 if(isset($_POST['radioType'])) $type = $_POST['radioType']; else $type = "";
 if(isset($_POST['radioLieu'])) $lieu = $_POST['radioLieu']; else $lieu = "";
-$num = $_POST['num'];
+$num = trim($_POST['num']);
 $cli = $_POST['cli'];
 $app_desi = $_POST['appDesi'];
 $app_marque = $_POST['appMarque'];
 $app_type = $_POST['appType'];
-$numS = $_POST['numS'];
-$numC = $_POST['numC'];
+#$app = $_POST['app'];
+$numS = trim($_POST['numS']);
+$numC = trim($_POST['numC']);
 $date = date("Y-m-d", strtotime($_POST['date']));
-$temp = $_POST['temp'];
-if(!isset($_POST['tech'])) $tech = ""; else $tech = $_POST['tech'];
+$temp = trim($_POST['temp']);
+$tech = $_POST['tech'];
 $jugement = $_POST['jugement'];
-$observation = $_POST['observation'];
+$observation = trim($_POST['observation']);
 $PAR = $_POST['PAR'];
 $MM = $_POST['MM'];
+
+if(strpbrk($numS,'*')) $numS = "****";
+if(strpbrk($numC,'*')) $numC = "****";
 
 switch($type){
     case "essa":

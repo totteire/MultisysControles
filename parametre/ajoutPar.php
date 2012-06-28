@@ -1,7 +1,7 @@
 <?php
 
 $id=trim($_POST['id']);
-$libelle=trim($_POST['libelle']);
+$libelle=trim(strtoupper($_POST['libelle']));
 
 if ($libelle){
     include("../connect.php");

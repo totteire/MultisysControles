@@ -3,6 +3,7 @@ function _init(tabNum){
     var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':'','needReload':''};
     $(".tabs").tabs({'selected':tabNum});
     updateTAb();
+    refreshTabClick();
     reloadContent();
     CTRL_UpdateSubmitClick(tab.ajout);
     function reloadContent(){
@@ -14,8 +15,7 @@ function _init(tabNum){
 //                }
 //        
 //        });
-        refreshTabClick();
-        if(tab.page == "appareil.php") {$(".subtabs").tabs();}
+        if(tab.page == "appareil.php") {$(".subtabs").tabs();refreshTabClick();}
         $(".datepicker").datepicker();
         $(".tableau").tablesorter();
         $("button, a.button").button();
@@ -319,10 +319,11 @@ function _init(tabNum){
         tab.needReload = $('.ui-tabs-panel:visible').last().attr('needReload');
     }
     function refreshTabClick(){
+//        $('ul.ui-tabs-nav a').unbind();
+//        $('.tabs').tabs();
         // CLICK SUR TAB ////////////////////////////////////////////////////////////////////////////
         $('ul.ui-tabs-nav a').click(function(){
             updateTAb();
-            console.log(tab.dialogId);
             // Vérifier si la tab necessite d'etre rechargé
             if(tab.needReload == "true"){
                 $('.ui-tabs-panel:visible').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
@@ -375,9 +376,9 @@ function _init(tabNum){
 			timeout: 7000,
 			success: function(data) {
                 if (data.error){
-                    displayMess("<img src='img/error.png'/><h3>"+data.msg+"</h3>", "ui-state-error",2500);
+                    displayMess("<img src='img/error.png'/><h3>"+data.msg+"</h3>", "ui-state-error",2000);
                 }else{
-                    displayMess("<img src='img/icon_ok.png'/><h3>"+data.msg+"</h3>", "ui-state-highlight",2500);
+                    displayMess("<img src='img/icon_ok.png'/><h3>"+data.msg+"</h3>", "ui-state-highlight",1500);
                     $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
                 }
 			},

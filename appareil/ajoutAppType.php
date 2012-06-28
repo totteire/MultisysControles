@@ -1,7 +1,7 @@
 <?php
 
 $id=trim($_POST['id']);
-$type=trim($_POST['type']);
+$type=trim(strtoupper($_POST['type']));
 
 if ($type){
     include("../connect.php");

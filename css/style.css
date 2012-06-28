@@ -99,7 +99,7 @@ table.inline{
 }
 /*----------- boutton ajout --------*/
 .btAjout{
-    top: 15%;
+    top: 20%;
     display: block;
 /*    right: -100px;*/
     position: fixed !important;
@@ -114,7 +114,7 @@ table.inline{
     width:400px;
     padding:10px;
     text-align:center;
-    z-index: 999999px;
+    z-index: 999999;
 }
 /* ----------- stylized ----------- */
 #stylized{
@@ -203,7 +203,7 @@ label.titre{
     max-width: 125px;
 }
 #tabPar select{
-    max-width: 125px;
+    max-width: 110px;
 }
 #tabCtr table.tableau td{
 	overflow: hidden;

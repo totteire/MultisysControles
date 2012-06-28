@@ -1,7 +1,7 @@
 <button class="btAjout"><h1> +&nbsp; &nbsp; Technicien</button>
 <H2>Techniciens:</H2>
 <table id="tableau" class="tableau tablesorter">
-	<thead><tr><th class=info></th><th class="topLeftRight">Nom</th></tr></thead>
+	<thead><tr><th class=info></th><th class="topLeft">Nom</th><th class='topRight'>Signature</th></tr></thead>
     <tbody>
 	<?php
 		include('connect.php');
@@ -13,6 +13,7 @@
 			echo "<tr>
 			    <td id='id' class='info'>".$res['ID']."</td>
 				<td id='nom'>".$res['TECH']."</a></td>
+				<td id='signature'><img src=".$res['SIGNATURE']." width='80px' height='36px'\></a></td>
 				<td id='modif' class='modifCell'><img class='modif' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
 			</tr>";
 			$nb++;

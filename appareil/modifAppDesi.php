@@ -1,6 +1,6 @@
 <?php
 $id=trim($_POST['id']);
-$desig=trim($_POST['desig']);
+$desig=trim(strtoupper($_POST['desig']));
 
 if (!$id||!$desig){
 	$return['error'] = true;
