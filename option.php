@@ -12,8 +12,8 @@
 		{
 			echo "<tr>
 			    <td id='id' class='info'>".$res['ID']."</td>
-				<td id='nom'>".$res['TECH']."</a></td>
-				<td id='signature'><img src=".$res['SIGNATURE']." width='80px' height='36px'\></a></td>
+				<td id='nom'>".$res['TECH']."</td>
+				<td id='signature'><img src=".$res['SIGNATURE']." width='80px' height='36px'\>".$res['SIGNATURE']."</td>
 				<td id='modif' class='modifCell'><img class='modif' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
 			</tr>";
 			$nb++;
@@ -27,10 +27,11 @@
 		<form id="formClient" class="formulaire">
 			<h1>Nouveau Client</h1>
 			<p></p>
-            <input class='info' type='text' name='id' id='id'/>
+			<input class='info' type='text' name='id' id='id'/>
 			<label>Nom:</label>
 			<input type="text" name="nom" id="nom" />
-			
+			<label>Signature:</label>
+			<input type="text" name="signature" id="signature" />
 			<button class="submit">Enregistrer</button>
 
 		</form>

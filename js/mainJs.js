@@ -31,7 +31,7 @@ function _init(tabNum){
                 if(tab.dialogId != '#CTRL') $(tab.dialogId+' form.formulaire').get(0).reset();
             }
         });
-        
+       
         $("#dialog-confirm").dialog({
             autoOpen: false,
         	width: 'auto',
@@ -519,8 +519,10 @@ function _init(tabNum){
 						self._trigger( "selected", event, {
 							item: ui.item.option
 						});
-						
+						// Make sure it's white in case it wasn't
+						$(this).css('background','white');
 //						comboboxSelect(ui, this);
+						
 					},
 					change: function( event, ui ) {
 						if ( !ui.item ) {
@@ -531,7 +533,7 @@ function _init(tabNum){
 									this.selected = valid = true;
 									// Make it white in case it wasn't
 //									$(this).css('background','white');
-//									console.log("lkj");
+									console.log("lkj");
 									return false;
 								}
 							});
@@ -541,9 +543,9 @@ function _init(tabNum){
 //								select.val( "" );
 //								console.log(input);
 //								input.data( "autocomplete" ).term = "";
-                                select.children("option:selected").removeAttr("selected");
-                                $(this).css('background','orange');
-                                $(select).append("<option selected='selected' value='%"+$(this).val()+"'></option>");
+                                				select.children("option:selected").removeAttr("selected");
+                                				$(this).css('background','orange');
+				                                $(select).append("<option selected='selected' value='%"+$(this).val()+"'></option>");
 								return false;
 							}
 						}

@@ -1,8 +1,9 @@
 <?php
 $id=trim($_POST['id']);
 $nom=trim($_POST['nom']);
+$signature=trim($_POST['signature']);
 
-if (!$id||!$nom){
+if (!$id||!$nom||!$signature){
 	$return['error'] = true;
 	$return['msg'] = "Le formulaire n'a pas été correctement remplie!";
 }else{
@@ -10,7 +11,7 @@ if (!$id||!$nom){
     $test = mysql_query("SELECT ID FROM TECHNICIEN WHERE TECH='$nom' AND ID<>$id;")or die(mysql_error());
     if (mysql_num_rows($test)==0){
 	    // Modification du Technicien
-	    $req = mysql_query("UPDATE TECHNICIEN SET TECH='$nom' WHERE ID='$id';") or die(mysql_error());
+	    $req = mysql_query("UPDATE TECHNICIEN SET TECH='$nom', SIGNATURE='$signature' WHERE ID='$id';") or die(mysql_error());
 	    $return['error'] = false;
 	    $return['msg'] = "Le technicien: ".$nom." a bien été modifié!";
 	}else{

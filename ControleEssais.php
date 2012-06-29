@@ -45,7 +45,7 @@
         width: 430px;
         margin-left: 100px;
         position: absolute;
-        bottom: 70px;
+        bottom: 40px;
         margin: auto;
         border: 1px solid black;
     }
@@ -84,38 +84,28 @@
         
         <h2>¤ APPAREIL DE MESURE VERIFIE ¤</h2>
         <div class='trad' style='margin-left:20px;'>Equipment identification</div>
-        <table cellspacing='0' style=''>
-        <tr>
-            <td style='width:50%'>
-                <table class='normale spaced' cellspacing='0' style='text-align: left; float: left;display: inline;'>
-                    <tr style=''>
-                        <td style=''>Désignation:<br><span class='trad'>Description</span></td>
-                        <td style='width:75%'><b><?php echo $res['DESIGNATION']?></b></td>
-                    </tr>
-                    <tr style=>
-                        <td style=''>Constructeur:<br><span class='trad'>Manufacturer</span></td>
-                        <td style='width:75%'><b><?php echo $res['MARQUE']?></b></td>
-                    </tr>
-                </table>
-            </td><td style='width:50%'>
-                <table class='normale spaced' cellspacing='0' style='display: inline;text-align: left;'>
-                    <tr style=''>
-                        <td>Type:<br><span class='trad'>Model</span></td>
-                        <td style=''><b><?php echo $res['TYPE']?></b></td>
-                    </tr>
-                    <tr style=''>
-                        <td>N° de série:<br><span class='trad'>Serial Number</span></td>
-                        <td style=''><b><?php echo $res['NUM_SERIE']?></b></td>
-                    </tr>
-                    <tr style=''>
-                        <td>N° de Chassis:<br><span class='trad'>Customer n°</span></td>
-                        <td style=''><b><?php echo $res['NUM_CHASSIS']?></b></td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        </table>
-        
+
+	<table class='spaced' cellspacing='0' style='width:100%;'>
+	    <tr>
+		<td rowspan='2' style=''>Désignation:<br><span class='trad'>Description</span></td>
+		<td rowspan='2' style='width:35%;padding-right:20px;'><b><?php echo $res['DESIGNATION']?></b></td>
+		
+		<td>Type:<br><span class='trad'>Model</span></td>
+		<td style=''><b><?php echo $res['TYPE']?></b></td>
+	    </tr>
+	    <tr>
+		
+		<td>N° de série:<br><span class='trad'>Serial Number</span></td>
+		<td style=''><b><?php echo $res['NUM_SERIE']?></b></td>
+	    </tr>
+	    <tr>
+		<td>Constructeur:<br><span class='trad'>Manufacturer</span></td>
+		<td><b><?php echo $res['MARQUE']?></b></td>
+		<td>N° de Chassis:<br><span class='trad'>Customer n°</span></td>
+		<td style=''><b><?php echo $res['NUM_CHASSIS']?></b></td>
+	    </tr>
+	</table>
+
         <h2>¤ TECHNICIEN RESPONSABLE DE LA VÉRIFICATION ¤</h2>
         <div class='trad' style='margin-left:20px;'>Operator identification</div>
         <table class='normale spaced' cellspacing='0' style=''>
@@ -125,8 +115,8 @@
             </tr>
             <tr>
                 <td>Signature :<br><span class='trad'>Signature</span></td>
-                <td></td>
-            </tr>
+		<td><img <?php echo "src='".$res['SIGNATURE']."'"; ?> style="width:120px;height:54px;" \></td>
+ 	    </tr>
             <tr>
                 <td>Ce constat comprend :<br><span class='trad'>This certificate includes</span></td>
                 <td><b>1 page</b></td>

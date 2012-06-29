@@ -44,7 +44,7 @@
         width: 430px;
         margin-left: 100px;
         position: absolute;
-        bottom: 70px;
+        bottom: 40px;
         margin: auto;
         border: 1px solid black;
     }
@@ -93,22 +93,20 @@
         <div class='trad' style='margin-left:20px;'>Equipment identification</div>
         <table class='spaced' cellspacing='0' style='width:100%;'>
             <tr>
-                <td style=''>Désignation:<br><span class='trad'>Description</span></td>
-                <td style='max-width:40%;'><b><?php echo $res['DESIGNATION']?></b></td>
+                <td rowspan='2' style=''>Désignation:<br><span class='trad'>Description</span></td>
+                <td rowspan='2' style='width:35%;padding-right:20px;'><b><?php echo $res['DESIGNATION']?></b></td>
                 
                 <td>Type:<br><span class='trad'>Model</span></td>
                 <td style=''><b><?php echo $res['TYPE']?></b></td>
             </tr>
             <tr>
-                <td style=''>Constructeur:<br><span class='trad'>Manufacturer</span></td>
-                <td style=''><b><?php echo $res['MARQUE']?></b></td>
                 
                 <td>N° de série:<br><span class='trad'>Serial Number</span></td>
                 <td style=''><b><?php echo $res['NUM_SERIE']?></b></td>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
+                <td>Constructeur:<br><span class='trad'>Manufacturer</span></td>
+                <td><b><?php echo $res['MARQUE']?></b></td>
                 <td>N° de Chassis:<br><span class='trad'>Customer n°</span></td>
                 <td style=''><b><?php echo $res['NUM_CHASSIS']?></b></td>
             </tr>
@@ -131,7 +129,7 @@
             </tr>
             <tr>
                 <td>Signature :<br><span class='trad'>Signature</span></td>
-                <td><img <?php echo "src='".$res['SIGNATURE']."'"; ?> style="width:100px;height:45px;" \></td>
+                <td><img <?php echo "src='".$res['SIGNATURE']."'"; ?> style="width:120px;height:54px;" \></td>
             </tr>
             <tr>
                 <td>Ce constat comprend :<br><span class='trad'>This certificate includes</span></td>
@@ -163,6 +161,7 @@
 <page orientation='portrait' format='A4' style='font-size: 12pt;' <?php if($EnTete == 1) echo "backimg='./img/PAPIERENTETE.jpg'";?>>
     <div class='container' style=''>
         <div class='titre' style=''><h1><?php echo $titre;?></h1></div>
+        <div class='' style='width:100%;margin:auto;text-align:center;font-size:15px;font-style:italic;'>Calibration Certificate</div>
         <div class='numero' style=''><h1>N°<?php echo " ".$res['NUM'];?></h1></div>
         <h2>¤ MÉTHODE DE MESURES EMPLOYÉE ¤</h2>
         <div class='trad' style='margin-left:20px;'>Measuring method used</div>
