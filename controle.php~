@@ -10,7 +10,7 @@
 		{
 		    $res['DATE'] = date("d-m-Y",strtotime($res["DATE"]));
 		    if($res['PDF_EDIT']=='0000-00-00') $res['PDF_EDIT'] = 'NON'; else $res['PDF_EDIT'] = date("d-m-Y",strtotime($res['PDF_EDIT']));
-			if($res['TECHNICIEN'] == '1') echo "<tr class='colored'>";
+			if($res['TECHNICIEN'] == '1') echo "<tr style='background-color:red;'>";
 		    	else echo "<tr>";
 			echo "  <td id='id' class='info'>".$res['ID']."</td>
 				<td id='TDnum'>".$res['NUM']."</td>

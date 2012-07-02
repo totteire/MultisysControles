@@ -125,7 +125,7 @@
                 <td><b><?php echo $res['TECH']?></b></td>
             </tr>
             <tr>
-                <td>Signature :<br><span class='trad'>Signature</span></td>
+                <td style='padding-top:30px;'>Signature :<br><span class='trad'>Signature</span></td>
 		<td><img <?php echo "src='".$res['SIGNATURE']."'"; ?> style="width:120px;height:54px;" \></td>
             </tr>
             <tr>
@@ -145,9 +145,7 @@
         <table class='small footer' cellspacing='0' style=''>
             <tr>
                 <td style='width:33%;text-align:left;'>25/05/2011</td>
-                <td style='width:33%;text-align:center;'><?php echo $titre?></td>
-                <td style='width:33%;text-align:right;'>1/1</td>
-            </tr>
+                <td style='width:33%;text-align:center;'><?php echo $titre?></td> <td style='width:33%;text-align:right;'>1/1</td> </tr>
         </table>
     </div>
 </page>

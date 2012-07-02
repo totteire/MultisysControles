@@ -13,7 +13,6 @@ if (!$id||!$libelle||!$nomVerif||!$numDateVerif){
     if (mysql_num_rows($test)==0){
         // Modification du moyen de mesure
 	    $req = mysql_query("UPDATE MOYEN_MESURE SET LIBELLE='$libelle', NOM_VERIF='$nomVerif', NUM_DATE_VERIF='$numDateVerif' WHERE ID='$id';") or die(mysql_error());
-	    if($nomVerif == "Vérification MULTISYS"){$reqUpdateMulti = mysql_query("UPDATE MOYEN_MESURE SET NUM_DATE_VERIF='$numDateVerif' WHERE NOM_VERIF='$nomVerif';")or die(mysql_error());}
 	    $return['error'] = false;
 	    $return['msg'] = "Le moyen de mesure: ".$libelle." a bien été modifié!";
     }else{

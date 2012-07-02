@@ -1,8 +1,8 @@
 <?php
 
 include('../connect.php');
-$id = $_POST['id'];
-$pdf_edit = $_POST['pdf_edit'];
+
+
 if(isset($_POST['radioType'])) $type = $_POST['radioType']; else $type = "";
 if(isset($_POST['radioLieu'])) $lieu = $_POST['radioLieu']; else $lieu = "";
 $num = trim($_POST['num']);
@@ -24,6 +24,7 @@ $MM = $_POST['MM'];
 
 if(strpbrk($numS,'*')) $numS = "****";
 if(strpbrk($numC,'*')) $numC = "****";
+
 switch($type){
     case "essa":
         $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$date&&$jugement)? true : false;
@@ -39,10 +40,9 @@ switch($type){
 }
 
 if($verifChamps){
-
-    $test = mysql_query("SELECT NUM FROM CONTROLE WHERE NUM = $num AND ID <> $id;") or die(mysql_error());
+    $test = mysql_query("SELECT NUM FROM CONTROLE WHERE NUM = $num;") or die(mysql_error());
     if (mysql_num_rows($test)==0){
-
+    
         # Check if there is a new app to add
         if (strpbrk($app_desi, '%')){
             $app_desi = strtoupper(str_replace('%', '', $app_desi));
@@ -62,23 +62,22 @@ if($verifChamps){
             $getIdType = mysql_query("SELECT ID FROM APP_TYPE WHERE TYPE='$app_type';") or die(mysql_error());
             $app_type = mysql_result($getIdType,0);
         }
-        $reqModifCtrl = mysql_query("UPDATE CONTROLE SET NUM='$num', ID_APP_DESI='$app_desi',ID_APP_MARQUE='$app_marque',ID_APP_TYPE='$app_type', ID_AVOIR='$cli', TYPE_CTRL='$type', DATE='$date', TECHNICIEN='$tech', TEMPERATURE='$temp', LIEU='$lieu', JUGEMENT='$jugement', OBSERVATION='$observation', NUM_SERIE='$numS', NUM_CHASSIS='$numC', PDF_EDIT='$pdf_edit' WHERE ID='$id';") or die(mysql_error());
+    
+        $reqInserCtrl = mysql_query("INSERT INTO CONTROLE VALUES (NULL,'$num','$app_desi','$app_marque','$app_type','$cli','$type','$date','$tech','$temp','$lieu','$jugement','$observation','$numS','$numC','',0);") or die(mysql_error());
         $reqID = mysql_query("SELECT ID FROM CONTROLE WHERE NUM=$num;")or die(mysql_error());
         $resID = mysql_fetch_array($reqID);
-        $reqDelFKmm = mysql_query("DELETE FROM UTILISER WHERE ID=$id;") or die(mysql_error());
-        $reqDelFKpar = mysql_query("DELETE FROM VERIFIER WHERE ID=$id;") or die(mysql_error());
         if(!$PAR) $PAR = array();
         else $PAR = explode(',',$PAR);
         foreach($PAR as $par){
-            $req2 = mysql_query("INSERT INTO VERIFIER VALUES ('".$id."','$par');") or die(mysql_error());
+            $req2 = mysql_query("INSERT INTO VERIFIER VALUES ('".$resID['ID']."','$par');") or die(mysql_error());
         }
         if(!$MM) $MM = array();
         else $MM = explode(',',$MM);
         foreach($MM as $mm){
-            $req3 = mysql_query("INSERT INTO UTILISER VALUES ('".$id."','$mm')") or die(mysql_error());
+            $req3 = mysql_query("INSERT INTO UTILISER VALUES ('".$resID['ID']."','$mm')") or die(mysql_error());
         }
         $return['error'] = false;
-        $return['msg'] = "Le controle N°".$num." à bien été modifié!";
+        $return['msg'] = "Le controle N°".$num." à bien été ajouté!";
     }else{
         $return['error'] = true;
         $return['msg'] = "Le controle N°".$num." existe déja!";
@@ -86,6 +85,7 @@ if($verifChamps){
 }else{
     $return['error']=true;
     $return['msg']="tous les champs ne sont pas remplis!";
+#    $return['test']="".$num." ".$type." ".$lieu." ".$cli." ".$app." ".$tech." ".$date." ".$jugement." ".$MM;
 }
 
 echo json_encode($return);

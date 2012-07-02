@@ -1,5 +1,4 @@
 <style type='text/css'>
-
     .normale{
         font-size: 11pt;
     }
@@ -58,10 +57,16 @@
     }
     
 </style>
-<page orientation='portrait' format='A4' style='' <?php if($EnTete == 1)echo "backimg='./img/PAPIERENTETE.jpg'";?>>
+
+<?php
+    $req = "SELECT LIBELLE, NOM_VERIF, NUM_DATE_VERIF FROM MOYEN_MESURE, UTILISER U WHERE U.ID_1 = MOYEN_MESURE.ID AND U.ID=$ctrlId";
+    $resultMM = mysql_query($req) or die(mysql_error());
+?>
+
+<page orientation='portrait' format='A4' style='' <?php if($EnTete == 1) echo "backimg='./img/PAPIERENTETE.jpg'";?>>
     <div class='container' style=''>
         <div class='titre' style=''><h1><?php echo $titre;?></h1></div>
-        <div class='' style='width:100%;margin:auto;text-align:center;font-size:15px;font-style:italic;'>Basic control</div>
+        <div class='' style='width:100%;margin:auto;text-align:center;font-size:15px;font-style:italic;'>Calibration Certificate</div>
         <div class='numero' style=''><h1>N°<?php echo " ".$res['NUM'];?></h1></div>
 
         <table class='normale' cellspacing='0' style='text-align: left;'>
@@ -72,7 +77,7 @@
             <tr>
                 <td class='trad'>Issued to: </td>
                 <td style='padding-left:15px;'>
-                    <?php
+                    <?php 
             		    $ad=explode('$',$res["ADRESSE"]);
             		    echo $ad[0]."<br>";
             		    if (isset($ad[1]) && $ad[1]!='')echo $ad[1]."<br>";
@@ -81,10 +86,8 @@
                 </td>
             </tr>
         </table>
-        
         <h2>¤ APPAREIL DE MESURE VERIFIE ¤</h2>
         <div class='trad' style='margin-left:20px;'>Equipment identification</div>
-
 	<table class='spaced' cellspacing='0' style='width:100%;'>
 	    <tr>
 		<td rowspan='2' style=''>Désignation:<br><span class='trad'>Description</span></td>
@@ -105,7 +108,15 @@
 		<td style=''><b><?php echo $res['NUM_CHASSIS']?></b></td>
 	    </tr>
 	</table>
-
+        <h2>¤ MOYEN D'ÉTALONNAGE - RACCORDEMENT ¤</h2>
+        <div class='trad' style='margin-left:20px;'>Calibration equipment - Connection</div>
+        <table class='normale MM' cellspacing='0' style='width: 100%;'>
+            <?php 
+                while($resMM = mysql_fetch_array($resultMM)){
+                    echo "<tr><td>".$resMM['LIBELLE']."</td><td></td><td>".$resMM['NOM_VERIF']." ".$resMM['NUM_DATE_VERIF']."</td></tr>";
+                }
+            ?>
+        </table>
         <h2>¤ TECHNICIEN RESPONSABLE DE LA VÉRIFICATION ¤</h2>
         <div class='trad' style='margin-left:20px;'>Operator identification</div>
         <table class='normale spaced' cellspacing='0' style=''>
@@ -114,30 +125,27 @@
                 <td><b><?php echo $res['TECH']?></b></td>
             </tr>
             <tr>
-                <td style='padding-top:30px;'>Signature :<br><span class='trad'>Signature</span></td>
+                <td style='padding-top:20px;'>Signature :<br><span class='trad'>Signature</span></td>
 		<td><img <?php echo "src='".$res['SIGNATURE']."'"; ?> style="width:120px;height:54px;" \></td>
- 	    </tr>
+            </tr>
             <tr>
                 <td>Ce constat comprend :<br><span class='trad'>This certificate includes</span></td>
                 <td><b>1 page</b></td>
-                <td style='padding-left:40px;'><b>Date de vérification : <?php echo date("d-m-Y",strtotime($res["DATE"]))?></b></td>
+                <td style='padding-left:40px;'><b>Date de vérification : <?php echo date("d-m-Y",strtotime($res["DATE"]))?></b><br><span class='trad'>Verification date</span></td>
             </tr>
         </table>
-        <h2>¤ JUGEMENT ¤</h2>
-        <table class='normale' cellspacing='0' style=''>
-            <tr><td>(<?php if($res['JUGEMENT'] == 1) echo "X"; else echo "&nbsp;&nbsp;";?>) Appareil conforme aux spécifications énoncées par le constructeur pour les gammes vérifiées.<br><span style='margin-left:20px' class='trad'>Device in compliance with the manufacturer's specifications for the verified ranges.</span></td></tr>
-            <tr><td>(<?php if($res['JUGEMENT'] == 2) echo "X"; else echo "&nbsp;&nbsp;";?>) Appareil conforme aux spécifications énoncées par le constructeur après réparation.<br><span style='margin-left:20px' class='trad'>Device in compliance with the manufacturer's specifications for the verified ranges after repairing.</span></td></tr>
-            <tr><td>(<?php if($res['JUGEMENT'] == 3) echo "X"; else echo "&nbsp;&nbsp;";?>) Appareil non conforme.<br><span style='margin-left:20px' class='trad'>Device not in compliance.</span></td></tr>
-        </table>
-        <h2>¤ OBSERVATION ¤</h2>
-        <div class='trad' style='margin-left:20px;'>Observations</div>
-        <p class='normale'><?php if($res['OBSERVATION'] == '')echo "NÉANT"; else echo $res['OBSERVATION'];?></p>
+        <div class='fauxFooter small'>
+            <div style=''>
+                - La reproduction de ce document n'est autorisée que sous forme de fac-similé photographique intégral.<br><span class='trad' style='margin-left:5px'>The reproduction of this certificate is only permitted through an integral facsimile</span>
+            </div>
+            <div style=''>
+                - Ce document ne peut être utilisé en lieu et place d'un certificat d'étalonnage.<br><span class='trad' style='margin-left:5px'>This document cannot be used in place of a calibration certificate.</span>
+            </div>
+        </div>
         <table class='small footer' cellspacing='0' style=''>
             <tr>
-                <td style='width:25%;text-align:left;'>22/05/2011</td>
-                <td style='width:50%;text-align:center;'><?php echo $titre?></td>
-                <td style='width:25%;text-align:right;'>1/1</td>
-            </tr>
+                <td style='width:33%;text-align:left;'>25/05/2011</td>
+                <td style='width:33%;text-align:center;'><?php echo $titre?></td> <td style='width:33%;text-align:right;'>1/1</td> </tr>
         </table>
     </div>
 </page>

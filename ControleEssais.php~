@@ -114,7 +114,7 @@
                 <td><b><?php echo $res['TECH']?></b></td>
             </tr>
             <tr>
-                <td style='padding-top:30px;'>Signature :<br><span class='trad'>Signature</span></td>
+                <td>Signature :<br><span class='trad'>Signature</span></td>
 		<td><img <?php echo "src='".$res['SIGNATURE']."'"; ?> style="width:120px;height:54px;" \></td>
  	    </tr>
             <tr>

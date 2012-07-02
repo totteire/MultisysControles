@@ -47,7 +47,7 @@ table.tableau td{
 	height: auto;
 }
 table.tableau tr.colored td{
-	background: pink; 
+	background: red; 
 }
 
 table.tableau td.modifCell{
