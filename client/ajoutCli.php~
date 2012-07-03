@@ -9,9 +9,9 @@ $adCP=trim(strtoupper($_POST['adCP']));
 
 if ($nom && $ad1 && $adVille && $adCP){
     include("../connect.php");
-    $test = mysql_query("SELECT ID FROM CLIENT WHERE NOM=\"$nom\";")or die(mysql_error());
+    $test = mysql_query("SELECT ID FROM CLIENT WHERE NOM='$nom';")or die(mysql_error());
     if (mysql_num_rows($test)==0){	    
-        $req = mysql_query("INSERT INTO CLIENT VALUES (NULL,\"$nom\",\"".$ad1."$".$ad2."\",\"$adVille\",\"$adCP\");") or die(mysql_error());
+        $req = mysql_query("INSERT INTO CLIENT VALUES (NULL,'$nom','".$ad1."$".$ad2."','$adVille','$adCP');") or die(mysql_error());
     	$return['error'] = false;
 	    $return['msg'] = "Le client: ".$nom." a bien été enregistré!";
 	}else{    

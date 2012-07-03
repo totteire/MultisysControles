@@ -10,17 +10,20 @@
 		$result=mysql_query($req) or die(mysql_error());
 		while($res=mysql_fetch_array($result))
 		{
-			echo "<tr>
-			    <td id='id' class='info'>".$res['ID']."</td>
-				<td id='nom'>".$res['TECH']."</td>
-				<td id='signature'><img src=".$res['SIGNATURE']." width='80px' height='36px'\>".$res['SIGNATURE']."</td>
-				<td id='modif' class='modifCell'><img class='modif' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
-			</tr>";
-			$nb++;
+			if($res['ID'] != '1'){
+				echo "<tr>
+				    <td id='id' class='info'>".$res['ID']."</td>
+					<td id='nom'>".$res['TECH']."</td>
+					<td id='signature'><img src=".$res['SIGNATURE']." width='80px' height='36px'\>".$res['SIGNATURE']."</td>
+					<td id='modif' class='modifCell'><img class='modif' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
+				</tr>";
+				$nb++;
+			}
 		}
 	?>
 	</tbody>
 </table>
+<button id='sync' style='position:fixed;top:30%;right:2%;'><h2>Synchronisation</h2></button>
 
 <div id="dialogOpt" class="dialog">
 	<div id="stylized" class="myform">

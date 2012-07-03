@@ -13,59 +13,59 @@ p, h1, form{border:0; margin:0; padding:0;}
 /*------------ tableau -------------*/
 /*ajout des flèches vertes*/
 table.tablesorter .header {
-	background-image: url(../img/bg.png);
-	background-repeat: no-repeat;
-	background-color: #F6AD37;
-	background-position: 5px 12px;
+    background-image: url(../img/bg.png);
+    background-repeat: no-repeat;
+    background-color: #F6AD37;
+    background-position: 5px 12px;
 }
 table.tablesorter .headerSortUp {
-	background-image: url(../img/asc.png);
+    background-image: url(../img/asc.png);
 }
 table.tablesorter .headerSortDown {
-	background-image: url(../img/desc.png);
+    background-image: url(../img/desc.png);
 }
 table.tableau{
     display: inline;
-	border-collapse: collapse;
-	width: auto;
-	text-align: center;
+    border-collapse: collapse;
+    width: auto;
+    text-align: center;
 }
 
 table.tableau th{
-	color: #454545;
-	font-weight: bold;
-	padding: 8px 20px;
-	border-bottom: 1px solid #FFFFFF;
-	cursor: pointer;
+    color: #454545;
+    font-weight: bold;
+    padding: 8px 20px;
+    border-bottom: 1px solid #FFFFFF;
+    cursor: pointer;
 }
 table.tableau td{
-	background: none repeat scroll 0 0 #ebf4fb;
-	border-bottom: 1px solid #FFFFFF;
-	border-top: 1px solid transparent;
-	color: #666699;
-	padding: 8px;
-	height: auto;
+    background: none repeat scroll 0 0 #ebf4fb;
+    border-bottom: 1px solid #FFFFFF;
+    border-top: 1px solid transparent;
+    color: #666699;
+    padding: 8px;
+    height: auto;
 }
 table.tableau tr.colored td{
-	background: pink; 
+    background: pink; 
 }
 
 table.tableau td.modifCell{
-	display: none;
-	-moz-border-radius: 0 10px 10px 0;
-	-webkit-border-radius: 0 10px 10px 0;
-	border-radius: 0 10px 10px 0;
-	border: 1px solid transparent;
+    display: none;
+    -moz-border-radius: 0 10px 10px 0;
+    -webkit-border-radius: 0 10px 10px 0;
+    border-radius: 0 10px 10px 0;
+    border: 1px solid transparent;
 }
 table.tableau td img{
     margin: auto 5px;
 }
 table.tableau tr:hover > td.modifCell{
-	display: table-cell;
+    display: table-cell;
 }
 table.tableau tr:hover td{
-	background:#FDF5CE;
-	color:#1C94C4;
+    background:#FDF5CE;
+    color:#1C94C4;
 }
 table.tableau td a span.ui-state-default{
     margin:5px;
@@ -82,23 +82,23 @@ table.inline{
     margin-left:45%;
 }
 .info{
-	display:none;
+    display:none;
 }
 .topLeft{
-	-moz-border-radius:10px 0 0 0;
-	-webkit-border-radius:10px 0 0 0;
-	border-radius:10px 0 0 0;
+    -moz-border-radius:10px 0 0 0;
+    -webkit-border-radius:10px 0 0 0;
+    border-radius:10px 0 0 0;
 }
 
 .topRight{
-	-moz-border-radius:0 10px 0 0;
-	-webkit-border-radius:0 10px 0 0;
-	border-radius:0 10px 0 0;
+    -moz-border-radius:0 10px 0 0;
+    -webkit-border-radius:0 10px 0 0;
+    border-radius:0 10px 0 0;
 }
 .topLeftRight{
-	-moz-border-radius:10px 10px 0 0;
-	-webkit-border-radius:10px 10px 0 0;
-	border-radius:10px 10px 0 0;
+    -moz-border-radius:10px 10px 0 0;
+    -webkit-border-radius:10px 10px 0 0;
+    border-radius:10px 10px 0 0;
 }
 /*----------- boutton ajout --------*/
 .btAjout{
@@ -209,12 +209,12 @@ label.titre{
     max-width: 110px;
 }
 #tabCtr table.tableau td{
-	overflow: hidden;
+    overflow: hidden;
     max-width: 180px;
     white-space: nowrap;
 }
 #tabCtr table.tableau td{
-	overflow: hidden;
+    overflow: hidden;
     max-width: 180px;
     white-space: nowrap;
 }
