@@ -44,7 +44,7 @@
 	            include("parametre.php");
 	        ?>
     	</div>
-    	<div id="tabOpt" page='option.php' dialogId='#dialogOpt' ajout='technicien/ajoutTech.php' suppr='technicien/supprTech.php' modif='technicien/modifTech.php' needReload='false'>
+    	<div id="tabOpt" page='option.php' dialogId='#dialogOpt' ajout='technicien/ajoutTech.php' suppr='technicien/supprTech.php' modif='technicien/modifTech.php' needReload='true'>
 	        <?php
 	            include("option.php");
 	        ?>

@@ -16,7 +16,7 @@ $numC = trim($_POST['numC']);
 $date = date("Y-m-d", strtotime($_POST['date']));
 $temp = trim($_POST['temp']);
 $tech = $_POST['tech'];
-if($tech == "%")$tech = '1';
+if($tech == "%")$tech = 1;
 $jugement = $_POST['jugement'];
 $observation = trim($_POST['observation']);
 $PAR = $_POST['PAR'];
@@ -27,13 +27,22 @@ if(strpbrk($numC,'*')) $numC = "****";
 
 switch($type){
     case "essa":
-        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$date&&$jugement)? true : false;
+	if($tech == 1)
+	    $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$date)? true : false; 
+	else
+	    $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$date&&$jugement)? true : false;
         break;
     case "veri":
-        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$PAR&&$MM&&$date&&$jugement)? true : false;
+	if($tech == 1)
+	    $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$date)? true : false;
+	else
+	    $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$PAR&&$MM&&$date&&$jugement)? true : false;
         break;
     case "etal":
-        $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$PAR&&$MM&&$date)? true : false;
+	if($tech == 1)
+	    $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$date)? true : false;
+	else
+	    $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$PAR&&$MM&&$date)? true : false;
         break;
     default:
         $verifChamps = false;

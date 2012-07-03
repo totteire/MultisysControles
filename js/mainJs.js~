@@ -445,7 +445,7 @@ function _init(tabNum){
 		blinking(false);
                 for (var i in data)
                     execModif(data[i]);
-		displayMess(data.length + "<h3> modifications effectuées sur le serveur distant!<h3>","ui-state-highlight",2000);
+		displayMess("<h3>" + data.length + " modifications effectuées sur le serveur distant!</h3>","ui-state-highlight",2000);
             }
         });
     }

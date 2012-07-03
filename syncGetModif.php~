@@ -9,5 +9,5 @@
     array_push($modif, $resHisto);
     }
     echo json_encode($modif);
-    mysql_query("DELETE * FROM HISTORIQUE;") or die(mysql_error());
+    mysql_query("DELETE FROM HISTORIQUE;") or die(mysql_error());
 ?>
