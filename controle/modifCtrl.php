@@ -16,7 +16,7 @@ $numC = trim($_POST['numC']);
 $date = date("Y-m-d", strtotime($_POST['date']));
 $temp = trim($_POST['temp']);
 $tech = $_POST['tech'];
-if($tech == "%")$tech = 1;
+if($tech == "%" || $tech == "")$tech = 1;
 $jugement = $_POST['jugement'];
 $observation = trim($_POST['observation']);
 $PAR = $_POST['PAR'];

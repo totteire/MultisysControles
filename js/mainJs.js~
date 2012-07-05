@@ -4,6 +4,7 @@ function _init(tabNum){
     $(".tabs").tabs({'selected':tabNum});
     updateTAb();
     refreshTabClick();
+    $(".tableau").tablesorter();
     reloadContent();
     CTRL_UpdateSubmitClick(tab.ajout);
     function reloadContent(){

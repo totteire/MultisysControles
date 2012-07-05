@@ -183,16 +183,18 @@
 	    <tr class='static'>
 	        <td><label class="titre">Technicien:</label></td>
 	        <td colspan=7><select id="technicien" class="combobox" name='tech'>
+		<option></option>
             <?php
                 $reqTech="SELECT ID, TECH FROM TECHNICIEN;";
                 $resultTech = mysql_query($reqTech)or die(mysql_error());
                 while($res = mysql_fetch_array($resultTech)){
-		if($ctrl['TECHNICIEN'] != '1'){
-                    if($res['ID'] == $ctrl['TECHNICIEN'])
-                        echo "<option selected='selected' value='".$res['ID']."'>".$res['TECH']."</option>";
-                    else
-                        echo "<option value='".$res['ID']."'>".$res['TECH']."</option>";
-                }}
+			if($res['ID'] != '1'){
+			    if($res['ID'] == $ctrl['TECHNICIEN'])
+				echo "<option selected='selected' value='".$res['ID']."'>".$res['TECH']."</option>";
+			    else
+				echo "<option value='".$res['ID']."'>".$res['TECH']."</option>";
+			}
+		}	
             ?>
                 </select>
             </td>
