@@ -77,9 +77,9 @@
             <td><label class="titre">Type: </label></td>
             <td colspan=7>
                 <div class="radio" style="display:inline;">
-		            <input type="radio" id="brEssai" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'essa')echo "checked=true" ?> value="essa"/><label for="brEssai">Essai</label>
-		            <input type="radio" id="brVerif" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'veri')echo "checked=true" ?> value="veri"/><label for="brVerif">Vérification</label>
-		            <input type="radio" id="brEtal" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'etal')echo "checked=true" ?> value="etal"/><label for="brEtal">Etalonnage</label>
+		            <input type="radio" id="brEssai" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'essa')echo "checked=true" ?> value="ACE"/><label for="brEssai">A.C.E</label>
+		            <input type="radio" id="brVerif" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'veri')echo "checked=true" ?> value="CV"/><label for="brVerif">C.V</label>
+		            <input type="radio" id="brEtal" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'etal')echo "checked=true" ?> value="CE"/><label for="brEtal">C.E</label>
                 </div>
                 <h2 style="color:#EB8F00;display:inline;margin-left:150px;">Modification Contrôle</h2>
             </td>

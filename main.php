@@ -11,13 +11,13 @@
         <ul>
 	        <li><a href="#tabCli">CLIENT</a></li>
 	        <li><a href="#tabApp">APPAREIL</a></li>
-        	<li><a href="#tabCtr">CONTROLE</a></li>
         	<li><a href="#tabMes">MOYEN MESURE</a></li>
         	<li><a href="#tabPar">PARAMETRE</a></li>
         	<li><a href="#tabOpt">OPTIONS</a></li>
         	<li class="info search" style="margin-left:15px;top:6px;">Rechercher:</li>
         	<li class="info search"><input type="text" id="search" class="ui-corner-all" style="margin:0 0 0 5px;"/></li>
-        	<li style="float:right;"><a href="#tabCtrl">+CONTROLE</a></li>
+        	<li style="float:right;"><a href="#tabCtrl">AJOUT/MODIF DOCUMENT</a></li>
+        	<li style="margin-right:30px;float:right;"><a href="#tabCtr">LISTE</a></li>
     	</ul>
         <div id="tabCli" page='client.php' dialogId='#dialogCli' ajout='client/ajoutCli.php' suppr='client/supprCli.php' modif='client/modifCli.php' needReload='false'>
 	        <?php 

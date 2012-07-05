@@ -1,5 +1,5 @@
 function _init(tabNum){
-    if(tabNum === undefined) tabNum = 6;
+    if(tabNum === undefined) tabNum = 5;
     var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':'','needReload':''};
     $(".tabs").tabs({'selected':tabNum});
     updateTAb();
@@ -18,7 +18,7 @@ function _init(tabNum){
 //        });
         if(tab.page == "appareil.php") {$(".subtabs").tabs();refreshTabClick();}
         $(".datepicker").datepicker();
-        $(".tableau").tablesorter();
+        $(".ui-tabs-panel:visible .tableau").tablesorter();
         $("button, a.button").button();
         $(".combobox").combobox();
         $(".radio").buttonset();
@@ -61,7 +61,7 @@ function _init(tabNum){
         
         $('img.modifCtrl').click(function(){
             updateSubmitClick(tab.modif,'#CTRL .submit');
-            $(".tabs").tabs({'selected':6});
+            $(".tabs").tabs({'selected':5});
             updateTAb();
             $('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
             var id = getChildText($(this).parent().parent(),'id');

@@ -8,9 +8,9 @@
             <td><label class="titre">Type: </label></td>
             <td colspan=7>
                 <div class="radio" style="display:inline;">
-		            <input type="radio" id="brEssai" name="radioType" value="essa"/><label for="brEssai">Essai</label>
-		            <input type="radio" id="brVerif" name="radioType" value="veri"/><label for="brVerif">Vérification</label>
-		            <input type="radio" id="brEtal" name="radioType" value="etal"/><label for="brEtal">Etalonnage</label>
+		            <input type="radio" id="brEssai" name="radioType" value="ACE"/><label for="brEssai">A.C.E</label>
+		            <input type="radio" id="brVerif" name="radioType" value="CV"/><label for="brVerif">C.V</label>
+		            <input type="radio" id="brEtal" name="radioType" value="CE"/><label for="brEtal">C.E</label>
                 </div>
                 <h2 style="color:#EB8F00;display:inline;margin-left:150px;">Ajout Contrôle</h2>
             </td>
@@ -136,7 +136,7 @@
             <td><label class="titre">Observation:</label></td>
             <td colspan=7><textarea type='textarea' class="ui-corner-all" name='observation' id='observation'></textarea></td>
         </tr>
-        <tr class='static'><td></td><td><button class="submit">Enregistrer</button><button id="CtrlClear">Vider/Rafraîchir</button></td></tr>
+        <tr class='static'><td></td><td><button class="submit">Enregistrer</button><button id="CtrlClear">Nouveau document</button></td></tr>
 	</table>
 	</form>
     <div id="dialogParCtr" class="dialog">

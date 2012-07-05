@@ -1,5 +1,5 @@
 function _init(tabNum){
-    if(tabNum === undefined) tabNum = 6;
+    if(tabNum === undefined) tabNum = 5;
     var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':'','needReload':''};
     $(".tabs").tabs({'selected':tabNum});
     updateTAb();
@@ -61,7 +61,7 @@ function _init(tabNum){
         
         $('img.modifCtrl').click(function(){
             updateSubmitClick(tab.modif,'#CTRL .submit');
-            $(".tabs").tabs({'selected':6});
+            $(".tabs").tabs({'selected':5});
             updateTAb();
             $('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
             var id = getChildText($(this).parent().parent(),'id');
@@ -83,8 +83,8 @@ function _init(tabNum){
                 $('#CTRL select#Par option').remove();
                 $('#dialogParCtr input:checkbox:checked').each(function(){
                     ParNbChecked = ParNbChecked + 1;
-			$('#CTRL select#Par').append("<option>"+ $(this).parent().next().text() +"</option>");
-			$(this).parent().next().css('color','#EB8F00');
+		    $('#CTRL select#Par').append("<option>"+ $(this).parent().next().text() +"</option>");
+		    $(this).parent().next().css('color','#EB8F00');
                 });
                 $('#CTRL select#Par').next().val(ParNbChecked+" selection"+((ParNbChecked>1)? "s":""));
             }
