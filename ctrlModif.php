@@ -77,9 +77,9 @@
             <td><label class="titre">Type: </label></td>
             <td colspan=7>
                 <div class="radio" style="display:inline;">
-		            <input type="radio" id="brEssai" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'essa')echo "checked=true" ?> value="ACE"/><label for="brEssai">A.C.E</label>
-		            <input type="radio" id="brVerif" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'veri')echo "checked=true" ?> value="CV"/><label for="brVerif">C.V</label>
-		            <input type="radio" id="brEtal" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'etal')echo "checked=true" ?> value="CE"/><label for="brEtal">C.E</label>
+		            <input type="radio" id="brEssai" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'ACE')echo "checked=true" ?> value="ACE"/><label for="brEssai">A.C.E</label>
+		            <input type="radio" id="brVerif" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'CV')echo "checked=true" ?> value="CV"/><label for="brVerif">C.V</label>
+		            <input type="radio" id="brEtal" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'CE')echo "checked=true" ?> value="CE"/><label for="brEtal">C.E</label>
                 </div>
                 <h2 style="color:#EB8F00;display:inline;margin-left:150px;">Modification Contrôle</h2>
             </td>
@@ -166,11 +166,11 @@
             <td><label class="titre">Num Chassis:</label></td>
             <td><input type='text' value='<?php echo $ctrl['NUM_CHASSIS'];?>' class="ui-corner-all" name='numC' id='numC'/></td>
         </tr>
-        <tr class='veri etal'>
+        <tr class='CV CE'>
             <td><label class="titre">Paramètres:</label></td>
             <td colspan=7><select id="Par" class="combobox" name="Par"><option><?php echo $nbParChecked." selections" ?></option></select><a id="ajoutParCtr" href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
         </tr>
-        <tr class='veri etal'>
+        <tr class='CV CE'>
             <td><label class="titre">Moyens de mesure:</label></td>
             <td colspan=7><select id="MM" class="combobox" name="MM"><option><?php echo $nbMMChecked." selections" ?></option></select><a id="ajoutMMCtr" href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
         </tr>
@@ -203,7 +203,7 @@
 	        <td><label class="titre">Date:</label></td>
 	        <td><input type="text" id="date" class='datepicker ui-corner-all' name="date" size="20" value=<?php echo date('d-m-Y',strtotime($ctrl['DATE'])) ?>></td>
 	    </tr>
-	    <tr class='essa veri'>
+	    <tr class='CE CV'>
             <td><label class="titre">Jugement:</label></td>
             <td colspan=7><select class="combobox" id='jugement' name='jugement'>
                 <option <?php if($ctrl['JUGEMENT']==1)echo "checked='true' " ?>value="1">Appareil conforme</option>

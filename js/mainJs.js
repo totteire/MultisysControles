@@ -67,7 +67,7 @@ function _init(tabNum){
             var id = getChildText($(this).parent().parent(),'id');
             $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){reloadContent();refreshCtrlTable();CTRL_UpdateSubmitClick(tab.modif);console.log('tab.modif: '+tab.modif);});
         });
-        
+        console.log(tab.page);
         // REGROUPE INSTRUCTIONS CTRL POUR OPTIMISATION
         if(tab.page == "ctrl.php"){
         
@@ -83,8 +83,8 @@ function _init(tabNum){
                 $('#CTRL select#Par option').remove();
                 $('#dialogParCtr input:checkbox:checked').each(function(){
                     ParNbChecked = ParNbChecked + 1;
-		    $('#CTRL select#Par').append("<option>"+ $(this).parent().next().text() +"</option>");
-		    $(this).parent().next().css('color','#EB8F00');
+			$('#CTRL select#Par').append("<option>"+ $(this).parent().next().text() +"</option>");
+			$(this).parent().next().css('color','#EB8F00');
                 });
                 $('#CTRL select#Par').next().val(ParNbChecked+" selection"+((ParNbChecked>1)? "s":""));
             }
@@ -142,19 +142,19 @@ function _init(tabNum){
                 $('#CTRL select#MM').next().val(MMnbChecked+" selection"+((MMnbChecked>1)? "s":""));
                 $('#dialogMMCtr').dialog('close');
             });
-            
             // Affichage ajout Ctrl
 	    $('#CTRL table tr:not(.menu)').hide();
 	    $('#CTRL .menu.type .radio input:radio').change(function(){
 		var affichClass=$(this).val();
-	    $('#CTRL tr:not(.'+affichClass+')').hide();
+		console.log(affichClass);
+		$('#CTRL tr:not(.'+affichClass+')').hide();
 		$('#CTRL tr.'+affichClass).show();
 		$('#CTRL tr.static').show();
 	    });
 	    $('#CTRL .menu.lieu .radio input:radio').change(function(){
 		var affichClass=$(this).val();
 		// Si le bt radio verification est coché:
-		if ($("input:radio[value='veri']").next().attr('aria-pressed')){
+		if ($("input:radio[value='CV']").next().attr('aria-pressed')){
 		    if (affichClass == 'S')
 			$('#CTRL tr.site').show();
 		    else
@@ -360,11 +360,13 @@ function _init(tabNum){
     
     function refreshCtrlTable(){
         if(AClass = $('#CTRL .menu.type .radio input:radio:checked').val()){
+	    console.log("refreshCtrlTable");
+	    console.log(AClass);
             $('#CTRL tr:not(.'+AClass+')').hide();
             $('#CTRL tr.static').show();
             $('#CTRL tr.'+AClass).show();
             // Afficher/Cacher Température
-            if(AClass == 'veri'){
+            if(AClass == 'CV'){
                 if($('.menu.lieu .radio input:radio:checked').val() == 'S')
                     $('#CTRL tr.site').show();
                 else

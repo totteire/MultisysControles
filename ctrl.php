@@ -89,11 +89,11 @@
             <td><label class="titre">Num Chassis:</label></td>
             <td><input type='text' class="ui-corner-all" name='numC' id='numC'/></td>
         </tr>
-        <tr class='veri etal'>
+        <tr class='CV CE'>
             <td><label class="titre">Paramètres:</label></td>
             <td colspan=7><select id="Par" class="combobox" name="Par"></select><a id="ajoutParCtr" href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
         </tr>
-        <tr class='veri etal'>
+        <tr class='CV CE'>
             <td><label class="titre">Moyens de mesure:</label></td>
             <td colspan=7><select id="MM" class="combobox" name="MM"></select><a id="ajoutMMCtr" href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
         </tr>
@@ -123,7 +123,7 @@
 	        <td><label class="titre">Date:</label></td>
 	        <td><input type="text" id="date" class='datepicker ui-corner-all' name="date" size="20" value=<?php echo date('d-m-Y') ?>></td>
 	    </tr>
-	    <tr class='essa veri'>
+	    <tr class='ACE CV'>
             <td><label class="titre">Jugement:</label></td>
             <td colspan=7><select class="combobox" id='jugement' name='jugement'>
                 <option></option>

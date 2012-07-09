@@ -52,7 +52,7 @@
         <div id="tabCtrl" page='ctrl.php' dialogId='#CTRL' ajout='controle/ajoutCtrl.php' suppr='' modif='controle/modifCtrl.php' needReload='false'>
 	        <?php
 	            include("ctrl.php");
-            ?>
+		?>
         </div>
     </div>
 </div>
