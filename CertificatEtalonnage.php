@@ -87,7 +87,7 @@
             </tr>
         </table>
         <h2>¤ APPAREIL DE MESURE VERIFIE ¤</h2>
-        <div class='trad' style='margin-left:20px;'>Equipment identification</div>
+        <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Equipment identification</div>
 	<table class='spaced' cellspacing='0' style='width:100%;'>
 	    <tr>
 		<td rowspan='2' style=''>Désignation:<br><span class='trad'>Description</span></td>
@@ -109,7 +109,7 @@
 	    </tr>
 	</table>
         <h2>¤ MOYEN D'ÉTALONNAGE - RACCORDEMENT ¤</h2>
-        <div class='trad' style='margin-left:20px;'>Calibration equipment - Connection</div>
+        <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Calibration equipment - Connection</div>
         <table class='normale MM' cellspacing='0' style='width: 100%;'>
             <?php 
                 while($resMM = mysql_fetch_array($resultMM)){
@@ -118,7 +118,7 @@
             ?>
         </table>
         <h2>¤ TECHNICIEN RESPONSABLE DE LA VÉRIFICATION ¤</h2>
-        <div class='trad' style='margin-left:20px;'>Operator identification</div>
+        <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Operator identification</div>
         <table class='normale spaced' cellspacing='0' style=''>
             <tr>
                 <td>Nom :<br><span class='trad'>Name</span></td>

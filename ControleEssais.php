@@ -83,7 +83,7 @@
         </table>
         
         <h2>¤ APPAREIL DE MESURE VERIFIE ¤</h2>
-        <div class='trad' style='margin-left:20px;'>Equipment identification</div>
+        <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Equipment identification</div>
 
 	<table class='spaced' cellspacing='0' style='width:100%;'>
 	    <tr>
@@ -107,7 +107,7 @@
 	</table>
 
         <h2>¤ TECHNICIEN RESPONSABLE DE LA VÉRIFICATION ¤</h2>
-        <div class='trad' style='margin-left:20px;'>Operator identification</div>
+        <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Operator identification</div>
         <table class='normale spaced' cellspacing='0' style=''>
             <tr>
                 <td>Nom :<br><span class='trad'>Name</span></td>
@@ -124,13 +124,13 @@
             </tr>
         </table>
         <h2>¤ JUGEMENT ¤</h2>
-        <table class='normale' cellspacing='0' style=''>
+        <table class='normale' cellspacing='0' style='margin-bottom:15px;'>
             <tr><td>(<?php if($res['JUGEMENT'] == 1) echo "X"; else echo "&nbsp;&nbsp;";?>) Appareil conforme aux spécifications énoncées par le constructeur pour les gammes vérifiées.<br><span style='margin-left:20px' class='trad'>Device in compliance with the manufacturer's specifications for the verified ranges.</span></td></tr>
             <tr><td>(<?php if($res['JUGEMENT'] == 2) echo "X"; else echo "&nbsp;&nbsp;";?>) Appareil conforme aux spécifications énoncées par le constructeur après réparation.<br><span style='margin-left:20px' class='trad'>Device in compliance with the manufacturer's specifications for the verified ranges after repairing.</span></td></tr>
             <tr><td>(<?php if($res['JUGEMENT'] == 3) echo "X"; else echo "&nbsp;&nbsp;";?>) Appareil non conforme.<br><span style='margin-left:20px' class='trad'>Device not in compliance.</span></td></tr>
         </table>
         <h2>¤ OBSERVATION ¤</h2>
-        <div class='trad' style='margin-left:20px;'>Observations</div>
+        <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Observations</div>
         <p class='normale'><?php if($res['OBSERVATION'] == '')echo "NÉANT"; else echo $res['OBSERVATION'];?></p>
         <table class='small footer' cellspacing='0' style=''>
             <tr>

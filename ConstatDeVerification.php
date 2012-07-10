@@ -42,7 +42,7 @@
     .fauxFooter{
         padding: 5px;
         width: 430px;
-        margin-left: 100px;
+        margin-left: 85px;
         position: absolute;
         bottom: 40px;
         margin: auto;
@@ -90,7 +90,7 @@
             </tr>
         </table>
         <h2>¤ APPAREIL DE MESURE VERIFIÉ ¤</h2>
-        <div class='trad' style='margin-left:20px;'>Equipment identification</div>
+        <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Equipment identification</div>
         <table class='spaced' cellspacing='0' style='width:100%;'>
             <tr>
                 <td rowspan='2' style=''>Désignation:<br><span class='trad'>Description</span></td>
@@ -112,7 +112,7 @@
             </tr>
         </table>
         <h2>¤ MOYENS DE VÉRIFICATION UTILISÉS ¤</h2>
-        <div class='trad' style='margin-left:20px;'>Equipment used for assessment</div>
+        <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Equipment used for assessment</div>
         <table class='normale MM' cellspacing='0' style='width: 100%;'>
             <?php 
                 while($resMM = mysql_fetch_array($resultMM)){
@@ -121,7 +121,7 @@
             ?>
         </table>
         <h2>¤ TECHNICIEN RESPONSABLE DE LA VÉRIFICATION ¤</h2>
-        <div class='trad' style='margin-left:20px;'>Operator identification</div>
+        <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Operator identification</div>
         <table class='normale spaced' cellspacing='0' style=''>
             <tr>
                 <td>Nom :<br><span class='trad'>Name</span></td>
@@ -164,15 +164,15 @@
         <div class='' style='width:100%;margin:auto;text-align:center;font-size:15px;font-style:italic;'>Calibration Certificate</div>
         <div class='numero' style=''><h1>N°<?php echo " ".$res['NUM'];?></h1></div>
         <h2>¤ MÉTHODE DE MESURES EMPLOYÉE ¤</h2>
-        <div class='trad' style='margin-left:20px;'>Measuring method used</div>
+        <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Measuring method used</div>
         <div class='normale' style=''>Mesures effectuées par comparaison ou par injection avec les étalons de référence de l'entreprise raccordés COFRAC.</div>
         <div class='trad'>Measuring made by comparison or injection with the company's reference standards, linked COFRAC.</div>
         <h2>¤ CONDITIONS DE MESURES ¤</h2>
-        <div class='trad' style='margin-left:20px;'>Measuring conditions</div>
+        <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Measuring conditions</div>
         <div class='normale' style=''>Température: <b>23°+/-2°C</b></div>
         <div class='trad'>Temperature</div>
         <h2>¤ LISTE DES PARAMÈTRES VÉRIFIÉS ¤</h2>
-        <div class='trad' style='margin-left:20px;'>Audited parameters list</div>
+        <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Audited parameters list</div>
         <table>
             <tr><td style='padding-right:100px;'>
             <table class='normale spaced' cellspacing='0'>
@@ -191,14 +191,14 @@
 
 
         <h2>¤ JUGEMENT ¤</h2>
-        <div class='trad' style='margin-left:20px;'>Operation assessment</div>
+        <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Operation assessment</div>
         <table class='normale' cellspacing='0' style=''>
             <tr><td>(<?php if($res['JUGEMENT'] == 1) echo "X"; else echo "&nbsp;&nbsp;";?>) Appareil conforme aux spécifications énoncées par le constructeur pour les gammes vérifiées.<br><span style='margin-left:20px' class='trad'>Device in compliance with the manufacturer's specifications for the verified ranges.</span></td></tr>
             <tr><td>(<?php if($res['JUGEMENT'] == 2) echo "X"; else echo "&nbsp;&nbsp;";?>) Appareil conforme aux spécifications énoncées par le constructeur après réparation.<br><span style='margin-left:20px' class='trad'>Device in compliance with the manufacturer's specifications for the verified ranges after repairing.</span></td></tr>
             <tr><td>(<?php if($res['JUGEMENT'] == 3) echo "X"; else echo "&nbsp;&nbsp;";?>) Appareil non conforme.<br><span style='margin-left:20px' class='trad'>Device not in compliance.</span></td></tr>
         </table>
         <h2>¤ OBSERVATIONS ¤</h2>
-        <div class='trad' style='margin-left:20px;'>Observations</div>
+        <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Observations</div>
         <p class='normale'><?php if($res['OBSERVATION'] == '')echo "NÉANT"; else echo $res['OBSERVATION'];?></p>
         <table class='small footer' cellspacing='0' style=''>
             <tr>
