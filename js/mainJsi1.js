@@ -1,5 +1,5 @@
 function _init(tabNum){
-    if(tabNum === undefined) tabNum = 5;
+    if(tabNum === undefined) tabNum = 6;
     var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':'','needReload':''};
     $(".tabs").tabs({'selected':tabNum});
     updateTAb();
@@ -61,13 +61,13 @@ function _init(tabNum){
         
         $('img.modifCtrl').click(function(){
             updateSubmitClick(tab.modif,'#CTRL .submit');
-            $(".tabs").tabs({'selected':5});
+            $(".tabs").tabs({'selected':6});
             updateTAb();
             $('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
             var id = getChildText($(this).parent().parent(),'id');
             $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){reloadContent();refreshCtrlTable();CTRL_UpdateSubmitClick(tab.modif);console.log('tab.modif: '+tab.modif);});
         });
-        console.log(tab.page);
+        
         // REGROUPE INSTRUCTIONS CTRL POUR OPTIMISATION
         if(tab.page == "ctrl.php"){
         
@@ -359,8 +359,8 @@ function _init(tabNum){
 
     
     function refreshCtrlTable(){
-	console.log("refreshCtrlTable");
         if(AClass = $('#CTRL .menu.type .radio input:radio:checked').val()){
+	    console.log("refreshCtrlTable");
 	    console.log(AClass);
             $('#CTRL tr:not(.'+AClass+')').hide();
             $('#CTRL tr.static').show();
@@ -523,8 +523,6 @@ function _init(tabNum){
 //	    }
 //	}
     $.widget( "ui.combobox", {
-	    _create: function() {
-		    var self = this,
 			    select = this.element.hide(),
 			    selected = select.children( ":selected" ),
 			    value = selected.val() ? selected.text() : "";

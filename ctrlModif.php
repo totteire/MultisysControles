@@ -168,11 +168,11 @@
         </tr>
         <tr class='CV CE'>
             <td><label class="titre">Paramètres:</label></td>
-            <td colspan=7><select id="Par" class="combobox" name="Par"><option><?php echo $nbParChecked." selections" ?></option></select><a id="ajoutParCtr" href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
+            <td colspan=7><select id="Par" class="combobox" name="Par"><option><?php echo $nbParChecked." selections" ?></option></select><a id="ajoutParCtr" class='editParMM' href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
         </tr>
         <tr class='CV CE'>
             <td><label class="titre">Moyens de mesure:</label></td>
-            <td colspan=7><select id="MM" class="combobox" name="MM"><option><?php echo $nbMMChecked." selections" ?></option></select><a id="ajoutMMCtr" href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
+            <td colspan=7><select id="MM" class="combobox" name="MM"><option><?php echo $nbMMChecked." selections" ?></option></select><a id="ajoutMMCtr" class='editParMM' href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
         </tr>
         <tr class='site'>
 	        <td><label class="titre">Température:</label></td>
@@ -215,7 +215,7 @@
             <td><label class="titre">Observation:</label></td>
             <td colspan=7><textarea type='textarea' class="ui-corner-all" name='observation' id='observation'><?php echo $ctrl['OBSERVATION'] ?></textarea></td>
         </tr>
-        <tr class='static'><td colspan=7><button class="submit">Enregistrer</button><button id="CtrlClear">Vider/Rafraîchir</button><a href="generatePdf.php?id=<?php echo $id?>" onclick='' class="button pdfEdit">Editer PDF</a></td></tr>
+        <tr class='static bouttons'><td colspan=7><button class="submit">Enregistrer</button><a href="generatePdf.php?id=<?php echo $id?>" onclick='' class="button pdfEdit">Editer PDF</a><button id="CtrlClear">Nouveau document</button></td></tr>
 	</table>
 	</form>
 </div>

@@ -9,15 +9,15 @@
     $res = mysql_fetch_array($result);
     
     switch($res['TYPE_CTRL']){
-        case 'veri':
+        case 'CV':
             $page = './ConstatDeVerification.php';
             $titre = 'CONSTAT DE VÉRIFICATION';
             break;
-        case 'essa':
+        case 'ACE':
             $page = './ControleEssais.php';
             $titre = "ATTESTATION DE CONTRÔLE ET D'ESSAIS";
             break;
-        case 'etal':
+        case 'CE':
             $page = './CertificatEtalonnage.php';
             $titre = "CERTIFICAT D'ÉTALONNAGE";
             break;

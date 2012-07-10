@@ -26,19 +26,19 @@ if(strpbrk($numS,'*')) $numS = "****";
 if(strpbrk($numC,'*')) $numC = "****";
 
 switch($type){
-    case "essa":
+    case "ACE":
 	if($tech == 1)
 	    $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$date)? true : false; 
 	else
 	    $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$date&&$jugement)? true : false;
         break;
-    case "veri":
+    case "CV":
 	if($tech == 1)
 	    $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$date)? true : false;
 	else
 	    $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$PAR&&$MM&&$date&&$jugement)? true : false;
         break;
-    case "etal":
+    case "CE":
 	if($tech == 1)
 	    $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$date)? true : false;
 	else

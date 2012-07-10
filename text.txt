@@ -1,6 +1,4 @@
 À FAIRE:
-    . Traduction
     . Rentrer **** automatiquement pour * ou ** ou *** + forcer les maj
-    . Possibilité de préremplir les controles (sans tech) à valider par les tech!
-    . Possibilité de dupliquer les controles
+    . Possibilité de dupliquer les controles SAVE AS
     . Date se mette à jour lors de la selection du tech
