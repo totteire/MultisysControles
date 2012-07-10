@@ -1,7 +1,7 @@
 
 <button class="btAjout"><h1> +&nbsp; &nbsp; Paramètre</h1></button>
 <table id="tableau" class="tableau tablesorter">
-	<thead><tr><th class='info'></th><th class="topLeft">Libellé</th><th class="topRight">Moyen de mesure</th></tr></thead>
+	<thead><tr><th class='info'></th><th class="topLeft">Libellé</th><th>Traduction</th><th class="topRight">Moyen de mesure</th></tr></thead>
     <tbody>
 	<?php
 		include('connect.php');
@@ -15,7 +15,8 @@
 		    $result2=mysql_query($req2)or die(mysql_error());
 			echo "<tr>
     			<td id='id' class='info'>".$res['ID']."</td>
-				<td id='libelle'>".$res['LIBELLE']."</a></td>
+				<td id='libelle'>".$res['LIBELLE']."</td>
+				<td id='label'>".$res['LABEL']."</td>
 				<td id='MoyenMes'><select>";
 		    echo "<option>".mysql_num_rows($result2)." selections</option>";
 		    while($MM=mysql_fetch_array($result2)){
@@ -32,8 +33,8 @@
 <div id="dialogParMM" class="dialog">
     <table class="inline">
     <?php 
-        $req3="SELECT ID, LIBELLE FROM MOYEN_MESURE ORDER BY LIBELLE;";
-        $req4="SELECT DISTINCT LIBELLE FROM MOYEN_MESURE;";
+        $req3="SELECT * FROM MOYEN_MESURE ORDER BY LIBELLE;";
+        $req4="SELECT LIBELLE FROM MOYEN_MESURE;";
         
         $result3=mysql_query($req3)or die(mysql_error());
         $middleRow = ceil(mysql_num_rows(mysql_query($req4)) / 2);
@@ -69,6 +70,9 @@
  			
 			<label>Libellé:</label>
 			<input type="text" name="libelle" id="libelle" />
+
+			<label>Traduction:</label>
+			<input type="text" name="label" id="label" />
 			
 			<button class="submit">Enregistrer</button>
 		</form>
