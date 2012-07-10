@@ -23,7 +23,7 @@
 	?>
 	</tbody>
 </table>
-<button id='sync' style='position:fixed;top:30%;right:2%;'><h3>Synchronisation</h3></button>
+<button id='sync' style='position:fixed;top:35%;right:2%;'><h3>Synchronisation</h3></button>
 
 <div id="dialogOpt" class="dialog">
 	<div id="stylized" class="myform">
