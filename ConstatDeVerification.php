@@ -169,7 +169,7 @@
         <div class='trad'>Measuring made by comparison or injection with the company's reference standards, linked COFRAC.</div>
         <h2>¤ CONDITIONS DE MESURES ¤</h2>
         <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Measuring conditions</div>
-        <div class='normale' style=''>Température: <b>23°+/-2°C</b></div>
+	<div class='normale' style=''>Température: <b><?php if($res['TEMPERATURE'] == "") echo "23";else echo $res['TEMPERATURE'];?>°+/-2°C</b></div>
         <div class='trad'>Temperature</div>
         <h2>¤ LISTE DES PARAMÈTRES VÉRIFIÉS ¤</h2>
         <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Audited parameters list</div>
