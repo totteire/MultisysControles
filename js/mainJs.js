@@ -1,3 +1,4 @@
+prerempli = false;
 function _init(tabNum){
     if(tabNum === undefined) tabNum = 5;
     var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':'','needReload':''};
@@ -72,11 +73,11 @@ function _init(tabNum){
         if(tab.page == "ctrl.php"){
 	    
 	    if($('#CTRL').hasClass('modifCtrl')){
-		var prerempli = ($('#technicien option:selected').text() == "")? true:false;
-		if(prerempli){
-		    console.log("test");
-		    $('select#technicien').change(function(){alert("lkj")});
-		}
+		prerempli = ($('#technicien option:selected').text() == "")? true:false;
+//		if(prerempli){
+//		    console.log("test");
+//		    $('select#technicien').change(function(){alert("lkj")});
+//		}
 	    }
 
         
@@ -567,18 +568,22 @@ function _init(tabNum){
 					    });
 					    // Make sure it's white in case it wasn't
 					    $(this).css('background','white');
-//						comboboxSelect(ui, this);
-					    
+					    if(select.attr('id') == "technicien"){
+						console.log("prerempli = "+prerempli);
+						var today = new Date();
+						today = today.getDate() + today.getFullYear().toString().slice(2) + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+						$("#CTRL #date").val(today); 
+					    }
+
 				    },
 				    change: function( event, ui ) {
+					    console.log(select.attr('id'));
 					    if ( !ui.item ) {
 						    var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( $(this).val() ) + "$", "i" ),
-							    valid = false;
+							valid = false;
 						    select.children( "option" ).each(function() {
 							    if ( $( this ).text().match( matcher ) ) {
 								    this.selected = valid = true;
-								    // Make it white in case it wasn't
-//									$(this).css('background','white');
 								    console.log("lkj");
 								    return false;
 							    }
