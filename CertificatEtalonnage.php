@@ -42,7 +42,7 @@
     .fauxFooter{
         padding: 5px;
         width: 430px;
-        margin-left: 100px;
+        margin-left: 85px;
         position: absolute;
         bottom: 40px;
         margin: auto;

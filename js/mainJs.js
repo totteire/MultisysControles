@@ -67,9 +67,18 @@ function _init(tabNum){
             var id = getChildText($(this).parent().parent(),'id');
             $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){reloadContent();refreshCtrlTable();CTRL_UpdateSubmitClick(tab.modif);console.log('tab.modif: '+tab.modif);});
         });
-        console.log(tab.page);
+
         // REGROUPE INSTRUCTIONS CTRL POUR OPTIMISATION
         if(tab.page == "ctrl.php"){
+	    
+	    if($('#CTRL').hasClass('modifCtrl')){
+		var prerempli = ($('#technicien option:selected').text() == "")? true:false;
+		if(prerempli){
+		    console.log("test");
+		    $('select#technicien').change(function(){alert("lkj")});
+		}
+	    }
+
         
             $(".pdfEdit").click(function(e){
                 e.preventDefault();
@@ -171,7 +180,7 @@ function _init(tabNum){
 			$('#CTRL input#num').val(num);
 			// Tester si on peut préselectionner le client
 			$.ajax({
-			    type: 'GET',
+				type: 'GET',
 				url: "testCliSite.php",
 				data: {date:$('#CTRL #date').val()},
 				dataType: 'json',

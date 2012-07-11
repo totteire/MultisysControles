@@ -22,8 +22,8 @@ $observation = trim($_POST['observation']);
 $PAR = $_POST['PAR'];
 $MM = $_POST['MM'];
 
-if(strpbrk($numS,'*')) $numS = "****";
-if(strpbrk($numC,'*')) $numC = "****";
+if(strpbrk($numS,'*') || $numS == "") $numS = "****";
+if(strpbrk($numC,'*') || $numC == "") $numC = "****";
 
 switch($type){
     case "ACE":
@@ -42,7 +42,7 @@ switch($type){
 	if($tech == 1)
 	    $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$date)? true : false;
 	else
-	    $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$PAR&&$MM&&$date)? true : false;
+	    $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$MM&&$date)? true : false;
         break;
     default:
         $verifChamps = false;
