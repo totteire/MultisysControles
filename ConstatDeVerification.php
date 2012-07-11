@@ -199,7 +199,7 @@
         </table>
         <h2>¤ OBSERVATIONS ¤</h2>
         <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Observations</div>
-        <p class='normale'><?php if($res['OBSERVATION'] == '')echo "NÉANT"; else echo $res['OBSERVATION'];?></p>
+        <p class='normale'><?php if($res['OBSERVATION'] == '')echo "NÉANT"; else echo nl2br($res['OBSERVATION']);?></p>
         <table class='small footer' cellspacing='0' style=''>
             <tr>
                 <td style='width:33%;text-align:left;'>29/06/2011</td>

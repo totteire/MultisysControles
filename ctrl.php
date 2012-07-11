@@ -161,26 +161,27 @@
         <button class="submit">Enregistrer</button>
     </div>
     <div id="dialogMMCtr" class="dialog">
+	<button class="submit">Enregistrer</button>
         <table class="inline">
-        <?php
-            $req4="SELECT ID, LIBELLE FROM MOYEN_MESURE;";
-            $result4=mysql_query($req4)or die(mysql_error());
-            $middleRow = ceil(mysql_num_rows(mysql_query($req4)) / 2);
-            $nb=0;
-            $prevLib='';
-            while($MM=mysql_fetch_array($result4)){
-                if($MM['LIBELLE'] != $prevLib){
-                    $nb++;
-                    echo "<tr>
-                            <td><input type='checkbox' name='mmes".$MM['ID']."' value='".$MM['ID']."'></td>
-                            <td>".$MM['LIBELLE']."</td>
-                        </tr>";
-                }
-                $prevLib = $MM['LIBELLE'];
-                if($nb == $middleRow)echo "</table><table class='inline'>";
-            };
-        ?>	
-		</table>
-		<button class="submit">Enregistrer</button>
-	</div>
+	    <?php
+		$req4="SELECT ID, LIBELLE FROM MOYEN_MESURE;";
+		$result4=mysql_query($req4)or die(mysql_error());
+		$middleRow = ceil(mysql_num_rows(mysql_query($req4)) / 2);
+		$nb=0;
+		$prevLib='';
+		while($MM=mysql_fetch_array($result4)){
+		    if($MM['LIBELLE'] != $prevLib){
+			$nb++;
+			echo "<tr>
+				<td><input type='checkbox' name='mmes".$MM['ID']."' value='".$MM['ID']."'></td>
+				<td>".$MM['LIBELLE']."</td>
+			    </tr>";
+		    }
+		    $prevLib = $MM['LIBELLE'];
+		    if($nb == $middleRow)echo "</table><table class='inline'>";
+		};
+	    ?>	
+	</table>
+	<button class="submit">Enregistrer</button>
+    </div>
 </div>
