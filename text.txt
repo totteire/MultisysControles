@@ -1,4 +1,5 @@
 À FAIRE:
-    . Rentrer **** automatiquement pour * ou ** ou *** + forcer les maj
+    . Forcer les maj
     . Possibilité de dupliquer les controles SAVE AS
-    . Date se mette à jour lors de la selection du tech
+    . Recharger le num ac la date
+    . Voir pkoi client non selectionné automatiquement en ACE sur site

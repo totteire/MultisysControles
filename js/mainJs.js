@@ -7,7 +7,6 @@ function _init(tabNum){
     refreshTabClick();
     $(".tableau").tablesorter();
     reloadContent();
-    CTRL_UpdateSubmitClick(tab.ajout);
     function reloadContent(){
 //        $.ajax({type:'POST',
 //                url:'getApps.php',
@@ -71,7 +70,7 @@ function _init(tabNum){
 
         // REGROUPE INSTRUCTIONS CTRL POUR OPTIMISATION
         if(tab.page == "ctrl.php"){
-	    
+	    CTRL_UpdateSubmitClick(tab.ajout);    
 	    if($('#CTRL').hasClass('modifCtrl')){
 		prerempli = ($('#technicien option:selected').text() == "")? true:false;
 //		if(prerempli){
@@ -356,7 +355,7 @@ function _init(tabNum){
             }
             if(tab.page == 'ctrl.php'){
                 $("li.search").hide();
-    //            CTRL_UpdateSubmitClick(tab.ajout);
+                CTRL_UpdateSubmitClick(tab.ajout);
                 // Delai car tout element de la tab deviennent visible après le click
                 var wait = setTimeout(refreshCtrlTable,10);
             }else $("li.search").show();
@@ -389,31 +388,31 @@ function _init(tabNum){
 
 	// retourne le contenue textuel d'un élément Enfant
     function getChildText(parentEl,id){
-	    return parentEl.children('td#'+id).text();
+	return parentEl.children('td#'+id).text();
     }
     
     function submitForm(formData, URL){
 	console.log(formData + " " + URL);
-	    $.ajax({
-		    type: 'POST',
-		    url: URL,
-		    data: formData,
-		    dataType: 'json',
-		    cache: false,
-		    timeout: 7000,
-		    success: function(data) {
-	    if (data.error){
-		displayMess("<img src='img/error.png'/><h3>"+data.msg+"</h3>", "ui-state-error",2000);
-	    }else{
-		displayMess("<img src='img/icon_ok.png'/><h3>"+data.msg+"</h3>", "ui-state-highlight",1500);
-		$('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
+	$.ajax({
+	    type: 'POST',
+	    url: URL,
+	    data: formData,
+	    dataType: 'json',
+	    cache: false,
+	    timeout: 7000,
+	    success: function(data) {
+		if (data.error){
+		    displayMess("<img src='img/error.png'/><h3>"+data.msg+"</h3>", "ui-state-error",2000);
+		}else{
+		    displayMess("<img src='img/icon_ok.png'/><h3>"+data.msg+"</h3>", "ui-state-highlight",1500);
+		    $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
+		}
+	    },
+	    error: function(XMLHttpRequest, textStatus, errorThrown){
+		alert("D\351sol\351! Il y a eu une erreur: " + errorThrown + " " + textStatus+" Veuillez contacter Thibaud SMITH afin de résoudre ce problème!");
+    
 	    }
-		    },
-		    error: function(XMLHttpRequest, textStatus, errorThrown){
-			    alert("D\351sol\351! Il y a eu une erreur: " + errorThrown + " " + textStatus+" Veuillez contacter Thibaud SMITH afin de résoudre ce problème!");
-	    
-		    }
-	    });
+	});
     }
     function displayMess(mess, Class, timeOut){
 	$('#message').html(mess).removeClass('ui-state-highlight ui-state-error').addClass(Class + ' ui-corner-all').show();
@@ -568,13 +567,15 @@ function _init(tabNum){
 					    });
 					    // Make sure it's white in case it wasn't
 					    $(this).css('background','white');
-					    if(select.attr('id') == "technicien"){
+					    // Update date on select tech on modif CTRL when tech not selected
+					    if(select.attr('id') == "technicien" && $('#CTRL').hasClass('modifCtrl') && prerempli){
 						console.log("prerempli = "+prerempli);
 						var today = new Date();
-						today = today.getDate() + today.getFullYear().toString().slice(2) + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-						$("#CTRL #date").val(today); 
+						var month = today.getMonth() + 1;
+						if(month < 10) month = "0" + month.toString();
+						today = today.getDate()  + '-' + month + '-' + today.getFullYear();
+						$("#CTRL #date").val(today);
 					    }
-
 				    },
 				    change: function( event, ui ) {
 					    console.log(select.attr('id'));

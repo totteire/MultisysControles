@@ -97,7 +97,7 @@
             <td><label class="titre">Numéro:</label></td>
             <td><input type='text' class="ui-corner-all" value=<?php echo $ctrl['NUM'] ?> name='num' id='num' defaut=<?php include('getCtrlNum.php');?>></td>
 	    <td><label class="titre narrow">Date:</label></td>
-	    <td><input type="text" id="date" class='datepicker ui-corner-all' name="date" size="20" value=<?php echo date('d-m-Y') ?>></td>
+	    <td><input type="text" id="date" class='datepicker ui-corner-all' name="date" size="20" value=<?php echo date('d-m-Y',strtotime($ctrl['DATE'])) ?>></td>
         </tr>
 	    <tr class='static'>
             <td><label class="titre">Client:</label></td>
