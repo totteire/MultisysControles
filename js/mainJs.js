@@ -71,6 +71,17 @@ function _init(tabNum){
         // REGROUPE INSTRUCTIONS CTRL POUR OPTIMISATION
         if(tab.page == "ctrl.php"){
 	    CTRL_UpdateSubmitClick(tab.ajout);    
+	    $('#CTRL #date').change(function(){
+		$.ajax({type:'GET',
+			url:'getCtrlNum.php',
+			dataType:'html',
+			data:{'date':$('#ctrl #date').val()},
+			success: function(data){
+			    $('#ctrl #num').val(data);
+			}
+		});
+	    })
+	    
 	    if($('#CTRL').hasClass('modifCtrl')){
 		prerempli = ($('#technicien option:selected').text() == "")? true:false;
 //		if(prerempli){
