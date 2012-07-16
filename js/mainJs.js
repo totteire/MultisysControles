@@ -80,7 +80,7 @@ function _init(tabNum){
 			    $('#ctrl #num').val(data);
 			}
 		});
-	    })
+	    });
 	    
 	    if($('#CTRL').hasClass('modifCtrl')){
 		prerempli = ($('#technicien option:selected').text() == "")? true:false;

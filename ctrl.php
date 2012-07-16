@@ -130,7 +130,7 @@
                 <option value="3">Appareil non conforme</option>
             </select></td>
         </tr>
-	    <tr class='static'>
+	    <tr class='ACE CV'>
             <td><label class="titre">Observation:</label></td>
             <td colspan=7><textarea type='textarea' class="ui-corner-all" name='observation' id='observation'></textarea></td>
         </tr>

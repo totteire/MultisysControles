@@ -1,4 +1,5 @@
 <?php
+    include('./connect.php');
     // RENVOI UN NUMERO CONCATÉNANT DATE ET 2 CHIFFRES
     if(isset($_GET['date'])) $date = date('ymd',$_GET['date']);else $date = date('ymd');
     $req = "SELECT NUM FROM CONTROLE WHERE LIEU='S' AND NUM LIKE '".$date."__';";

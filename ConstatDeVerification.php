@@ -75,7 +75,7 @@
         <table class='normale' cellspacing='0' style='text-align: left;'>
             <tr>
                 <td>Délivré à: </td>
-                <td style='padding-left:15px;'><b><?php echo $res['NOM']?></b></td>
+                <td style='padding-left:15px;font-size:14pt;'><b><?php echo $res['NOM']?></b></td>
             </tr>
             <tr>
                 <td class='trad'>Issued to: </td>
@@ -177,13 +177,12 @@
             <tr><td style='padding-right:100px;'>
             <table class='normale spaced' cellspacing='0'>
             <?php 
-                $middle=5;
-                if(mysql_num_rows($resultPar) > 5) $middle=ceil(mysql_num_rows($resultPar)/2);
+                $nbLignes=3;
                 $nb=0;
                 while($resPar = mysql_fetch_array($resultPar)){
                     echo "<tr><td>- ".$resPar['LIBELLE']."<br><span style='margin-Left:10px;' class='trad'>".$resPar['LABEL']."</span></td></tr>";
                     $nb++;
-                    if($nb == $middle) echo "</table></td><td><table class='normale spaced' cellspacing='0'>";
+                    if($nb % $nbLignes == 0) echo "</table></td><td style='padding-right:50px;'><table class='normale spaced' cellspacing='0'>";
                 }
             ?>
             </table></td></tr>
@@ -199,7 +198,7 @@
         </table>
         <h2>¤ OBSERVATIONS ¤</h2>
         <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Observations</div>
-        <p class='normale'><?php if($res['OBSERVATION'] == '')echo "NÉANT"; else echo nl2br($res['OBSERVATION']);?></p>
+        <div class='normale'><?php if($res['OBSERVATION'] == '')echo "NÉANT"; else echo nl2br($res['OBSERVATION']);?></div>
         <table class='small footer' cellspacing='0' style=''>
             <tr>
                 <td style='width:33%;text-align:left;'>29/06/2011</td>

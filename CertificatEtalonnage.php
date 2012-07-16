@@ -72,7 +72,7 @@
         <table class='normale' cellspacing='0' style='text-align: left;'>
             <tr>
                 <td>Délivré à: </td>
-                <td style='padding-left:15px;'><b><?php echo $res['NOM']?></b></td>
+                <td style='padding-left:15px;font-size:14pt;'><b><?php echo $res['NOM']?></b></td>
             </tr>
             <tr>
                 <td class='trad'>Issued to: </td>
