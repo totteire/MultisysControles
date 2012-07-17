@@ -606,10 +606,12 @@ function _init(tabNum){
 //								select.val( "" );
 //								console.log(input);
 //								input.data( "autocomplete" ).term = "";
+							if($(this).parent().parent().hasClass('appareil')){
 							    select.children("option:selected").removeAttr("selected");
 							    $(this).css('background','orange');
 							    $(select).append("<option selected='selected' value='%"+$(this).val()+"'></option>");
 							    return false;
+							}
 						    }
 					    }
 				    }

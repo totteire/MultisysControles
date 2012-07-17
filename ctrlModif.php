@@ -113,58 +113,58 @@
                             echo "<option value='".$res['ID']."'>".$res['NOM']."</option>";
                     }
                 ?>
-	            </select>
-        	</td>
-	    </tr>
-	    <tr class='static'>
-	        <td><label class="titre">Désignation:</label></td>
-            <td class='minWidth'><select id="AppDesi" class="combobox" name='appDesi'>
-                <?php 
-                    $reqApp="SELECT * FROM APP_DESI ORDER BY DESIGNATION;";
-                    $resultApp = mysql_query($reqApp)or die(mysql_error());
-                    while($res = mysql_fetch_array($resultApp)){
-                        if($res['DESIGNATION'] == $ctrl['DESIGNATION'])
-                            echo "<option selected='selected' value='".$res['ID']."'>".$res['DESIGNATION']."</option>";
-                        else
-                            echo "<option value='".$res['ID']."'>".$res['DESIGNATION']."</option>";
-                    }
-                ?>
-	            </select>
-	        </td>
-	        <td><label class="titre  narrow">Marque:</label></td>
-            <td class='minWidth'><select id="AppMarq" class="combobox" name='appMarque'>
-                <?php
-                    $reqApp="SELECT * FROM APP_MARQUE ORDER BY MARQUE;";
-                    $resultApp = mysql_query($reqApp)or die(mysql_error());
-                    while($res = mysql_fetch_array($resultApp)){
-                        if($res['MARQUE'] == $ctrl['MARQUE'])
-                            echo "<option selected='selected'selected='selected' value='".$res['ID']."'>".$res['MARQUE']."</option>";
-                        else
-                            echo "<option value='".$res['ID']."'>".$res['MARQUE']."</option>";
-                    }
-                ?>
-	            </select>
-	        </td>
-	        <td><label class="titre  narrow">Type:</label></td>
+		</select>
+	    </td>
+	</tr>
+	<tr class='static appareil'>
+	    <td><label class="titre">Désignation:</label></td>
+	    <td class='minWidth'><select id="AppDesi" class="combobox" name='appDesi'>
+	    <?php 
+		$reqApp="SELECT * FROM APP_DESI ORDER BY DESIGNATION;";
+		$resultApp = mysql_query($reqApp)or die(mysql_error());
+		while($res = mysql_fetch_array($resultApp)){
+		    if($res['DESIGNATION'] == $ctrl['DESIGNATION'])
+			echo "<option selected='selected' value='".$res['ID']."'>".$res['DESIGNATION']."</option>";
+		    else
+			echo "<option value='".$res['ID']."'>".$res['DESIGNATION']."</option>";
+		}
+	    ?>
+		</select>
+	    </td>
+	    <td><label class="titre  narrow">Marque:</label></td>
+	    <td class='minWidth'><select id="AppMarq" class="combobox" name='appMarque'>
+	    <?php
+		$reqApp="SELECT * FROM APP_MARQUE ORDER BY MARQUE;";
+		$resultApp = mysql_query($reqApp)or die(mysql_error());
+		while($res = mysql_fetch_array($resultApp)){
+		    if($res['MARQUE'] == $ctrl['MARQUE'])
+			echo "<option selected='selected'selected='selected' value='".$res['ID']."'>".$res['MARQUE']."</option>";
+		    else
+			echo "<option value='".$res['ID']."'>".$res['MARQUE']."</option>";
+		}
+	    ?>
+	    </select>
+	    </td>
+	    <td><label class="titre  narrow">Type:</label></td>
             <td class='minWidth'><select id="AppType" class="combobox" name='appType'>
-                <?php
-                    $reqApp="SELECT * FROM APP_TYPE ORDER BY TYPE;";
-                    $resultApp = mysql_query($reqApp)or die(mysql_error());
-                    while($res = mysql_fetch_array($resultApp)){
-                        if($res['ID'] == $ctrl['ID'])
-                            echo "<option selected='selected' value='".$res['ID']."'>".$res['TYPE']."</option>";
-                        else
-                            echo "<option value='".$res['ID']."'>".$res['TYPE']."</option>";
-                    }
-                ?>
-	            </select>
-	        </td>
-	    </tr>
-	    <tr class='static'>
+	    <?php
+		$reqApp="SELECT * FROM APP_TYPE ORDER BY TYPE;";
+		$resultApp = mysql_query($reqApp)or die(mysql_error());
+		while($res = mysql_fetch_array($resultApp)){
+		    if($res['ID'] == $ctrl['ID'])
+			echo "<option selected='selected' value='".$res['ID']."'>".$res['TYPE']."</option>";
+		    else
+			echo "<option value='".$res['ID']."'>".$res['TYPE']."</option>";
+		}
+	    ?>
+		</select>
+	    </td>
+	</tr>
+	<tr class='static'>
             <td><label class="titre">Num Série:</label></td>
             <td><input type='text' value='<?php echo $ctrl['NUM_SERIE'];?>' class="ui-corner-all" name='numS' id='numS'/></td>
         </tr>
-	    <tr class='static'>
+	<tr class='static'>
             <td><label class="titre">Num Chassis:</label></td>
             <td><input type='text' value='<?php echo $ctrl['NUM_CHASSIS'];?>' class="ui-corner-all" name='numC' id='numC'/></td>
         </tr>

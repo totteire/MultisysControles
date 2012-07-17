@@ -44,9 +44,9 @@
                 ?>
 	            </select>	
         	</td>
-	    </tr>
-	    <tr class='static'>
-	        <td><label class="titre">Désignation:</label></td>
+	</tr>
+	<tr class='static appareil'>
+	    <td><label class="titre">Désignation:</label></td>
             <td class='minWidth'><select id="AppDesi" name="appDesi" class="combobox">
                 <option value=""></option>
                 <?php 
@@ -56,9 +56,9 @@
                         echo "<option value='".$res['ID']."'>".$res['DESIGNATION']."</option>";
                     }
                 ?>
-	            </select>
-	        </td>
-	        <td><label class="titre narrow">Marque:</label></td>
+		</select>
+	    </td>
+	    <td><label class="titre narrow">Marque:</label></td>
             <td class='minWidth'><select id="AppMarq" name="appMarque" class="combobox">
                 <option value=""></option>
                 <?php 
@@ -68,9 +68,9 @@
                         echo "<option value='".$res['ID']."'>".$res['MARQUE']."</option>";
                     }
                 ?>
-	            </select>
-	        </td>
-	        <td><label class="titre  narrow">Type:</label></td>
+		</select>
+	    </td>
+	    <td><label class="titre  narrow">Type:</label></td>
             <td class='minWidth'><select id="AppType" class="combobox" name='appType'>
                 <option value=""></option>
                 <?php 
@@ -80,14 +80,14 @@
                         echo "<option value='".$res['ID']."'>".$res['TYPE']."</option>";
                     }
                 ?>
-	            </select>
-	        </td>
-	    </tr>
-	    <tr class='static'>
+		</select>
+	    </td>
+	</tr>
+	<tr class='static'>
             <td><label class="titre">Num Série:</label></td>
             <td><input type='text' class="ui-corner-all" name='numS' id='numS'/></td>
         </tr>
-	    <tr class='static'>
+	<tr class='static'>
             <td><label class="titre">Num Chassis:</label></td>
             <td><input type='text' class="ui-corner-all" name='numC' id='numC'/></td>
         </tr>
@@ -100,28 +100,28 @@
             <td colspan=7><select id="MM" class="combobox" name="MM"></select><a id="ajoutMMCtr" class='editParMM' href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
         </tr>
         <tr class='site'>
-	        <td><label class="titre">Température:</label></td>
-	        <td colspan=7>
-	            <input type='text' class="ui-corner-all" name='temp' id='temp'/>°C
-	        </td>
-	    </tr>
-	    <tr class='static'>
-	        <td><label class="titre">Technicien:</label></td>
-	        <td colspan=7>
-	            <select id="technicien" class="combobox" name='tech'>
-	                <option></option>
-                    <?php 
-                        $reqTech="SELECT ID, TECH FROM TECHNICIEN ORDER BY TECH;";
-                        $resultTech = mysql_query($reqTech)or die(mysql_error());
-                        while($res = mysql_fetch_array($resultTech)){
-			if($res['ID'] != '1')	
-				echo "<option value='".$res['ID']."'>".$res['TECH']."</option>";
-                        }
-                    ?>
-	            </select>
-	        </td>
-	    </tr>
-	    <tr class='ACE CV'>
+	    <td><label class="titre">Température:</label></td>
+	    <td colspan=7>
+		<input type='text' class="ui-corner-all" name='temp' id='temp'/>°C
+	    </td>
+	</tr>
+	<tr class='static'>
+	    <td><label class="titre">Technicien:</label></td>
+	    <td colspan=7>
+		<select id="technicien" class="combobox" name='tech'>
+		    <option></option>
+		<?php 
+		    $reqTech="SELECT ID, TECH FROM TECHNICIEN ORDER BY TECH;";
+		    $resultTech = mysql_query($reqTech)or die(mysql_error());
+		    while($res = mysql_fetch_array($resultTech)){
+		    if($res['ID'] != '1')	
+			    echo "<option value='".$res['ID']."'>".$res['TECH']."</option>";
+		    }
+		?>
+		</select>
+	    </td>
+	</tr>
+	<tr class='ACE CV'>
             <td><label class="titre">Jugement:</label></td>
             <td colspan=7><select class="combobox" id='jugement' name='jugement'>
                 <option></option>
@@ -130,7 +130,7 @@
                 <option value="3">Appareil non conforme</option>
             </select></td>
         </tr>
-	    <tr class='ACE CV'>
+	<tr class='ACE CV'>
             <td><label class="titre">Observation:</label></td>
             <td colspan=7><textarea type='textarea' class="ui-corner-all" name='observation' id='observation'></textarea></td>
         </tr>
