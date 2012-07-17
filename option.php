@@ -1,7 +1,7 @@
 <button class="btAjout"><h1> +&nbsp; &nbsp; Technicien</button>
 <H2>Techniciens:</H2>
 <table id="tableau" class="tableau tablesorter">
-	<thead><tr><th class=info></th><th class="topLeft">Nom</th><th class='topRight'>Signature</th></tr></thead>
+	<thead><tr><th class=info></th><th class="topLeft">Nom</th><th>Signature</th><th class='topRight'>Action</th></tr></thead>
     <tbody>
 	<?php
 		include('connect.php');
@@ -40,4 +40,3 @@
 		</form>
 	</div>
 </div>
-

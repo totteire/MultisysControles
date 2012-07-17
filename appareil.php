@@ -8,7 +8,7 @@
         
         <button class="btAjout"><h1> +&nbsp; &nbsp; DÉSIGNATION</h1></button>
         <table id="tableau" class="tableau tablesorter">
-	        <thead><tr><th class='info'></th><th class="topLeftRight">Désignation</th></tr></thead>
+	        <thead><tr><th class='info'></th><th class='topLeft'>Désignation</th><th class="topRight">Action</th></tr></thead>
             <tbody>
 	        <?php
 		        include('connect.php');
@@ -46,7 +46,7 @@
 	<div id="tabAppMarq" page='appareil.php' dialogId='#dialogAppMarq' ajout='appareil/ajoutAppMarq.php' suppr='appareil/supprAppMarq.php' modif='appareil/modifAppMarq.php' needReload='false'>
     	<button class="btAjout"><h1> +&nbsp; &nbsp; MARQUE</h1></button>
         <table id="tableau" class="tableau tablesorter">
-	        <thead><tr><th class='info'></th><th class='topLeftRight'>Marque</th></tr></thead>
+	        <thead><tr><th class='info'></th><th class='topLeft'>Marque</th><th class='topRight'>Action</th></tr></thead>
             <tbody>
 	        <?php
 		        include('connect.php');
@@ -83,7 +83,7 @@
 	<div id="tabAppType" page='appareil.php' dialogId='#dialogAppType' ajout='appareil/ajoutAppType.php' suppr='appareil/supprAppType.php' modif='appareil/modifAppType.php' needReload='false'>
     	<button class="btAjout"><h1> +&nbsp; &nbsp; TYPE</h1></button>
         <table id="tableau" class="tableau tablesorter">
-	        <thead><tr><th class='info'></th><th class="topLeftRight">Type</th></tr></thead>
+	        <thead><tr><th class='info'></th><th class='topLeft'>Type</th><th class="topRight">Action</th></tr></thead>
             <tbody>
 	        <?php
 		        include('connect.php');

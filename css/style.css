@@ -50,14 +50,14 @@ table.tableau tr.colored td{
     background: pink; 
 }
 
-table.tableau td.modifCell{
-    display: none;
-    -moz-border-radius: 0 10px 10px 0;
-    -webkit-border-radius: 0 10px 10px 0;
-    border-radius: 0 10px 10px 0;
-    border: 1px solid transparent;
-    border-left: 0;
-}
+/*table.tableau td.modifCell{*/
+/*display: none;*/
+/*-moz-border-radius: 0 10px 10px 0;*/
+/*-webkit-border-radius: 0 10px 10px 0;*/
+/*border-radius: 0 10px 10px 0;*/
+/*border: 1px solid transparent;*/
+/*border-left: 0;*/
+/*}*/
 table.tableau td img{
     margin: auto 5px;
 }
@@ -177,6 +177,9 @@ label.titre{
 #CTRL input,textarea{
     border:solid 1px #aacfe4;
     width:150px;
+}
+#CTRL .mandatory{
+    background-color: #E0E0E0;
 }
 #CTRL td span{
     display:inline-block;

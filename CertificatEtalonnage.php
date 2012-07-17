@@ -144,7 +144,7 @@
         </div>
         <table class='small footer' cellspacing='0' style=''>
             <tr>
-                <td style='width:33%;text-align:left;'>25/05/2011</td>
+                <td style='width:33%;text-align:left;'>16/07/2012</td>
                 <td style='width:33%;text-align:center;'><?php echo $titre?></td> <td style='width:33%;text-align:right;'>1/1</td> </tr>
         </table>
     </div>

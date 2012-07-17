@@ -201,7 +201,7 @@
         <div class='normale'><?php if($res['OBSERVATION'] == '')echo "NÉANT"; else echo nl2br($res['OBSERVATION']);?></div>
         <table class='small footer' cellspacing='0' style=''>
             <tr>
-                <td style='width:33%;text-align:left;'>29/06/2011</td>
+                <td style='width:33%;text-align:left;'>16/07/2012</td>
                 <td style='width:30%;text-align:center;'><?php echo $titre?></td>
                 <td style='width:33%;text-align:right;'>2/2</td>
             </tr>

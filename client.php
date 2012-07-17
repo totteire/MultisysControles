@@ -1,6 +1,6 @@
 <button class="btAjout"><h1> +&nbsp; &nbsp; Client</button>
 <table id="tableau" class="tableau tablesorter">
-	<thead><tr><th class=info></th><th class="topLeft">Nom</th><th>Adresse</th><th class="info"></th><th>CP</th><th class="topRight">Ville</th></tr></thead>
+	<thead><tr><th class=info></th><th class="topLeft">Nom</th><th>Adresse</th><th class="info"></th><th>CP</th><th>Ville</th><th class="topRight">Action</th></tr></thead>
     <tbody>
 	<?php
 		include('connect.php');

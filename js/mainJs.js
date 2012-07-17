@@ -585,6 +585,7 @@ function _init(tabNum){
 						if(month < 10) month = "0" + month.toString();
 						today = today.getDate()  + '-' + month + '-' + today.getFullYear();
 						$("#CTRL #date").val(today);
+						$("#CTRL #date").change();
 					    }
 				    },
 				    change: function( event, ui ) {

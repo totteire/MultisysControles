@@ -1,7 +1,7 @@
 
 <button class="btAjout"><h1> +&nbsp; &nbsp; Paramètre</h1></button>
 <table id="tableau" class="tableau tablesorter">
-	<thead><tr><th class='info'></th><th class="topLeft">Libellé</th><th>Traduction</th><th class="topRight">Moyen de mesure</th></tr></thead>
+	<thead><tr><th class='info'></th><th class="topLeft">Libellé</th><th>Traduction</th><th>Moyen de mesure</th><th class="topRight">Action</th></tr></thead>
     <tbody>
 	<?php
 		include('connect.php');
@@ -32,6 +32,7 @@
 
 <div id="dialogParMM" class="dialog">
     <table class="inline">
+    <button class="submit">Enregistrer</button>  
     <?php 
         $req3="SELECT * FROM MOYEN_MESURE ORDER BY LIBELLE;";
         $req4="SELECT LIBELLE FROM MOYEN_MESURE;";
@@ -41,18 +42,11 @@
         $nb=0;
         $prevLib='';
         while($MM=mysql_fetch_array($result3)){
-            if($MM['LIBELLE'] != $prevLib){
-                $nb++;
-                echo "<tr>
-                        <td><input type='checkbox' name='".$MM['ID']."' value='".$MM['ID']."'></td>
-                        <td>".$MM['LIBELLE']."</td>
-                    </tr>";
-            }else{
-                echo "<tr style='display:none;'>
-                        <td><input type='checkbox' name='".$MM['ID']."' value='".$MM['ID']."'></td>
-                        <td>".$MM['LIBELLE']."</td>
-                    </tr>";
-            }
+	    $nb++;
+	    echo "<tr>
+		    <td><input type='checkbox' name='".$MM['ID']."' value='".$MM['ID']."'></td>
+		    <td>".$MM['LIBELLE']."</td>
+		</tr>";
             $prevLib = $MM['LIBELLE'];
             if($nb == $middleRow)echo "</table><table class='inline'>";
         };
