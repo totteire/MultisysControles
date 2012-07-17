@@ -72,23 +72,21 @@ function _init(tabNum){
         if(tab.page == "ctrl.php"){
 	    CTRL_UpdateSubmitClick(tab.ajout);    
 // ICI //
-//	    $('#CTRL #date').change(function(){
-//		$.ajax({type:'GET',
-//			url:'getCtrlNum.php',
-//			dataType:'html',
-//			data:{'date':$('#ctrl #date').val()},
-//			success: function(data){
-//			    $('#ctrl #num').val(data);
-//			}
-//		});
-//	    });
+	    $('#CTRL #date').change(function(){
+                if($('.menu.lieu .radio input:radio:checked').val() == 'S'){
+		    $.ajax({type:'GET',
+			    url:'getCtrlNum.php',
+			    dataType:'html',
+			    data:{'date':$('#ctrl #date').val()},
+			    success: function(data){
+				$('#ctrl #num').val(data);
+			    }
+		    });
+		}
+	    });
 	    
 	    if($('#CTRL').hasClass('modifCtrl')){
 		prerempli = ($('#technicien option:selected').text() == "")? true:false;
-//		if(prerempli){
-//		    console.log("test");
-//		    $('select#technicien').change(function(){alert("lkj")});
-//		}
 	    }
 
         
