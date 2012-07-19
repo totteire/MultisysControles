@@ -213,7 +213,7 @@
             <td><label class="titre">Observation:</label></td>
             <td colspan=7><textarea type='textarea' class="ui-corner-all" name='observation' id='observation'><?php echo $ctrl['OBSERVATION'] ?></textarea></td>
         </tr>
-        <tr class='static bouttons'><td colspan=7><button class="submit">Enregistrer</button><a href="generatePdf.php?id=<?php echo $id?>" onclick='' class="button pdfEdit">Editer PDF</a><button id="CtrlClear">Nouveau document</button><button class='dupliquer'>Dupliquer</button></td></tr>
+        <tr class='static bouttons'><td colspan=7><button class="submit">Enregistrer</button><a href="generatePdf.php?id=<?php echo $id?>" onclick='' class="button pdfEdit">Editer PDF</a><button id="CtrlClear">Nouveau document</button></td></tr>
 	</table>
 	</form>
 </div>

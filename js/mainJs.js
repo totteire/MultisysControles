@@ -71,7 +71,16 @@ function _init(tabNum){
         // REGROUPE INSTRUCTIONS CTRL POUR OPTIMISATION
         if(tab.page == "ctrl.php"){
 	    CTRL_UpdateSubmitClick(tab.ajout);    
-// ICI //
+	    $('#CTRL button.dupliquer').click(function(){
+		console.log("hey jule");
+		var id=$("#CTRL input[name='id']").val();
+		$('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){
+		    reloadContent();
+		    refreshCtrlTable();
+		    CTRL_UpdateSubmitClick(tab.ajout);
+		    alert("lkj");
+		});
+	    });
 	    $('#CTRL #date').change(function(){
                 if($('.menu.lieu .radio input:radio:checked').val() == 'S'){
 		    $.ajax({type:'GET',
