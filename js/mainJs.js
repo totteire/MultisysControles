@@ -275,7 +275,7 @@ function _init(tabNum){
             $('#dialogParMM input:checkbox').each(function(){
                 $(this).attr('checked',false);
             });
-            $(this).parent().parent().children(':nth-child(3)').children('select').children('option').each(function(){
+            $(this).parent().parent().children(':nth-child(4)').children('select').children('option').each(function(){
                 console.log(this);
                 var idMM = $(this).val();
                 $('#dialogParMM input:checkbox').each(function(){

@@ -44,7 +44,7 @@
         width: 430px;
         margin-left: 85px;
         position: absolute;
-        bottom: 40px;
+        bottom: 30px;
         margin: auto;
         border: 1px solid black;
     }
