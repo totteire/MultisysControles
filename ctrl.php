@@ -24,13 +24,13 @@
 	            </div>
             </td>
         </tr>
-        <tr class='static'>
+        <tr class='static mandatory'>
             <td><label class="titre">Numéro:</label></td>
             <td><input type='text' class="ui-corner-all" name='num' id='num' defaut=<?php include('getCtrlNum.php');?>></td>
 	    <td><label class="titre narrow">Date:</label></td>
 	    <td><input type="text" id="date" class='datepicker ui-corner-all' name="date" size="20" value=<?php echo date('d-m-Y') ?>></td>
         </tr>
-	    <tr class='static'>
+	<tr class='static mandatory'>
             <td><label class="titre">Client:</label></td>
             <td colspan=7>
                 <select id="cli" class="combobox" name='cli'>
@@ -45,7 +45,7 @@
 	            </select>	
         	</td>
 	</tr>
-	<tr class='static appareil'>
+	<tr class='static appareil mandatory'>
 	    <td><label class="titre">Désignation:</label></td>
             <td class='minWidth'><select id="AppDesi" name="appDesi" class="combobox">
                 <option value=""></option>
@@ -91,21 +91,21 @@
             <td><label class="titre">Num Chassis:</label></td>
             <td><input type='text' class="ui-corner-all" name='numC' id='numC'/></td>
         </tr>
-        <tr class='CV CE'>
+        <tr class='Par CV CE mandatory'>
             <td><label class="titre">Paramètres:</label></td>
             <td colspan=7><select id="Par" class="combobox" name="Par"></select><a id="ajoutParCtr" class='editParMM' href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
         </tr>
-        <tr class='CV CE'>
+        <tr class='CV CE mandatory'>
             <td><label class="titre">Moyens de mesure:</label></td>
             <td colspan=7><select id="MM" class="combobox" name="MM"></select><a id="ajoutMMCtr" class='editParMM' href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
         </tr>
-        <tr class='site'>
+        <tr class='site mandatory'>
 	    <td><label class="titre">Température:</label></td>
 	    <td colspan=7>
 		<input type='text' class="ui-corner-all" name='temp' id='temp'/>°C
 	    </td>
 	</tr>
-	<tr class='static'>
+	<tr class='static mandatory'>
 	    <td><label class="titre">Technicien:</label></td>
 	    <td colspan=7>
 		<select id="technicien" class="combobox" name='tech'>
@@ -121,7 +121,7 @@
 		</select>
 	    </td>
 	</tr>
-	<tr class='ACE CV'>
+	<tr class='ACE CV mandatory'>
             <td><label class="titre">Jugement:</label></td>
             <td colspan=7><select class="combobox" id='jugement' name='jugement'>
                 <option></option>

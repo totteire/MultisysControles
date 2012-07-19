@@ -169,6 +169,10 @@ function _init(tabNum){
 		$('#CTRL tr:not(.'+affichClass+')').hide();
 		$('#CTRL tr.'+affichClass).show();
 		$('#CTRL tr.static').show();
+		if(affichClass == 'CE')
+		    $('#CTRL tr.Par').removeClass('mandatory');
+		if(affichClass == 'CV')
+		    $('#CTRL tr.Par').addClass('mandatory');
 	    });
 	    $('#CTRL .menu.lieu .radio input:radio').change(function(){
 		var affichClass=$(this).val();
@@ -391,6 +395,9 @@ function _init(tabNum){
                 else
                     $('#CTRL tr.site').hide();
             }
+	    if(AClass == 'CE'){
+		$('#CTRL tr.Par').removeClass('mandatory');
+	    }
         }else{
             $('#CTRL tr:not(.menu)').hide();
         }

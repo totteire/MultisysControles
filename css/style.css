@@ -178,8 +178,8 @@ label.titre{
     border:solid 1px #aacfe4;
     width:150px;
 }
-#CTRL .mandatory{
-    background-color: #E0E0E0;
+#CTRL .mandatory input{
+    background: #E0E0E0;
 }
 #CTRL td span{
     display:inline-block;
