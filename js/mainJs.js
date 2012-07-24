@@ -1,4 +1,11 @@
 prerempli = false;
+function getFormatedDate(){
+    var today = new Date();
+    var month = today.getMonth() + 1;
+    if(month < 10) month = "0" + month.toString();
+    today = today.getDate()  + '-' + month + '-' + today.getFullYear();
+    return today;
+}
 function _init(tabNum){
     if(tabNum === undefined) tabNum = 5;
     var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':'','needReload':''};
@@ -68,19 +75,29 @@ function _init(tabNum){
             $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){reloadContent();refreshCtrlTable();CTRL_UpdateSubmitClick(tab.modif);console.log('tab.modif: '+tab.modif);});
         });
 
+	$('#CTRL button.dupliquer').click(function(){
+	    console.log("hey jule");
+	    var id=$("#CTRL input[name='id']").val();
+	    $('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
+	    $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){
+		reloadContent(); refreshCtrlTable();
+		CTRL_UpdateSubmitClick(tab.ajout);
+		$('#CTRL h2').text("Duplication Contrôle");
+		$('#CTRL #date').val(getFormatedDate());
+		$('#CTRL #date').change()
+		$('#numS').val('');
+		$('#numC').val('');	
+		$('#technicien').children("option:selected").removeAttr("selected");
+		$('#technicien').children("option").first().attr("selected","selected");
+		$('#technicien').next().val('');
+		$('#jugement').children("option:selected").removeAttr("selected");
+		$('#jugement').children("option").first().attr("selected","selected");
+		$('#jugement').next().val('');
+	    });
+	});
         // REGROUPE INSTRUCTIONS CTRL POUR OPTIMISATION
         if(tab.page == "ctrl.php"){
 	    CTRL_UpdateSubmitClick(tab.ajout);    
-	    $('#CTRL button.dupliquer').click(function(){
-		console.log("hey jule");
-		var id=$("#CTRL input[name='id']").val();
-		$('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){
-		    reloadContent();
-		    refreshCtrlTable();
-		    CTRL_UpdateSubmitClick(tab.ajout);
-		    alert("lkj");
-		});
-	    });
 	    $('#CTRL #date').change(function(){
                 if($('.menu.lieu .radio input:radio:checked').val() == 'S'){
 		    $.ajax({type:'GET',
@@ -592,15 +609,11 @@ function _init(tabNum){
 						    item: ui.item.option
 					    });
 					    // Make sure it's white in case it wasn't
-					    $(this).css('background','white');
+					    if($(this).css('background') == 'orange') $(this).css('background','white');
 					    // Update date on select tech on modif CTRL when tech not selected
 					    if(select.attr('id') == "technicien" && $('#CTRL').hasClass('modifCtrl') && prerempli){
 						console.log("prerempli = "+prerempli);
-						var today = new Date();
-						var month = today.getMonth() + 1;
-						if(month < 10) month = "0" + month.toString();
-						today = today.getDate()  + '-' + month + '-' + today.getFullYear();
-						$("#CTRL #date").val(today);
+						$("#CTRL #date").val(getFormatedDate());
 						$("#CTRL #date").change();
 					    }
 				    },
