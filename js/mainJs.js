@@ -94,6 +94,7 @@ function _init(tabNum){
 		$('#jugement').children("option:selected").removeAttr("selected");
 		$('#jugement').children("option").first().attr("selected","selected");
 		$('#jugement').next().val('');
+		$('#observation').val('');
 	    });
 	});
         // REGROUPE INSTRUCTIONS CTRL POUR OPTIMISATION
@@ -610,7 +611,7 @@ function _init(tabNum){
 						    item: ui.item.option
 					    });
 					    // Make sure it's white in case it wasn't
-					    if($(this).css('background') == 'orange') $(this).css('background','white');
+					    if($(this).css('background-color') == 'rgb(255, 165, 0)') $(this).css('background','#E0E0E0');
 					    // Update date on select tech on modif CTRL when tech not selected
 					    if(select.attr('id') == "technicien" && $('#CTRL').hasClass('modifCtrl') && prerempli){
 						console.log("prerempli = "+prerempli);
