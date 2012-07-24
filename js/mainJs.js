@@ -83,6 +83,7 @@ function _init(tabNum){
 		reloadContent(); refreshCtrlTable();
 		CTRL_UpdateSubmitClick(tab.ajout);
 		$('#CTRL h2').text("Duplication Contrôle");
+		$('#CTRL #num').val('');
 		$('#CTRL #date').val(getFormatedDate());
 		$('#CTRL #date').change()
 		$('#numS').val('');
