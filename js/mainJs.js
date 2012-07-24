@@ -342,6 +342,9 @@ function _init(tabNum){
             $("#dialog-confirm").dialog('open');
         })
 
+        $("a.pdfEdit").mousedown(function(e){
+	    if(e.which === 3) console.log("lkj");
+	}
 	// BOUTTONS GLISSANTS ////////////////////////////////////////////////////////////
 	placerBtAjout();                                                               ///
 										       ///
