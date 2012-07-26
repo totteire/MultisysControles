@@ -29,7 +29,7 @@ function _init(tabNum){
         $("button, a.button").button();
         $(".combobox").combobox();
         $(".radio").buttonset();
-        $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
+        $('input#search').quicksearch('.ui-tabs-panel:visible table.tableau tbody tr');
         $(".dialog").dialog('destroy');
         $(".dialog").dialog({
             autoOpen: false,
@@ -117,11 +117,6 @@ function _init(tabNum){
 		prerempli = ($('#technicien option:selected').text() == "")? true:false;
 	    }
 
-        
-            $(".pdfEdit").click(function(e){
-                e.preventDefault();
-                $.get('generatePdf.php?id=13');
-            });
             // CTRL ajout Paramètre
             
             // Fonction appellé du callback ajax
@@ -257,6 +252,7 @@ function _init(tabNum){
 	    $('.dialog input:checkbox:checked').each(function(){
 		$(this).parent().next().css('color','#EB8F00');
 	    });
+	    $("input#search").val('');
 	    $("li.search").hide();
 	        
 	        
@@ -340,11 +336,18 @@ function _init(tabNum){
                                                                 $("#dialog-confirm").dialog('close');
                                                             }});
             $("#dialog-confirm").dialog('open');
+
+	    // Color selected row
+	    $("#tabCtr tr.selected").removeClass('selected');
+	    $(this).parent().parent().addClass('selected'); 
         })
 
         $("a.pdfEdit").mousedown(function(e){
-	    if(e.which === 3) console.log("lkj");
-	}
+	    if(e.which === 3){
+		$("#tabCtr tr.selected").removeClass('selected');
+		$(this).parent().parent().addClass('selected'); 
+	    }
+	});
 	// BOUTTONS GLISSANTS ////////////////////////////////////////////////////////////
 	placerBtAjout();                                                               ///
 										       ///
@@ -399,14 +402,17 @@ function _init(tabNum){
                 $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
             }
             if(tab.page == 'ctrl.php'){
+		$("input#search").val('');
                 $("li.search").hide();
                 CTRL_UpdateSubmitClick(tab.ajout);
                 // Delai car tout element de la tab deviennent visible après le click
                 var wait = setTimeout(refreshCtrlTable,10);
-            }else $("li.search").show();
-            $('input#search').val('');
-            $('input#search').quicksearch('.ui-tabs-panel:visible table tbody tr');
-            placerBtAjout();
+            }else{
+		$("li.search").show();
+		$('input#search').val('');
+		$('input#search').quicksearch('.ui-tabs-panel:visible table.tableau tbody tr');
+		placerBtAjout();
+	    }
             console.log("click sur tab!");
         });
     }

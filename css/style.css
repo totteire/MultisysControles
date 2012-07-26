@@ -49,6 +49,9 @@ table.tableau td{
 table.tableau tr.colored td{
     background: pink; 
 }
+#tabCtr table tr.selected td{
+    background: yellowgreen;
+}
 
 /*table.tableau td.modifCell{*/
 /*display: none;*/
