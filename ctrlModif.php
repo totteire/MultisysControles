@@ -162,11 +162,12 @@
 	</tr>
 	<tr class='static'>
             <td><label class="titre">Num Série:</label></td>
-            <td><input type='text' value='<?php echo $ctrl['NUM_SERIE'];?>' class="ui-corner-all" name='numS' id='numS'/></td>
+            <td><input type='text' value='<?php echo $ctrl['NUM_SERIE'];?>' class="ui-corner-all toValidate validated" name='numS' id='numS'/></td>
+	    <td rowspan=2><button style='display:none;' class="ValidateNums"><img src='img/icon_ok.png'/></button></td>
         </tr>
 	<tr class='static'>
             <td><label class="titre">Num Chassis:</label></td>
-            <td><input type='text' value='<?php echo $ctrl['NUM_CHASSIS'];?>' class="ui-corner-all" name='numC' id='numC'/></td>
+            <td><input type='text' value='<?php echo $ctrl['NUM_CHASSIS'];?>' class="ui-corner-all toValidate validated" name='numC' id='numC'/></td>
         </tr>
         <tr class='Par CV CE mandatory'>
             <td><label class="titre">Paramètres:</label></td>

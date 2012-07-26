@@ -52,6 +52,12 @@ table.tableau tr.colored td{
 #tabCtr table tr.selected td{
     background: yellowgreen;
 }
+input.toValidate{
+    background: #FF9900;
+}
+input.validated{
+    background: yellowgreen;
+}
 
 /*table.tableau td.modifCell{*/
 /*display: none;*/
@@ -133,7 +139,7 @@ table.inline{
     font-weight:bold;  narrow
     margin-bottom:8px;
 }
-p{
+#stylized p{
     font-size:11px;
     color:#666666;
     margin-bottom:20px;

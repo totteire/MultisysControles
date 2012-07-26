@@ -76,7 +76,6 @@ function _init(tabNum){
         });
 
 	$('#CTRL button.dupliquer').click(function(){
-	    console.log("hey jule");
 	    var id=$("#CTRL input[name='id']").val();
 	    $('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
 	    $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){
@@ -99,7 +98,7 @@ function _init(tabNum){
 	});
         // REGROUPE INSTRUCTIONS CTRL POUR OPTIMISATION
         if(tab.page == "ctrl.php"){
-	    CTRL_UpdateSubmitClick(tab.ajout);    
+	    CTRL_UpdateSubmitClick(tab.ajout); 
 	    $('#CTRL #date').change(function(){
                 if($('.menu.lieu .radio input:radio:checked').val() == 'S'){
 		    $.ajax({type:'GET',
@@ -113,6 +112,27 @@ function _init(tabNum){
 		}
 	    });
 	    
+	    $('button.ValidateNums').click(function(){
+		var numS,numC;
+		($('input#numS').val() == "")? numS = '****' : numS = $('input#numS').val(); 
+		($('input#numC').val() == "")? numC = '****' : numC = $('input#numC').val();
+                $("#dialog-confirm #confirmMess").html("<h2><p style='color:orange;'>Vérifiez si les numéros sont corrects!</p><br>Numéro de Série: </h2><h1 style='color:red;'>"+numS+"</h1><h2><br>Numéro de Chassis: </h2><h1 style='color:red;'>"+numC+"</h1>");
+                $("#dialog-confirm").dialog("option","title","Attention!");
+                $("#dialog-confirm").dialog(
+                    "option",
+                    "buttons",{
+			"OK":function(){
+			    $('input.toValidate').addClass('validated');
+			    $('button.ValidateNums').fadeOut('slow');
+			    $("#dialog-confirm").dialog('close');
+			}
+		    }
+                );
+		$("#dialog-confirm").dialog("option", "minWidth", 600);
+                $("#dialog-confirm").dialog('open');
+		return false;
+	    });
+
 	    if($('#CTRL').hasClass('modifCtrl')){
 		prerempli = ($('#technicien option:selected').text() == "")? true:false;
 	    }
@@ -134,7 +154,6 @@ function _init(tabNum){
             $('#dialogParCtr button.submit').click(function(){
                 
                 if($('#CTRL').hasClass('ajoutCtrl')){
-                    console.log('ajout');
                     $.ajax({type:'POST',
                             url:'getListMM.php',
                             dataType:'json',
@@ -368,6 +387,12 @@ function _init(tabNum){
         $(cssButton).click(function(e){
             e.preventDefault();
             // if(validateForm()){
+	    if(tab.page == 'ctrl.php'){
+		if(!$('input#numS').hasClass('validated')) {
+		    displayMess("<img src='img/error.png'/><h2>Numéros non validés!</h2>","ui-state-error",2000);
+		    return false;
+		}
+	    }
             dataSend = eval(formData);
             submitForm(dataSend, php);
             $('.dialog').dialog('close');
@@ -626,6 +651,16 @@ function _init(tabNum){
 						console.log("prerempli = "+prerempli);
 						$("#CTRL #date").val(getFormatedDate());
 						$("#CTRL #date").change();
+						// nums to validate
+					    }
+					    if(select.attr('id') == 'technicien' && prerempli){
+						$('#numS').addClass('toValidate').removeClass('validated');
+						$('#numC').addClass('toValidate').removeClass('validated');
+						$('button.ValidateNums').fadeIn('slow');
+						$('input.toValidate').change(function(){
+						    $('input.validated').removeClass('validated');
+						    $('button.ValidateNums').fadeIn('slow');
+						});
 					    }
 				    },
 				    change: function( event, ui ) {

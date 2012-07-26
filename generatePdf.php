@@ -33,7 +33,8 @@
 
     require_once('./html2pdf/html2pdf.class.php');
     $pdf = new HTML2PDF('P','A4','fr');
-    $pdf->pdf->SetProtection(array(), $user_pass='');
+    if($EnTete == 1)
+	$pdf->pdf->SetProtection(array(), $user_pass='');
     $pdf->WriteHTML($content);
     $pdf->Output($res['NUM'].'.pdf');
     
