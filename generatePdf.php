@@ -1,7 +1,7 @@
 <?php
 
     $ctrlId = $_GET['id'];
-    $EnTete = $_GET['bg'];
+    if(isset($_GET['bg'])) $EnTete = $_GET['bg']; else $EnTete = 0;
     
     include('connect.php');
     $req = "SELECT * FROM CONTROLE,CLIENT C,APP_DESI AD, APP_MARQUE AM, APP_TYPE AT, TECHNICIEN T WHERE C.ID=CONTROLE.ID_AVOIR AND AD.ID=CONTROLE.ID_APP_DESI AND AM.ID=CONTROLE.ID_APP_MARQUE AND AT.ID=CONTROLE.ID_APP_TYPE AND CONTROLE.TECHNICIEN=T.ID AND CONTROLE.ID=$ctrlId ORDER BY DATE DESC;";
@@ -33,6 +33,7 @@
 
     require_once('./html2pdf/html2pdf.class.php');
     $pdf = new HTML2PDF('P','A4','fr');
+    $pdf->pdf->SetProtection(array(), $user_pass='');
     $pdf->WriteHTML($content);
     $pdf->Output($res['NUM'].'.pdf');
     
