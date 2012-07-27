@@ -653,7 +653,7 @@ function _init(tabNum){
 						$("#CTRL #date").change();
 						// nums to validate
 					    }
-					    if(select.attr('id') == 'technicien' && prerempli){
+					    if(select.attr('id') == 'technicien'){
 						$('#numS').addClass('toValidate').removeClass('validated');
 						$('#numC').addClass('toValidate').removeClass('validated');
 						$('button.ValidateNums').fadeIn('slow');
