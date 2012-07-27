@@ -132,6 +132,7 @@ function _init(tabNum){
                 $("#dialog-confirm").dialog('open');
 		return false;
 	    });
+	    if($('select#technicien option:selected').text() != '') numSC_Change(); 
 
 	    if($('#CTRL').hasClass('modifCtrl')){
 		prerempli = ($('#technicien option:selected').text() == "")? true:false;
@@ -569,6 +570,13 @@ function _init(tabNum){
 }
 // FIN INIT()
 
+function numSC_Change(){
+    $('input.toValidate').unbind('change');
+    $('input.toValidate').change(function(){
+	$('input.validated').removeClass('validated');
+	$('button.ValidateNums').fadeIn('slow');
+    });
+}
 ////////////////    Initialisation des combobox autocomplete    ////////////////
 
 (function( $ ) {
@@ -654,13 +662,11 @@ function _init(tabNum){
 						// nums to validate
 					    }
 					    if(select.attr('id') == 'technicien'){
+						console.log('tech select');
 						$('#numS').addClass('toValidate').removeClass('validated');
 						$('#numC').addClass('toValidate').removeClass('validated');
 						$('button.ValidateNums').fadeIn('slow');
-						$('input.toValidate').change(function(){
-						    $('input.validated').removeClass('validated');
-						    $('button.ValidateNums').fadeIn('slow');
-						});
+						numSC_Change();
 					    }
 				    },
 				    change: function( event, ui ) {
