@@ -21,6 +21,8 @@ $jugement = $_POST['jugement'];
 $observation = trim($_POST['observation']);
 $PAR = $_POST['PAR'];
 $MM = $_POST['MM'];
+$docST = $_POST['docST'];
+$docNum = $_POST['docNum'];
 
 if(strpbrk($numS,'*') || $numS == "") $numS = "****";
 if(strpbrk($numC,'*') || $numC == "") $numC = "****";
@@ -44,12 +46,15 @@ switch($type){
 	else
 	    $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$MM&&$date)? true : false;
         break;
+    case "FI":
+	$verifChamps = ($num&&$type&&$cli&&$app_desi&&$app_marque&&$app_type&&$date&&$docST&&$docNum)? true : false;
+	break;
     default:
         $verifChamps = false;
 }
 
 if($verifChamps){
-    $test = mysql_query("SELECT NUM FROM CONTROLE WHERE NUM = $num;") or die(mysql_error());
+    $test = mysql_query("SELECT NUM FROM CONTROLE WHERE NUM = '$num';") or die(mysql_error());
     if (mysql_num_rows($test)==0){
     
         # Check if there is a new app to add
@@ -72,8 +77,8 @@ if($verifChamps){
             $app_type = mysql_result($getIdType,0);
         }
     
-        $reqInserCtrl = mysql_query("INSERT INTO CONTROLE VALUES (NULL,'$num','$app_desi','$app_marque','$app_type','$cli','$type','$date','$tech','$temp','$lieu','$jugement','$observation','$numS','$numC','');") or die(mysql_error());
-        $reqID = mysql_query("SELECT ID FROM CONTROLE WHERE NUM=$num;")or die(mysql_error());
+        $reqInserCtrl = mysql_query("INSERT INTO CONTROLE VALUES (NULL,'$num','$app_desi','$app_marque','$app_type','$cli','$type','$date','$tech','$temp','$lieu','$jugement','$observation','$numS','$numC','','$docST','$docNum');") or die(mysql_error());
+        $reqID = mysql_query("SELECT ID FROM CONTROLE WHERE NUM='$num';")or die(mysql_error());
         $resID = mysql_fetch_array($reqID);
         if(!$PAR) $PAR = array();
         else $PAR = explode(',',$PAR);

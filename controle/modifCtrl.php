@@ -21,6 +21,8 @@ $jugement = $_POST['jugement'];
 $observation = trim($_POST['observation']);
 $PAR = $_POST['PAR'];
 $MM = $_POST['MM'];
+$docST = $_POST['docST'];
+$docNum = $_POST['docNum'];
 
 if(strpbrk($numS,'*') || $numS == "") $numS = "****";
 if(strpbrk($numC,'*') || $numC == "") $numC = "****";
@@ -44,13 +46,16 @@ switch($type){
 	else
 	    $verifChamps = ($num&&$type&&$lieu&&$cli&&$app_desi&&$app_marque&&$app_type&&$MM&&$date)? true : false;
         break;
+    case "FI":
+	$verifChamps = ($num&&$type&&$cli&&$app_desi&&$app_marque&&$app_type&&$date&&$docST&&$docNum)? true : false;
+	break;
     default:
         $verifChamps = false;
 }
 
 if($verifChamps){
 
-    $test = mysql_query("SELECT NUM FROM CONTROLE WHERE NUM = $num AND ID <> $id;") or die(mysql_error());
+    $test = mysql_query("SELECT NUM FROM CONTROLE WHERE NUM = '$num' AND ID <> $id;") or die(mysql_error());
     if (mysql_num_rows($test)==0){
 
         # Check if there is a new app to add
@@ -72,8 +77,8 @@ if($verifChamps){
             $getIdType = mysql_query("SELECT ID FROM APP_TYPE WHERE TYPE='$app_type';") or die(mysql_error());
             $app_type = mysql_result($getIdType,0);
         }
-        $reqModifCtrl = mysql_query("UPDATE CONTROLE SET NUM='$num', ID_APP_DESI='$app_desi',ID_APP_MARQUE='$app_marque',ID_APP_TYPE='$app_type', ID_AVOIR='$cli', TYPE_CTRL='$type', DATE='$date', TECHNICIEN='$tech', TEMPERATURE='$temp', LIEU='$lieu', JUGEMENT='$jugement', OBSERVATION='$observation', NUM_SERIE='$numS', NUM_CHASSIS='$numC', PDF_EDIT='$pdf_edit' WHERE ID='$id';") or die(mysql_error());
-        $reqID = mysql_query("SELECT ID FROM CONTROLE WHERE NUM=$num;")or die(mysql_error());
+        $reqModifCtrl = mysql_query("UPDATE CONTROLE SET NUM='$num', ID_APP_DESI='$app_desi',ID_APP_MARQUE='$app_marque',ID_APP_TYPE='$app_type', ID_AVOIR='$cli', TYPE_CTRL='$type', DATE='$date', TECHNICIEN='$tech', TEMPERATURE='$temp', LIEU='$lieu', JUGEMENT='$jugement', OBSERVATION='$observation', NUM_SERIE='$numS', NUM_CHASSIS='$numC', PDF_EDIT='$pdf_edit', DOCNUM='$docNum', DOCST='$docST' WHERE ID='$id';") or die(mysql_error());
+        $reqID = mysql_query("SELECT ID FROM CONTROLE WHERE NUM='$num';")or die(mysql_error());
         $resID = mysql_fetch_array($reqID);
         $reqDelFKmm = mysql_query("DELETE FROM UTILISER WHERE ID=$id;") or die(mysql_error());
         $reqDelFKpar = mysql_query("DELETE FROM VERIFIER WHERE ID=$id;") or die(mysql_error());

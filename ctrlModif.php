@@ -80,6 +80,7 @@
 		            <input type="radio" id="brEssai" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'ACE')echo "checked=true" ?> value="ACE"/><label for="brEssai">A.C.E</label>
 		            <input type="radio" id="brVerif" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'CV')echo "checked=true" ?> value="CV"/><label for="brVerif">C.V</label>
 		            <input type="radio" id="brEtal" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'CE')echo "checked=true" ?> value="CE"/><label for="brEtal">C.E</label>
+			    <input type="radio" id="brInter" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'FI')echo "checked=true" ?> value="FI"/><label for="brInter">F.I</label>
                 </div>
                 <h2 style="color:#EB8F00;display:inline;margin-left:150px;">Modification Contrôle</h2>
             </td>
@@ -183,7 +184,7 @@
 		<input type='text' value='<?php echo $ctrl['TEMPERATURE'];?>' class="ui-corner-all" name='temp' id='temp'/>°C
 	    </td>
 	</tr>
-	<tr class='static mandatory'>
+	<tr class='ACE CE CV mandatory'>
 	    <td><label class="titre">Technicien:</label></td>
 	    <td colspan=7><select id="technicien" class="combobox" name='tech'>
 	    <option></option>
@@ -214,6 +215,22 @@
             <td><label class="titre">Observation:</label></td>
             <td colspan=7><textarea type='textarea' class="ui-corner-all" name='observation' id='observation'><?php echo $ctrl['OBSERVATION'] ?></textarea></td>
         </tr>
+	<tr class='FI mandatory'>
+	    <td><label class="titre">Documents:</label></td>
+	    <td>
+		<select id="docsSt" class="combobox" name="docST">
+		    <option <?php if($ctrl['DOCST'] == 1)echo "checked='true' " ?> value='1'>CV</option>
+		    <option <?php if($ctrl['DOCST'] == 2)echo "checked='true' " ?> value='2'>CE</option>
+		    <option <?php if($ctrl['DOCST'] == 3)echo "checked='true' " ?> value='3'>CV + CE</option>
+		</select>
+	    </td>
+	</tr>
+	<tr class='FI mandatory'>
+	    <td><label class="titre">Numéro certificat ST:</label></td>
+	    <td>
+		<input type='text' class='ui-corner-all' name='docNum' id='docNum' value='<?php echo $ctrl['DOCNUM'] ?>'/>
+	    </td>
+	</tr>
         <tr class='static bouttons'><td colspan=7><button class="submit">Enregistrer</button><a href="generatePdf.php?id=<?php echo $id?>" onclick='' class="button pdfEdit">Editer PDF</a><button id="CtrlClear">Nouveau document</button><button class='dupliquer'>Dupliquer</button></td></tr>
 	</table>
 	</form>

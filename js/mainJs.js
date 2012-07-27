@@ -132,10 +132,10 @@ function _init(tabNum){
                 $("#dialog-confirm").dialog('open');
 		return false;
 	    });
-	    if($('select#technicien option:selected').text() != '') numSC_Change(); 
 
 	    if($('#CTRL').hasClass('modifCtrl')){
 		prerempli = ($('#technicien option:selected').text() == "")? true:false;
+		numSC_Change();
 	    }
 
             // CTRL ajout Paramètre
@@ -209,6 +209,7 @@ function _init(tabNum){
 	    $('#CTRL .menu.type .radio input:radio').change(function(){
 		var affichClass=$(this).val();
 		console.log(affichClass);
+		if(!$('tr.lieu').is(':visible')) $('tr.lieu').show();
 		$('#CTRL tr:not(.'+affichClass+')').hide();
 		$('#CTRL tr.'+affichClass).show();
 		$('#CTRL tr.static').show();
@@ -216,6 +217,13 @@ function _init(tabNum){
 		    $('#CTRL tr.Par').removeClass('mandatory');
 		if(affichClass == 'CV')
 		    $('#CTRL tr.Par').addClass('mandatory');
+		if(affichClass == 'FI'){
+		    $('tr.lieu').hide();
+		    $('#numS').addClass('toValidate').removeClass('validated');
+		    $('#numC').addClass('toValidate').removeClass('validated');
+		    $('button.ValidateNums').fadeIn('slow');
+		    numSC_Change();
+		}
 	    });
 	    $('#CTRL .menu.lieu .radio input:radio').change(function(){
 		var affichClass=$(this).val();
@@ -461,6 +469,9 @@ function _init(tabNum){
 	    if(AClass == 'CE'){
 		$('#CTRL tr.Par').removeClass('mandatory');
 	    }
+	    if(AClass == 'FI'){
+		$('#CTRL tr.lieu').hide();
+	    }else if(!$('#CTRL tr.lieu').is(':visible')) $('tr.lieu').show();
         }else{
             $('#CTRL tr:not(.menu)').hide();
         }

@@ -11,6 +11,7 @@
 		            <input type="radio" id="brEssai" name="radioType" value="ACE"/><label for="brEssai">A.C.E</label>
 		            <input type="radio" id="brVerif" name="radioType" value="CV"/><label for="brVerif">C.V</label>
 		            <input type="radio" id="brEtal" name="radioType" value="CE"/><label for="brEtal">C.E</label>
+			    <input type="radio" id="brInter" name="radioType" value="FI"/><label for="brInter">F.I</label>
                 </div>
                 <h2 style="color:#EB8F00;display:inline;margin-left:150px;">Ajout Contrôle</h2>
             </td>
@@ -135,6 +136,22 @@
             <td><label class="titre">Observation:</label></td>
             <td colspan=7><textarea type='textarea' class="ui-corner-all" name='observation' id='observation'></textarea></td>
         </tr>
+	<tr class='FI mandatory'>
+	    <td><label class="titre">Documents:</label></td>
+	    <td>
+		<select id="docsSt" class="combobox" name="docST">
+		    <option value='1'>CV</option>
+		    <option value='2'>CE</option>
+		    <option value='3'>CV + CE</option>
+		</select>
+	    </td>
+	</tr>
+	<tr class='FI mandatory'>
+	    <td><label class="titre">Numéro certificat ST:</label></td>
+	    <td>
+		<input type='text' class='ui-corner-all' name='docNum' id='docNum' />
+	    </td>
+	</tr>
         <tr class='static bouttons'><td colspan=7><button class="submit">Enregistrer</button><button id="CtrlClear">Nouveau document</button></td></tr>
 	</table>
 	</form>
