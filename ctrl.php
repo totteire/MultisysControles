@@ -8,12 +8,12 @@
             <td><label class="titre">Type: </label></td>
             <td colspan=7>
                 <div class="radio" style="display:inline;">
-		            <input type="radio" id="brEssai" name="radioType" value="ACE"/><label for="brEssai">A.C.E</label>
-		            <input type="radio" id="brVerif" name="radioType" value="CV"/><label for="brVerif">C.V</label>
-		            <input type="radio" id="brEtal" name="radioType" value="CE"/><label for="brEtal">C.E</label>
-			    <input type="radio" id="brInter" name="radioType" value="FI"/><label for="brInter">F.I</label>
+		            <input type="radio" id="brEssai" name="radioType" value="ACE"/><label for="brEssai">ACE</label>
+		            <input type="radio" id="brVerif" name="radioType" value="CV"/><label for="brVerif">CV</label>
+		            <input type="radio" id="brEtal" name="radioType" value="CE"/><label for="brEtal">CE</label>
+			    <input type="radio" id="brInter" name="radioType" value="FI"/><label for="brInter">FI</label>
                 </div>
-                <h2 style="color:#EB8F00;display:inline;margin-left:150px;">Ajout Contrôle</h2>
+                <h2 style="color:#EB8F00;display:inline;margin-left:150px;">Nouveau Document</h2>
             </td>
         </tr>
         <tr class='static menu lieu'>
@@ -152,7 +152,7 @@
 		<input type='text' class='ui-corner-all' name='docNum' id='docNum' />
 	    </td>
 	</tr>
-        <tr class='static bouttons'><td colspan=7><button class="submit">Enregistrer</button><button id="CtrlClear">Nouveau document</button></td></tr>
+        <tr class='static bouttons'><td colspan=7><button class="submit">Enregistrer</button></td></tr>
 	</table>
 	</form>
     <div id="dialogParCtr" class="dialog">

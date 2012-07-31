@@ -82,7 +82,8 @@ function _init(tabNum){
 	    $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){
 		reloadContent(); refreshCtrlTable();
 		CTRL_UpdateSubmitClick(tab.ajout);
-		$('#CTRL h2').text("Duplication Contrôle");
+		$('#CTRL h2').text("Duplication de document");
+		$('#CTRL button.submit').text("Dupliquer");
 		$('#CTRL #num').val('');
 		$('#CTRL #date').val(getFormatedDate());
 		$('#CTRL #date').change()
@@ -582,6 +583,28 @@ function _init(tabNum){
 	    clearInterval(timer);
 	}
     }
+    var menu1 = [
+	{'Dupliquer':function(menuItem,menu) { 
+		    }
+       	},
+	{'Editer':function(menuItem,menu) {
+			    console.log($(this));
+			    if($('.dialog').dialog('isOpen')) return false;
+			    else{
+				updateSubmitClick(tab.modif);
+				var par = $(this);
+				// Remplir les champs en fonction 
+				$(tab.dialogId+' .formulaire input').each(function(){
+				    $(this).val(getChildText(par,$(this).attr('id')));
+				});
+				$(tab.dialogId+' form h1').html('MODIFICATION ' + $('ul .ui-state-active a').html());
+				$(tab.dialogId).dialog('open');
+			    }
+		    }
+       	},
+	{'Supprimer':function(menuItem,menu) { alert("You clicked Option 1!"); } }
+    ];
+    $('table.tableau tr').contextMenu(menu1,{theme:'human'});
 }
 // FIN INIT()
 

@@ -234,3 +234,47 @@ label.titre{
 #CTRL tr.bouttons button, #CTRL tr.bouttons a{
     margin: auto 25px;
 }
+
+
+
+/* Linux Human Theme */
+/* ================= */
+    .context-menu-theme-human {
+	background:#F9F5F2;
+	border:1px solid #963;
+    }
+    .context-menu-theme-human .context-menu-item {
+	text-align:left;
+	cursor:pointer;
+	color:black;
+	font-family:Helvetica,DejaVu Sans,Arial;
+	font-size:12px;
+	line-height:20px;
+	height:28px;
+	border:1px solid #F9F5F2;
+	border-left:0;
+	border-right:0;
+    }
+    .context-menu-theme-human .context-menu-separator {
+	margin:0px 0px 0px 32px;
+	font-size:0px;
+	border-top:1px solid #C5C5C5;
+	border-bottom:1px solid #F5F5F5;
+    }
+    .context-menu-theme-human .context-menu-item-hover {
+	background:transparent url(cmenu-human-menu-item-hover.gif) repeat-x left center;
+	border-color:#963;
+    }
+    .context-menu-theme-human .context-menu-item .context-menu-item-inner {
+	padding:4px 16px 4px 35px;
+	margin-left:0px;
+	background-color:none;
+	background-repeat:no-repeat;
+	background-position:3px center;
+	background-image:none;
+    }
+    .context-menu-theme-human .context-menu-item-hover .context-menu-item-inner {
+    }
+    .context-menu-theme-human .context-menu-item-disabled {
+	color:#A7A7A7;
+    }

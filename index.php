@@ -9,6 +9,7 @@
 	<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
 	<script type="text/javascript" src="js/jquery.quicksearch.js"></script>
 	<script type="text/javascript" src="js/mainJs.js"></script>
+	<script type="text/javascript" src="js/jquery.contextmenu.js"></script>
 	<script>
 	    $(document).ready(function(){
 	        $('#page').load('main.php', function(){_init();$('#loader').fadeOut('slow');})

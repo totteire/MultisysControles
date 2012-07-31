@@ -77,12 +77,12 @@
             <td><label class="titre">Type: </label></td>
             <td colspan=7>
                 <div class="radio" style="display:inline;">
-		            <input type="radio" id="brEssai" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'ACE')echo "checked=true" ?> value="ACE"/><label for="brEssai">A.C.E</label>
-		            <input type="radio" id="brVerif" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'CV')echo "checked=true" ?> value="CV"/><label for="brVerif">C.V</label>
-		            <input type="radio" id="brEtal" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'CE')echo "checked=true" ?> value="CE"/><label for="brEtal">C.E</label>
-			    <input type="radio" id="brInter" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'FI')echo "checked=true" ?> value="FI"/><label for="brInter">F.I</label>
+		            <input type="radio" id="brEssai" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'ACE')echo "checked=true" ?> value="ACE"/><label for="brEssai">ACE</label>
+		            <input type="radio" id="brVerif" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'CV')echo "checked=true" ?> value="CV"/><label for="brVerif">CV</label>
+		            <input type="radio" id="brEtal" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'CE')echo "checked=true" ?> value="CE"/><label for="brEtal">CE</label>
+			    <input type="radio" id="brInter" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'FI')echo "checked=true" ?> value="FI"/><label for="brInter">FI</label>
                 </div>
-                <h2 style="color:#EB8F00;display:inline;margin-left:150px;">Modification Contrôle</h2>
+                <h2 style="color:#EB8F00;display:inline;margin-left:150px;">Édition du document</h2>
             </td>
         </tr>
         <tr class='static menu lieu'>
@@ -231,7 +231,7 @@
 		<input type='text' class='ui-corner-all' name='docNum' id='docNum' value='<?php echo $ctrl['DOCNUM'] ?>'/>
 	    </td>
 	</tr>
-        <tr class='static bouttons'><td colspan=7><button class="submit">Enregistrer</button><a href="generatePdf.php?id=<?php echo $id?>" onclick='' class="button pdfEdit">Editer PDF</a><button id="CtrlClear">Nouveau document</button><button class='dupliquer'>Dupliquer</button></td></tr>
+        <tr class='static bouttons'><td colspan=7><button class="submit">Enregistrer</button></td></tr>
 	</table>
 	</form>
 </div>
