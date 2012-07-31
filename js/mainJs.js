@@ -392,6 +392,60 @@ function _init(tabNum){
     }
     // FIN RELOAD CONTENT
     
+    var menu1 = [
+	{'Dupliquer':function(menuItem,menu) { 
+		    }
+       	},
+	{'Editer':function(menuItem,menu) {
+			    console.log($(this));
+			    if(tab.page = "controle.php"){
+				updateSubmitClick(tab.modif,'#CTRL .submit');
+				$(".tabs").tabs({'selected':5});
+				updateTAb();
+				$('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
+				var id = getChildText($(this),'id');
+				$('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){reloadContent();refreshCtrlTable();CTRL_UpdateSubmitClick(tab.modif);console.log('tab.modif: '+tab.modif);});
+			    }else{
+				if($('.dialog').dialog('isOpen')) return false;
+				else{
+				    updateSubmitClick(tab.modif);
+				    var par = $(this);
+				    // Remplir les champs en fonction 
+				    $(tab.dialogId+' .formulaire input').each(function(){
+					    $(this).val(getChildText(par,$(this).attr('id')));
+					    });
+				    $(tab.dialogId+' form h1').html('MODIFICATION ' + $('ul .ui-state-active a').html());
+				    $(tab.dialogId).dialog('open');
+				}
+			    }
+		    }
+       	},
+	{'Supprimer':function(menuItem,menu) { 
+	
+			    if($('.dialog').dialog('isOpen')) return false;
+			    else{
+				var par = $(this);
+				$("#dialog-confirm #confirmMess").html("Voulez-vous vraiment supprimer "+par.children(':nth-child(2)').text()+"?");
+				$("#dialog-confirm").dialog("option","title","Suppression!");
+				$("#dialog-confirm").dialog(
+				    "option",
+				    "buttons",{
+					"Supprimer":function(){
+					    submitForm('id='+getChildText(par,'id'),tab.suppr);
+					    $("#dialog-confirm").dialog('close');
+					},
+					"Annuler":function(){
+					    $("#dialog-confirm").dialog('close');
+					}
+				    }
+				);
+				$("#dialog-confirm").dialog('open');
+			    }
+		    }
+	}
+    ];
+    $('table.tableau tr').contextMenu(menu1,{theme:'human'});
+
     function updateSubmitClick(php, cssButton, formData){
         if(cssButton === undefined) cssButton = tab.dialogId+' button.submit';
         if(formData === undefined) formData = "$(tab.dialogId+' form.formulaire').first().serialize()";
@@ -583,28 +637,6 @@ function _init(tabNum){
 	    clearInterval(timer);
 	}
     }
-    var menu1 = [
-	{'Dupliquer':function(menuItem,menu) { 
-		    }
-       	},
-	{'Editer':function(menuItem,menu) {
-			    console.log($(this));
-			    if($('.dialog').dialog('isOpen')) return false;
-			    else{
-				updateSubmitClick(tab.modif);
-				var par = $(this);
-				// Remplir les champs en fonction 
-				$(tab.dialogId+' .formulaire input').each(function(){
-				    $(this).val(getChildText(par,$(this).attr('id')));
-				});
-				$(tab.dialogId+' form h1').html('MODIFICATION ' + $('ul .ui-state-active a').html());
-				$(tab.dialogId).dialog('open');
-			    }
-		    }
-       	},
-	{'Supprimer':function(menuItem,menu) { alert("You clicked Option 1!"); } }
-    ];
-    $('table.tableau tr').contextMenu(menu1,{theme:'human'});
 }
 // FIN INIT()
 
