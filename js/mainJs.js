@@ -1,4 +1,5 @@
 prerempli = false;
+CTRL_Ready = false;
 function getFormatedDate(){
     var today = new Date();
     var month = today.getMonth() + 1;
@@ -7,7 +8,7 @@ function getFormatedDate(){
     return today;
 }
 function _init(tabNum){
-    if(tabNum === undefined) tabNum = 5;
+    if(tabNum === undefined) tabNum = 6;
     var tab = {'page':'','ajout':'','suppr':'','modif':'','dialogId':'','needReload':''};
     $(".tabs").tabs({'selected':tabNum});
     updateTAb();
@@ -98,6 +99,7 @@ function _init(tabNum){
 	});
         // REGROUPE INSTRUCTIONS CTRL POUR OPTIMISATION
         if(tab.page == "ctrl.php"){
+	    CTRL_Ready = true;
 	    CTRL_UpdateSubmitClick(tab.ajout); 
 	    $('#CTRL #date').change(function(){
                 if($('.menu.lieu .radio input:radio:checked').val() == 'S'){
@@ -438,6 +440,7 @@ function _init(tabNum){
             if(tab.page == 'ctrl.php'){
 		$("input#search").val('');
                 $("li.search").hide();
+		if(!CTRL_Ready) reloadContent();
                 CTRL_UpdateSubmitClick(tab.ajout);
                 // Delai car tout element de la tab deviennent visible après le click
                 var wait = setTimeout(refreshCtrlTable,10);
@@ -496,7 +499,8 @@ function _init(tabNum){
 		    displayMess("<img src='img/error.png'/><h3>"+data.msg+"</h3>", "ui-state-error",2000);
 		}else{
 		    displayMess("<img src='img/icon_ok.png'/><h3>"+data.msg+"</h3>", "ui-state-highlight",1500);
-		    $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
+		    $(".tabs").tabs({'selected':tabNum});
+		    $('.ui-tabs-panel:visible').load('controle.php',function(){reloadContent();});
 		}
 	    },
 	    error: function(XMLHttpRequest, textStatus, errorThrown){
@@ -642,7 +646,7 @@ function numSC_Change(){
 				    delay: 0,
 				    minLength: 0,
 				    source: function( request, response ) {
-					    var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
+					    var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex(request.term), "i" );
 					    response( select.children( "option" ).map(function() {
 						    var text = $( this ).text();
 						    if ( this.value && ( !request.term || matcher.test(text) ) )

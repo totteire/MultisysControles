@@ -8,7 +8,7 @@
     
     if($res1 && $resDlFKmm && $resDlFKpar){
 	    $return['error'] = false;
-	    $return['msg'] = "Le moyen de mesure a bien été supprimé!";
+	    $return['msg'] = "Le document a bien été supprimé!";
     }else{
 	    $return['error'] = true;
 	    $return['msg'] = "Il y a eu une erreur!";
