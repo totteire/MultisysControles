@@ -119,7 +119,7 @@
 	</tr>
 	<tr class='static appareil mandatory'>
 	    <td><label class="titre">Désignation:</label></td>
-	    <td class='minWidth'><select id="AppDesi" class="combobox" name='appDesi'>
+	    <td class='minWidth'><select id="AppDesi" class="combobox noArrow" name='appDesi'>
 	    <?php 
 		$reqApp="SELECT * FROM APP_DESI ORDER BY DESIGNATION;";
 		$resultApp = mysql_query($reqApp)or die(mysql_error());
@@ -133,7 +133,7 @@
 		</select>
 	    </td>
 	    <td><label class="titre  narrow">Marque:</label></td>
-	    <td class='minWidth'><select id="AppMarq" class="combobox" name='appMarque'>
+	    <td class='minWidth'><select id="AppMarq" class="combobox noArrow" name='appMarque'>
 	    <?php
 		$reqApp="SELECT * FROM APP_MARQUE ORDER BY MARQUE;";
 		$resultApp = mysql_query($reqApp)or die(mysql_error());
@@ -147,7 +147,7 @@
 	    </select>
 	    </td>
 	    <td><label class="titre  narrow">Type:</label></td>
-            <td class='minWidth'><select id="AppType" class="combobox" name='appType'>
+            <td class='minWidth'><select id="AppType" class="combobox noArrow" name='appType'>
 	    <?php
 		$reqApp="SELECT * FROM APP_TYPE ORDER BY TYPE;";
 		$resultApp = mysql_query($reqApp)or die(mysql_error());

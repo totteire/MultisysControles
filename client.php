@@ -1,6 +1,6 @@
 <button class="btAjout"><h1> +&nbsp; &nbsp; Client</button>
 <table id="tableau" class="tableau tablesorter">
-	<thead><tr><th class=info></th><th class="topLeft">Nom</th><th>Adresse</th><th class="info"></th><th>CP</th><th>Ville</th><th class="topRight">Action</th></tr></thead>
+	<thead><tr><th class=info></th><th class="topLeft">Nom</th><th>Adresse</th><th class="info"></th><th>CP</th><th class="topRight">Ville</th></tr></thead>
     <tbody>
 	<?php
 		include('connect.php');
@@ -18,7 +18,6 @@
 				<td id='ad2' class='info'>".$ad[1]."</td>
 				<td id='adCP'>".$res["AD_CP"]."</td>
 				<td id='adVille'>".$res["AD_VILLE"]."</td>
-				<td id='modif' class='modifCell'><img class='modif' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
 			</tr>";
 			$nb++;
 		}
@@ -31,7 +30,7 @@
 		<form id="formClient" class="formulaire">
 			<h1>Nouveau Client</h1>
 			<p></p>
-            <input class='info' type='text' name='id' id='id'/>
+			<input class='info' type='text' name='id' id='id'/>
 			<label>Nom:</label>
 			<input type="text" name="nom" id="nom" />
 

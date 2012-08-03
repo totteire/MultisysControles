@@ -8,7 +8,7 @@
         
         <button class="btAjout"><h1> +&nbsp; &nbsp; DÉSIGNATION</h1></button>
         <table id="tableau" class="tableau tablesorter">
-	        <thead><tr><th class='info'></th><th class='topLeft'>Désignation</th><th class="topRight">Action</th></tr></thead>
+	        <thead><tr><th class='info'></th><th class='topLeftRight'>Désignation</th></tr></thead>
             <tbody>
 	        <?php
 		        include('connect.php');
@@ -19,8 +19,7 @@
 		        {
 			        echo "<tr>
             			<td id='id' class='info'>".$res['ID']."</td>
-				        <td id='desig'>".$res['DESIGNATION']."</a></td>
-				        <td id='modif' class='modifCell'><img class='modif' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
+				<td id='desig'>".$res['DESIGNATION']."</a></td>
 			        </tr>";
 			        $nb++;
 		        }
@@ -46,7 +45,7 @@
 	<div id="tabAppMarq" page='appareil.php' dialogId='#dialogAppMarq' ajout='appareil/ajoutAppMarq.php' suppr='appareil/supprAppMarq.php' modif='appareil/modifAppMarq.php' needReload='false'>
     	<button class="btAjout"><h1> +&nbsp; &nbsp; MARQUE</h1></button>
         <table id="tableau" class="tableau tablesorter">
-	        <thead><tr><th class='info'></th><th class='topLeft'>Marque</th><th class='topRight'>Action</th></tr></thead>
+	        <thead><tr><th class='info'></th><th class='topLeftRight'>Marque</th></tr></thead>
             <tbody>
 	        <?php
 		        include('connect.php');
@@ -57,8 +56,7 @@
 		        {
 			        echo "<tr>
             			<td id='id' class='info'>".$res['ID']."</td>
-				        <td id='marque'>".$res['MARQUE']."</td>
-				        <td id='modif' class='modifCell'><img class='modif' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
+				<td id='marque'>".$res['MARQUE']."</td>
 			        </tr>";
 			        $nb++;
 		        }
@@ -83,7 +81,7 @@
 	<div id="tabAppType" page='appareil.php' dialogId='#dialogAppType' ajout='appareil/ajoutAppType.php' suppr='appareil/supprAppType.php' modif='appareil/modifAppType.php' needReload='false'>
     	<button class="btAjout"><h1> +&nbsp; &nbsp; TYPE</h1></button>
         <table id="tableau" class="tableau tablesorter">
-	        <thead><tr><th class='info'></th><th class='topLeft'>Type</th><th class="topRight">Action</th></tr></thead>
+	        <thead><tr><th class='info'></th><th class='topLeftRight'>Type</th></tr></thead>
             <tbody>
 	        <?php
 		        include('connect.php');
@@ -94,8 +92,7 @@
 		        {
 			        echo "<tr>
             			<td id='id' class='info'>".$res['ID']."</td>
-				        <td id='type'>".$res["TYPE"]."</td>
-				        <td id='modif' class='modifCell'><img class='modif' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
+				<td id='type'>".$res["TYPE"]."</td>
 			        </tr>";
 			        $nb++;
 		        }

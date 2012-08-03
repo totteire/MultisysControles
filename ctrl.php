@@ -48,7 +48,7 @@
 	</tr>
 	<tr class='static appareil mandatory'>
 	    <td><label class="titre">Désignation:</label></td>
-            <td class='minWidth'><select id="AppDesi" name="appDesi" class="combobox">
+            <td class='minWidth'><select id="AppDesi" name="appDesi" class="combobox noArrow">
                 <option value=""></option>
                 <?php 
                     $reqApp="SELECT * FROM APP_DESI ORDER BY DESIGNATION;";
@@ -60,7 +60,7 @@
 		</select>
 	    </td>
 	    <td><label class="titre narrow">Marque:</label></td>
-            <td class='minWidth'><select id="AppMarq" name="appMarque" class="combobox">
+            <td class='minWidth'><select id="AppMarq" name="appMarque" class="combobox noArrow">
                 <option value=""></option>
                 <?php 
                     $reqApp="SELECT * FROM APP_MARQUE ORDER BY MARQUE;";
@@ -72,7 +72,7 @@
 		</select>
 	    </td>
 	    <td><label class="titre  narrow">Type:</label></td>
-            <td class='minWidth'><select id="AppType" class="combobox" name='appType'>
+            <td class='minWidth'><select id="AppType" class="combobox noArrow" name='appType'>
                 <option value=""></option>
                 <?php 
                     $reqApp="SELECT * FROM APP_TYPE ORDER BY TYPE;";

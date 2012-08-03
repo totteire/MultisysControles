@@ -19,32 +19,32 @@
         	<li style="float:right;"><a href="#tabCtrl">AJOUT/MODIF DOCUMENT</a></li>
         	<li style="margin-right:30px;float:right;"><a href="#tabCtr">LISTE</a></li>
     	</ul>
-        <div id="tabCli" page='client.php' dialogId='#dialogCli' ajout='client/ajoutCli.php' suppr='client/supprCli.php' modif='client/modifCli.php' needReload='false'>
+        <div id="tabCli" class='tabMenu1' page='client.php' dialogId='#dialogCli' ajout='client/ajoutCli.php' suppr='client/supprCli.php' modif='client/modifCli.php' needReload='false'>
 	        <?php 
 	            include("client.php");
             ?>
         </div>
-    	<div id="tabApp" page='appareil.php' dialogId='#dialogApp' ajout='appareil/ajoutApp.php' suppr='appareil/supprApp.php' modif='appareil/modifApp.php' needReload='false'>
+    	<div id="tabApp" class='tabMenu1' page='appareil.php' dialogId='#dialogApp' ajout='appareil/ajoutApp.php' suppr='appareil/supprApp.php' modif='appareil/modifApp.php' needReload='false'>
 	        <?php 
 	            include("appareil.php");
 	        ?>
     	</div>
-    	<div id="tabCtr" page='controle.php' dialogId='' ajout='' suppr='controle/supprCtrl.php' modif='controle/modifCtrl.php' needReload='true'>
+    	<div id="tabCtr" class='tabMenu2' page='controle.php' dialogId='' ajout='' suppr='controle/supprCtrl.php' modif='controle/modifCtrl.php' needReload='true'>
 	        <?php
 	            include("controle.php");
 	        ?>
     	</div>
-    	<div id="tabMes" page='moyenMesure.php' dialogId='#dialogMes' ajout='moyenMesure/ajoutMes.php' suppr='moyenMesure/supprMes.php' modif='moyenMesure/modifMes.php' needReload='false'>
+    	<div id="tabMes" class='tabMenu1' page='moyenMesure.php' dialogId='#dialogMes' ajout='moyenMesure/ajoutMes.php' suppr='moyenMesure/supprMes.php' modif='moyenMesure/modifMes.php' needReload='false'>
 	        <?php 
 	            include("moyenMesure.php");
 	        ?>
     	</div>
-    	<div id="tabPar" page='parametre.php' dialogId='#dialogPar' ajout='parametre/ajoutPar.php' suppr='parametre/supprPar.php' modif='parametre/modifPar.php' needReload='true'>
+    	<div id="tabPar" class='tabMenu1' page='parametre.php' dialogId='#dialogPar' ajout='parametre/ajoutPar.php' suppr='parametre/supprPar.php' modif='parametre/modifPar.php' needReload='true'>
 	        <?php 
 	            include("parametre.php");
 	        ?>
     	</div>
-    	<div id="tabOpt" page='option.php' dialogId='#dialogOpt' ajout='technicien/ajoutTech.php' suppr='technicien/supprTech.php' modif='technicien/modifTech.php' needReload='true'>
+    	<div id="tabOpt" class='tabMenu1' page='option.php' dialogId='#dialogOpt' ajout='technicien/ajoutTech.php' suppr='technicien/supprTech.php' modif='technicien/modifTech.php' needReload='true'>
 	        <?php
 	            include("option.php");
 	        ?>

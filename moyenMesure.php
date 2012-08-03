@@ -1,6 +1,6 @@
 <button class="btAjout"><h1> +&nbsp; &nbsp; Moyen de Mesure</h1></button>
 <table id="tableau" class="tableau tablesorter">
-	<thead><tr><th class='info'></th><th class="topLeft">Libellé</th><th>Vérification</th><th>Numéro & Date</th><th class="topRight">Action</th></tr></thead>
+	<thead><tr><th class='info'></th><th class="topLeft">Libellé</th><th>Vérification</th><th class="topRight">Numéro & Date</th></tr></thead>
     <tbody>
 	<?php
 		include('connect.php');
@@ -14,7 +14,6 @@
 				<td id='libelle'>".$res['LIBELLE']."</a></td>
 				<td id='nomVerif'>".$res['NOM_VERIF']."</td>
 				<td id='numDateVerif'>".$res["NUM_DATE_VERIF"]."</td>
-				<td id='modif' class='modifCell'><img class='modif' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
 			</tr>";
 			$nb++;
 		}

@@ -278,3 +278,30 @@ label.titre{
     .context-menu-theme-human .context-menu-item-disabled {
 	color:#A7A7A7;
     }
+    div.target
+    {
+	width: 100px;
+    }
+    div.target ul
+    {
+	border: 1px solid gray;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	background-color: orange;
+    }
+    div.target li
+    {
+	padding-left: 4px;
+	cursor: pointer;
+    }
+    li.simpleon
+    {
+	color: green;
+	font-weight: bold;
+    }
+    li.simpleoff
+    {
+	color: red;
+	font-weight: bold;
+    }

@@ -1,5 +1,7 @@
 prerempli = false;
 CTRL_Ready = false;
+
+
 function getFormatedDate(){
     var today = new Date();
     var month = today.getMonth() + 1;
@@ -13,9 +15,90 @@ function _init(tabNum){
     $(".tabs").tabs({'selected':tabNum});
     updateTAb();
     refreshTabClick();
-    $(".tableau").tablesorter();
     reloadContent();
+    $(".tableau").tablesorter();    
     function reloadContent(){
+	menuEdit = {'Editer':function(menuItem,menu) {
+			    console.log($(this));
+			    if(tab.page = "controle.php"){
+				updateSubmitClick(tab.modif,'#CTRL .submit');
+				$(".tabs").tabs({'selected':5});
+				updateTAb();
+				$('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
+				var id = getChildText($(this).parent(),'id');
+				$('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){reloadContent();refreshCtrlTable();CTRL_UpdateSubmitClick(tab.modif);console.log('tab.modif: '+tab.modif);});
+			    }else{
+				if($('.dialog').dialog('isOpen')) return false;
+				else{
+				    updateSubmitClick(tab.modif);
+				    var par = $(this).parent();
+				    // Remplir les champs en fonction 
+				    $(tab.dialogId+' .formulaire input').each(function(){
+					    $(this).val(getChildText(par,$(this).attr('id')));
+					    });
+				    $(tab.dialogId+' form h1').html('MODIFICATION ' + $('ul .ui-state-active a').html());
+				    $(tab.dialogId).dialog('open');
+				}
+			    }
+		    }
+	};
+	menuDupliquer = {'Dupliquer':function(menuItem,menu) { 
+		    var id = $(this).parent().children().first().text();
+		    $(".tabs").tabs({'selected':5});
+		    $('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
+		    $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){
+			$('#CTRL button.submit').text("Dupliquer");
+			reloadContent(); refreshCtrlTable();
+			CTRL_UpdateSubmitClick(tab.ajout);
+			$('#CTRL h2').text("Duplication de document");
+			$('#CTRL #num').val('');
+			$('#CTRL #date').val(getFormatedDate());
+			$('#CTRL #date').change()
+			$('#numS').val('');
+			$('#numC').val('');	
+			$('#technicien').children("option:selected").removeAttr("selected");
+			$('#technicien').children("option").first().attr("selected","selected");
+			$('#technicien').next().val('');
+			$('#jugement').children("option:selected").removeAttr("selected");
+			$('#jugement').children("option").first().attr("selected","selected");
+			$('#jugement').next().val('');
+			$('#observation').val('');
+		    });
+	    }
+	};
+	menuSuppr = {'Supprimer':function(menuItem,menu) { 
+			if($('.dialog').dialog('isOpen')) return false;
+			else{
+			    var par = $(this).parent();
+			    $("#dialog-confirm #confirmMess").html("Voulez-vous vraiment supprimer "+par.children(':nth-child(2)').text()+"?");
+			    $("#dialog-confirm").dialog("option","title","Suppression!");
+			    $("#dialog-confirm").dialog(
+				"option",
+				"buttons",{
+				    "Supprimer":function(){
+					submitForm('id='+getChildText(par,'id'),tab.suppr);
+					$("#dialog-confirm").dialog('close');
+				    },
+				    "Annuler":function(){
+					$("#dialog-confirm").dialog('close');
+				    }
+				}
+			    );
+			    $("#dialog-confirm").dialog('open');
+			}
+		}
+	};
+	menu1 = [
+	    menuEdit,
+	    menuSuppr
+	];
+	menu2 = [
+	    menuDupliquer,
+	    menuEdit,
+	    menuSuppr
+	];
+	$(".tabMenu2 table.tableau tr td:not('.modifCell')").contextMenu(menu2,{theme:'human'});
+	$('.tabMenu1 table.tableau tr td').contextMenu(menu1,{theme:'human'});
 //        $.ajax({type:'POST',
 //                url:'getApps.php',
 //                dataType:'json',
@@ -53,51 +136,51 @@ function _init(tabNum){
             $(tab.dialogId).dialog('open');
         });
         
-        $('img.modif').click(function(){
-            if($('.dialog').dialog('isOpen')) return false;
-            else{
-                updateSubmitClick(tab.modif);
-                var par = $(this).parent().parent();
-                // Remplir les champs en fonction 
-                $(tab.dialogId+' .formulaire input').each(function(){
-                    $(this).val(getChildText(par,$(this).attr('id')));
-                });
-                $(tab.dialogId+' form h1').html('MODIFICATION ' + $('ul .ui-state-active a').html());
-                $(tab.dialogId).dialog('open');
-            }
-        });
+	/*$('img.modif').click(function(){*/
+	/*if($('.dialog').dialog('isOpen')) return false;*/
+	/*else{*/
+	/*updateSubmitClick(tab.modif);*/
+	/*var par = $(this).parent().parent();*/
+	/*// Remplir les champs en fonction */
+	/*$(tab.dialogId+' .formulaire input').each(function(){*/
+	/*$(this).val(getChildText(par,$(this).attr('id')));*/
+	/*});*/
+	/*$(tab.dialogId+' form h1').html('MODIFICATION ' + $('ul .ui-state-active a').html());*/
+	/*$(tab.dialogId).dialog('open');*/
+	/*}*/
+	/*});*/
         
-        $('img.modifCtrl').click(function(){
-            updateSubmitClick(tab.modif,'#CTRL .submit');
-            $(".tabs").tabs({'selected':5});
-            updateTAb();
-            $('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
-            var id = getChildText($(this).parent().parent(),'id');
-            $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){reloadContent();refreshCtrlTable();CTRL_UpdateSubmitClick(tab.modif);console.log('tab.modif: '+tab.modif);});
-        });
+	/*$('img.modifCtrl').click(function(){*/
+	/*updateSubmitClick(tab.modif,'#CTRL .submit');*/
+	/*$(".tabs").tabs({'selected':5});*/
+	/*updateTAb();*/
+	/*$('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");*/
+	/*var id = getChildText($(this).parent().parent(),'id');*/
+	/*$('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){reloadContent();refreshCtrlTable();CTRL_UpdateSubmitClick(tab.modif);console.log('tab.modif: '+tab.modif);});*/
+	/*});*/
 
-	$('#CTRL button.dupliquer').click(function(){
-	    var id=$("#CTRL input[name='id']").val();
-	    $('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
-	    $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){
-		reloadContent(); refreshCtrlTable();
-		CTRL_UpdateSubmitClick(tab.ajout);
-		$('#CTRL h2').text("Duplication de document");
-		$('#CTRL button.submit').text("Dupliquer");
-		$('#CTRL #num').val('');
-		$('#CTRL #date').val(getFormatedDate());
-		$('#CTRL #date').change()
-		$('#numS').val('');
-		$('#numC').val('');	
-		$('#technicien').children("option:selected").removeAttr("selected");
-		$('#technicien').children("option").first().attr("selected","selected");
-		$('#technicien').next().val('');
-		$('#jugement').children("option:selected").removeAttr("selected");
-		$('#jugement').children("option").first().attr("selected","selected");
-		$('#jugement').next().val('');
-		$('#observation').val('');
-	    });
-	});
+	/*$('#CTRL button.dupliquer').click(function(){*/
+	/*var id=$("#CTRL input[name='id']").val();*/
+	/*$('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");*/
+	/*$('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){*/
+	/*reloadContent(); refreshCtrlTable();*/
+	/*CTRL_UpdateSubmitClick(tab.ajout);*/
+	/*$('#CTRL h2').text("Duplication de document");*/
+	/*$('#CTRL button.submit').text("Dupliquer");*/
+	/*$('#CTRL #num').val('');*/
+	/*$('#CTRL #date').val(getFormatedDate());*/
+	/*$('#CTRL #date').change()*/
+	/*$('#numS').val('');*/
+	/*$('#numC').val('');	*/
+	/*$('#technicien').children("option:selected").removeAttr("selected");*/
+	/*$('#technicien').children("option").first().attr("selected","selected");*/
+	/*$('#technicien').next().val('');*/
+	/*$('#jugement').children("option:selected").removeAttr("selected");*/
+	/*$('#jugement').children("option").first().attr("selected","selected");*/
+	/*$('#jugement').next().val('');*/
+	/*$('#observation').val('');*/
+	/*});*/
+	/*});*/
         // REGROUPE INSTRUCTIONS CTRL POUR OPTIMISATION
         if(tab.page == "ctrl.php"){
 	    CTRL_Ready = true;
@@ -286,8 +369,16 @@ function _init(tabNum){
 	    $("input#search").val('');
 	    $("li.search").hide();
 	        
-	        
         } // FIN INSTRUCTIONS CTRL
+	if(tab.page == 'controle.php'){
+	    $("#tabCtr table th").contextMenu("#menuTable");
+	    $("#tabCtr table#tableCol").columnManager({listTargetID:'menuTable', onClass: 'simpleon', offClass: 'simpleoff'});
+	    $("#tabCtr table.tableau tr").click(function(){
+		// Color selected row
+		$("#tabCtr tr.selected").removeClass('selected');
+		$(this).addClass('selected'); 
+	    });        
+	}
         if(tab.page == 'option.php'){
 	    $.ajax({
 		type: 'GET',
@@ -303,27 +394,27 @@ function _init(tabNum){
 		SYNC();
 	    });
 	}
-        $('img.suppr').click(function(){
-            if($('.dialog').dialog('isOpen')) return false;
-            else{
-                var par = $(this).parent().parent();
-                $("#dialog-confirm #confirmMess").html("Voulez-vous vraiment supprimer "+par.children(':nth-child(2)').text()+"?");
-                $("#dialog-confirm").dialog("option","title","Suppression!");
-                $("#dialog-confirm").dialog(
-                    "option",
-                    "buttons",{
-			"Supprimer":function(){
-			    submitForm('id='+getChildText(par,'id'),tab.suppr);
-			    $("#dialog-confirm").dialog('close');
-			},
-			"Annuler":function(){
-			    $("#dialog-confirm").dialog('close');
-			}
-		    }
-                );
-                $("#dialog-confirm").dialog('open');
-            }
-        });
+	/*$('img.suppr').click(function(){*/
+	/*if($('.dialog').dialog('isOpen')) return false;*/
+	/*else{*/
+	/*var par = $(this).parent().parent();*/
+	/*$("#dialog-confirm #confirmMess").html("Voulez-vous vraiment supprimer "+par.children(':nth-child(2)').text()+"?");*/
+	/*$("#dialog-confirm").dialog("option","title","Suppression!");*/
+	/*$("#dialog-confirm").dialog(*/
+	/*"option",*/
+	/*"buttons",{*/
+	/*"Supprimer":function(){*/
+	/*submitForm('id='+getChildText(par,'id'),tab.suppr);*/
+	/*$("#dialog-confirm").dialog('close');*/
+	/*},*/
+	/*"Annuler":function(){*/
+	/*$("#dialog-confirm").dialog('close');*/
+	/*}*/
+	/*}*/
+	/*);*/
+	/*$("#dialog-confirm").dialog('open');*/
+	/*}*/
+	/*});*/
         $('.parModifMM').click(function(){
             var nom = $(this).parent().parent().children(":nth-child(2)").text();
             $('#dialogParMM').dialog({'title':'Moyens de mesure par défaut pour le paramètre: '+nom});
@@ -368,9 +459,6 @@ function _init(tabNum){
                                                             }});
             $("#dialog-confirm").dialog('open');
 
-	    // Color selected row
-	    $("#tabCtr tr.selected").removeClass('selected');
-	    $(this).parent().parent().addClass('selected'); 
         })
 
         $("a.pdfEdit").mousedown(function(e){
@@ -391,60 +479,7 @@ function _init(tabNum){
 	//////////////////////////////////////////////////////////////////////////////////
     }
     // FIN RELOAD CONTENT
-    
-    var menu1 = [
-	{'Dupliquer':function(menuItem,menu) { 
-		    }
-       	},
-	{'Editer':function(menuItem,menu) {
-			    console.log($(this));
-			    if(tab.page = "controle.php"){
-				updateSubmitClick(tab.modif,'#CTRL .submit');
-				$(".tabs").tabs({'selected':5});
-				updateTAb();
-				$('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
-				var id = getChildText($(this),'id');
-				$('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){reloadContent();refreshCtrlTable();CTRL_UpdateSubmitClick(tab.modif);console.log('tab.modif: '+tab.modif);});
-			    }else{
-				if($('.dialog').dialog('isOpen')) return false;
-				else{
-				    updateSubmitClick(tab.modif);
-				    var par = $(this);
-				    // Remplir les champs en fonction 
-				    $(tab.dialogId+' .formulaire input').each(function(){
-					    $(this).val(getChildText(par,$(this).attr('id')));
-					    });
-				    $(tab.dialogId+' form h1').html('MODIFICATION ' + $('ul .ui-state-active a').html());
-				    $(tab.dialogId).dialog('open');
-				}
-			    }
-		    }
-       	},
-	{'Supprimer':function(menuItem,menu) { 
-	
-			    if($('.dialog').dialog('isOpen')) return false;
-			    else{
-				var par = $(this);
-				$("#dialog-confirm #confirmMess").html("Voulez-vous vraiment supprimer "+par.children(':nth-child(2)').text()+"?");
-				$("#dialog-confirm").dialog("option","title","Suppression!");
-				$("#dialog-confirm").dialog(
-				    "option",
-				    "buttons",{
-					"Supprimer":function(){
-					    submitForm('id='+getChildText(par,'id'),tab.suppr);
-					    $("#dialog-confirm").dialog('close');
-					},
-					"Annuler":function(){
-					    $("#dialog-confirm").dialog('close');
-					}
-				    }
-				);
-				$("#dialog-confirm").dialog('open');
-			    }
-		    }
-	}
-    ];
-    $('table.tableau tr').contextMenu(menu1,{theme:'human'});
+     
 
     function updateSubmitClick(php, cssButton, formData){
         if(cssButton === undefined) cssButton = tab.dialogId+' button.submit';
@@ -775,8 +810,7 @@ function numSC_Change(){
 				    .append( "<a>" + item.label + "</a>" )
 				    .appendTo( ul );
 		    };
-
-		    this.button = $( "<button type='button'>&nbsp;</button>" )
+		    if(!select.hasClass('noArrow')) this.button = $( "<button type='button'>&nbsp;</button>" )
 			    .attr( "tabIndex", -1 )
 			    .attr( "title", "Tout afficher" )
 			    .insertAfter( input )

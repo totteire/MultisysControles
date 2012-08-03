@@ -1,5 +1,7 @@
-<table id="tableau" class="tableau tablesorter">
-	<thead><tr><th class='info'></th><th class="topLeft">Numéro</th><th>Type</th><th>Date</th><th>Client</th><th>APP-Designation</th><th>APP-Marque</th><th>APP-Type</th><th>Num Série</th><th>Num Chassis</th><th class="topRight">Action</th></tr></thead>
+<div id="menuTable" class='target' style="display:none;width:200px;background-color:white;border:1px solid black;padding:5px;">
+</div>
+<table id="tableCol" class="tableau tablesorter">
+	<thead><tr><th class='info'></th><th class="topLeft">Numéro</th><th>Type</th><th>Date</th><th>Client</th><th>APP-Designation</th><th>APP-Marque</th><th>APP-Type</th><th>Num Série</th><th>Num Chassis</th><th class="topRight"></th></tr></thead>
     <tbody style="overflow-y: scroll; overflow-x: hidden; height: 100px;">
 	<?php
 		include('connect.php');
@@ -22,7 +24,7 @@
 			    <td id='TDappT'>".$res['TYPE']."</td>
 			    <td id='TDnumS'>".$res['NUM_SERIE']."</td>
 			    <td id='TDnumC'>".$res['NUM_CHASSIS']."</td>
-			    <td id='modif' class='modifCell'><img class='modifCtrl' src='img/modify.png'/><img class='suppr' src='img/delete.png'/><a href='generatePdf.php?id=".$res['ID']."' onclick='' class='pdfEdit'><img src='img/pdf.png'/></a></td>
+			    <td id='modif' class='modifCell'><a href='generatePdf.php?id=".$res['ID']."' onclick='' class='pdfEdit'><img src='img/pdf.png'/></a></td>
 		    </tr>";
 		    $nb++;
 		}
