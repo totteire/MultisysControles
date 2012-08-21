@@ -19,8 +19,8 @@ function _init(tabNum){
     $(".tableau").tablesorter();    
     function reloadContent(){
 	menuEdit = {'Editer':function(menuItem,menu) {
-			    console.log($(this));
-			    if(tab.page = "controle.php"){
+			    console.log(tab.page);
+			    if(tab.page == "controle.php"){
 				updateSubmitClick(tab.modif,'#CTRL .submit');
 				$(".tabs").tabs({'selected':5});
 				updateTAb();
@@ -371,13 +371,17 @@ function _init(tabNum){
 	        
         } // FIN INSTRUCTIONS CTRL
 	if(tab.page == 'controle.php'){
-	    $("#tabCtr table th").contextMenu("#menuTable");
-	    $("#tabCtr table#tableCol").columnManager({listTargetID:'menuTable', onClass: 'simpleon', offClass: 'simpleoff'});
+	    $('.ui-tabs-panel:visible table th:visible').first().addClass("topLeft");
+	    $('.ui-tabs-panel:visible table th:visible').last().addClass("topRight");
+	    // Remove extra .target kept in DOM !important
+	    $(".target").not(":eq(0)").remove();
+	    $("#tabCtr table th").contextMenu("#tabCtr #menuTable");
+	    $("#tabCtr table#tableCol").columnManager({listTargetID:'menuTable', onClass: 'simpleon', offClass: 'simpleoff', hideInList: [1,11], colsHidden: []});
 	    $("#tabCtr table.tableau tr").click(function(){
 		// Color selected row
 		$("#tabCtr tr.selected").removeClass('selected');
 		$(this).addClass('selected'); 
-	    });        
+	    }); 
 	}
         if(tab.page == 'option.php'){
 	    $.ajax({
@@ -540,7 +544,7 @@ function _init(tabNum){
 		$('input#search').quicksearch('.ui-tabs-panel:visible table.tableau tbody tr');
 		placerBtAjout();
 	    }
-            console.log("click sur tab!");
+            console.log("click sur tab! tab.page: "+tab.page);
         });
     }
 
