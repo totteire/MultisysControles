@@ -34,8 +34,8 @@ function _init(tabNum){
 				    var par = $(this).parent();
 				    // Remplir les champs en fonction 
 				    $(tab.dialogId+' .formulaire input').each(function(){
-					    $(this).val(getChildText(par,$(this).attr('id')));
-					    });
+					$(this).val(getChildText(par,$(this).attr('id')));
+				    });
 				    $(tab.dialogId+' form h1').html('MODIFICATION ' + $('ul .ui-state-active a').html());
 				    $(tab.dialogId).dialog('open');
 				}
@@ -182,7 +182,7 @@ function _init(tabNum){
 	/*});*/
 	/*});*/
         // REGROUPE INSTRUCTIONS CTRL POUR OPTIMISATION
-        if(tab.page == "ctrl.php"){
+	if(tab.page == "ctrl.php"){
 	    CTRL_Ready = true;
 	    CTRL_UpdateSubmitClick(tab.ajout); 
 	    $('#CTRL #date').change(function(){
@@ -535,7 +535,7 @@ function _init(tabNum){
 		$("input#search").val('');
                 $("li.search").hide();
 		if(!CTRL_Ready) reloadContent();
-                CTRL_UpdateSubmitClick(tab.ajout);
+		/*CTRL_UpdateSubmitClick(tab.ajout);*/
                 // Delai car tout element de la tab deviennent visible après le click
                 var wait = setTimeout(refreshCtrlTable,10);
             }else{
@@ -594,7 +594,7 @@ function _init(tabNum){
 		}else{
 		    displayMess("<img src='img/icon_ok.png'/><h3>"+data.msg+"</h3>", "ui-state-highlight",1500);
 		    $(".tabs").tabs({'selected':tabNum});
-		    $('.ui-tabs-panel:visible').load('controle.php',function(){reloadContent();});
+		    $('.ui-tabs-panel:visible').load('controle.php',function(){updateTAb();reloadContent();});
 		}
 	    },
 	    error: function(XMLHttpRequest, textStatus, errorThrown){
