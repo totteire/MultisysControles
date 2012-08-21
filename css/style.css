@@ -288,12 +288,13 @@ label.titre{
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	background-color: orange;
     }
     div.target li
     {
-	padding-left: 4px;
+	margin: 4px;
+	border: 1px solid black;
 	cursor: pointer;
+	background-color: orange;
     }
     li.simpleon
     {

@@ -379,6 +379,9 @@
 					}
 				}
 			}
+			// Réajuster les bordures
+			$('.ui-tabs-panel:visible table th:visible').removeClass("topLeft");
+			$('.ui-tabs-panel:visible table th:visible').first().addClass("topLeft");
 		};
 
 		/**
