@@ -46,7 +46,7 @@
 	            </select>	
         	</td>
 	</tr>
-	<tr class='static appareil mandatory'>
+	<tr class='static autoInsert mandatory'>
 	    <td><label class="titre">Désignation:</label></td>
             <td class='minWidth'><select id="AppDesi" name="appDesi" class="combobox noArrow">
                 <option value=""></option>
@@ -136,13 +136,19 @@
             <td><label class="titre">Observation:</label></td>
             <td colspan=7><textarea type='textarea' class="ui-corner-all" name='observation' id='observation'></textarea></td>
         </tr>
-	<tr class='FI mandatory'>
+	<tr class='FI mandatory autoInsert'>
 	    <td><label class="titre">Documents:</label></td>
-	    <td>
+	    <td colspan=7>
 		<select id="docsSt" class="combobox" name="docST">
-		    <option value='1'>CV</option>
-		    <option value='2'>CE</option>
-		    <option value='3'>CV + CE</option>
+		    <option></option>
+		    <?php
+			$reqDocSt = "SELECT DISTINCT DOCST FROM CONTROLE WHERE TYPE_CTRL='FI';";
+			$res = mysql_query($reqDocSt)or die(mysql_error());
+			while($docSt = mysql_fetch_array($res)){
+			    echo "<option value='".$docSt['DOCST']."'>".$docSt['DOCST']."</option>";
+			}
+
+		    ?> 
 		</select>
 	    </td>
 	</tr>

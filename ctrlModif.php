@@ -217,11 +217,18 @@
         </tr>
 	<tr class='FI mandatory'>
 	    <td><label class="titre">Documents:</label></td>
-	    <td>
+	    <td colspan=7>
 		<select id="docsSt" class="combobox" name="docST">
-		    <option <?php if($ctrl['DOCST'] == 1)echo "checked='true' " ?> value='1'>CV</option>
-		    <option <?php if($ctrl['DOCST'] == 2)echo "checked='true' " ?> value='2'>CE</option>
-		    <option <?php if($ctrl['DOCST'] == 3)echo "checked='true' " ?> value='3'>CV + CE</option>
+		    <?php
+			echo "<option value='".$ctrl['DOCST']."' selected='selected'>".$ctrl['DOCST']."</option>";
+			$reqDocSt = "SELECT DISTINCT DOCST FROM CONTROLE WHERE TYPE_CTRL='FI';";
+			$res = mysql_query($reqDocSt)or die(mysql_error());
+			while($docSt = mysql_fetch_array($res)){
+			    if($docSt['DOCST'] <> $ctrl['DOCST'])
+				echo "<option value='".$docSt['DOCST']."'>".$docSt['DOCST']."</option>";
+			}
+
+		    ?> 
 		</select>
 	    </td>
 	</tr>

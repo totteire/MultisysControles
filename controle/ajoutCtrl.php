@@ -76,6 +76,8 @@ if($verifChamps){
             $getIdType = mysql_query("SELECT ID FROM APP_TYPE WHERE TYPE='$app_type';") or die(mysql_error());
             $app_type = mysql_result($getIdType,0);
         }
+	if (strpbrk($docST, '%'))
+	    $docST = strtoupper(str_replace('%', '', $docST));
     
         $reqInserCtrl = mysql_query("INSERT INTO CONTROLE VALUES (NULL,'$num','$app_desi','$app_marque','$app_type','$cli','$type','$date','$tech','$temp','$lieu','$jugement','$observation','$numS','$numC','','$docST','$docNum');") or die(mysql_error());
         $reqID = mysql_query("SELECT ID FROM CONTROLE WHERE NUM='$num';")or die(mysql_error());

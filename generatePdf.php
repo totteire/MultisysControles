@@ -21,8 +21,12 @@
             $page = './CertificatEtalonnage.php';
             $titre = "CERTIFICAT D'ÉTALONNAGE";
             break;
+	case 'FI':
+	    $page = './FicheIntervention.php';
+	    $titre = "FICHE D'INTERVENTION";
+	    break;
     }
-    if($res['TECHNICIEN'] == '1') die("<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>Le Technicien n'est pas renseigné, le ".$titre." n'est donc pas validé!"); 
+    if($res['TECHNICIEN'] == '1' && $res['TYPE_CTRL'] <> 'FI') die("<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>Le Technicien n'est pas renseigné, le ".$titre." n'est donc pas validé!"); 
     $date = date("Y-m-d");
     $req = "UPDATE CONTROLE SET PDF_EDIT='$date' WHERE ID='$ctrlId';";
     $resUpdate = mysql_query($req) or die (mysql_error());

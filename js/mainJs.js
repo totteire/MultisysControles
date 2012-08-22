@@ -593,8 +593,11 @@ function _init(tabNum){
 		    displayMess("<img src='img/error.png'/><h3>"+data.msg+"</h3>", "ui-state-error",2000);
 		}else{
 		    displayMess("<img src='img/icon_ok.png'/><h3>"+data.msg+"</h3>", "ui-state-highlight",1500);
-		    $(".tabs").tabs({'selected':tabNum});
-		    $('.ui-tabs-panel:visible').load('controle.php',function(){updateTAb();reloadContent();});
+		    if(tab.page == "ctrl.php") {
+			$(".tabs").tabs({'selected':tabNum});
+			tab.page = "controle.php";
+		    }
+		    $('.ui-tabs-panel:visible').load(tab.page,function(){updateTAb();reloadContent();});
 		}
 	    },
 	    error: function(XMLHttpRequest, textStatus, errorThrown){
@@ -796,7 +799,7 @@ function numSC_Change(){
 //								select.val( "" );
 //								console.log(input);
 //								input.data( "autocomplete" ).term = "";
-							if($(this).parent().parent().hasClass('appareil')){
+							if($(this).parent().parent().hasClass('autoInsert')){
 							    select.children("option:selected").removeAttr("selected");
 							    $(this).css('background','orange');
 							    $(select).append("<option selected='selected' value='%"+$(this).val()+"'></option>");
