@@ -17,7 +17,7 @@ function _init(tabNum){
     updateTAb();
     refreshTabClick();
     reloadContent();
-    if(!CTRL_Ready) $(".tableau").tablesorter();    
+    $(".tabs div[needReload=false] .tableau").tablesorter();    
     function reloadContent(){
 	menuEdit = {'Editer':function(menuItem,menu) {
 			    console.log(tab.page);
