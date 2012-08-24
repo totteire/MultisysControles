@@ -15,7 +15,6 @@
 				    <td id='id' class='info'>".$res['ID']."</td>
 					<td id='nom'>".$res['TECH']."</td>
 					<td id='signature'><img src=".$res['SIGNATURE']." width='80px' height='36px'\>".$res['SIGNATURE']."</td>
-					<td id='modif' class='modifCell'><img class='modif' src='img/modify.png'/><img class='suppr' src='img/delete.png'/></td>
 				</tr>";
 				$nb++;
 			}

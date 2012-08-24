@@ -366,11 +366,12 @@ function _init(tabNum){
 	    $('.dialog input:checkbox:checked').each(function(){
 		$(this).parent().next().css('color','#EB8F00');
 	    });
-	    $("input#search").val('');
+	    //$("input#search").val('');
 	    $("li.search").hide();
 	        
         } // FIN INSTRUCTIONS CTRL
 	if(tab.page == 'controle.php'){
+	    $("li.search").show();
 	    $('.ui-tabs-panel:visible table th:visible').first().addClass("topLeft");
 	    $('.ui-tabs-panel:visible table th:visible').last().addClass("topRight");
 	    // Remove extra .target kept in DOM !important
@@ -532,7 +533,7 @@ function _init(tabNum){
                 $('.ui-tabs-panel:visible').load(tab.page,function(){reloadContent();});
             }
             if(tab.page == 'ctrl.php'){
-		$("input#search").val('');
+		//$("input#search").val('');
                 $("li.search").hide();
 		if(!CTRL_Ready) reloadContent();
 		/*CTRL_UpdateSubmitClick(tab.ajout);*/
@@ -540,7 +541,7 @@ function _init(tabNum){
                 var wait = setTimeout(refreshCtrlTable,10);
             }else{
 		$("li.search").show();
-		$('input#search').val('');
+		//$('input#search').val('');
 		$('input#search').quicksearch('.ui-tabs-panel:visible table.tableau tbody tr');
 		placerBtAjout();
 	    }
@@ -574,7 +575,7 @@ function _init(tabNum){
         }
     }
 
-	// retourne le contenue textuel d'un élément Enfant
+    // retourne le contenue textuel d'un élément Enfant
     function getChildText(parentEl,id){
 	return parentEl.children('td#'+id).text();
     }

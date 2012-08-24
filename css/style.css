@@ -292,6 +292,7 @@ label.titre{
     div.target li
     {
 	margin: 4px;
+	padding: 3px;
 	border: 1px solid black;
 	cursor: pointer;
 	background-color: orange;
