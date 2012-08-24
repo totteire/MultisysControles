@@ -16,7 +16,7 @@ function _init(tabNum){
     updateTAb();
     refreshTabClick();
     reloadContent();
-    $(".tableau").tablesorter();    
+    //$(".tableau").tablesorter();    
     function reloadContent(){
 	menuEdit = {'Editer':function(menuItem,menu) {
 			    console.log(tab.page);
@@ -542,7 +542,7 @@ function _init(tabNum){
             }else{
 		$("li.search").show();
 		//$('input#search').val('');
-		$('input#search').quicksearch('.ui-tabs-panel:visible table.tableau tbody tr');
+		//$('input#search').quicksearch('.ui-tabs-panel:visible table.tableau tbody tr');
 		placerBtAjout();
 	    }
             console.log("click sur tab! tab.page: "+tab.page);
