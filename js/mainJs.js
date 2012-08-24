@@ -1,4 +1,5 @@
 prerempli = false;
+// Permet de recharger CTRL la première fois lorsqu'on click sur l'onglet
 CTRL_Ready = false;
 
 
@@ -16,7 +17,7 @@ function _init(tabNum){
     updateTAb();
     refreshTabClick();
     reloadContent();
-    //$(".tableau").tablesorter();    
+    if(!CTRL_Ready) $(".tableau").tablesorter();    
     function reloadContent(){
 	menuEdit = {'Editer':function(menuItem,menu) {
 			    console.log(tab.page);
