@@ -49,7 +49,7 @@ function _init(tabNum){
 		    $('#tabCtrl').html("<h1 style='margin-left:10%;'>Chargement ...</h1>");
 		    $('#tabCtrl').load('ctrlModif.php',{'ID':id},function(){
 			$('#CTRL button.submit').text("Dupliquer");
-			reloadContent(); refreshCtrlTable();
+			updateTAb();reloadContent(); refreshCtrlTable();
 			CTRL_UpdateSubmitClick(tab.ajout);
 			$('#CTRL h2').text("Duplication de document");
 			$('#CTRL #num').val('');

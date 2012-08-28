@@ -127,9 +127,13 @@
             <td><label class="titre">Jugement:</label></td>
             <td colspan=7><select class="combobox" id='jugement' name='jugement'>
                 <option></option>
-                <option value="1">Appareil conforme</option>
-                <option value="2">Appareil conforme après réparation</option>
-                <option value="3">Appareil non conforme</option>
+                <option value="1">Appareil conforme constructeur</option>
+		<option value="2">Appareil conforme utilisateur</option>
+                <option value="3">Appareil conforme technicien vérificateur</option>
+                <option value="4">Réparation constructeur</option>
+		<option value="5">Réparation utilisateur</option>
+                <option value="6">Réparation technicien vérificateur</option>
+                <option value="7">Non conforme</option>
             </select></td>
         </tr>
 	<tr class='ACE CV'>

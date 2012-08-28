@@ -6,10 +6,17 @@
     .small{
         font-size: 7pt;
     }
+    h1{
+	margin-bottom: 0;
+    }
     h2{
         font-style: italic;
         font-weight: bold;
         margin-top: 30px;
+        margin-bottom:0 ;
+    }
+    h3{
+	margin-bottom: 0;
     }
     .footer{
         width:100%;
@@ -29,10 +36,15 @@
     }
     .titre{
         margin: auto;
-        margin-top: 100px;
+        margin-top: 200px;
         margin-bottom: 0px;
         width: 100%;
         text-align: center;
+    }
+    .center{
+	margin: auto;
+	width: 100%;
+	text-align: center;
     }
     .numero{
         margin:auto; 
@@ -53,17 +65,15 @@
         font-style: italic;
         font-size: 9px;
     }
-    h2{
-        margin-bottom:0 ;
-    }
     
 </style>
 <page orientation='portrait' format='A4' style='' <?php if($EnTete == 1)echo "backimg='./img/PAPIERENTETE.jpg'";?>>
     <div class='container' style=''>
         <div class='titre' style=''><h1><?php echo $titre;?></h1></div>
-        <div class='' style='width:100%;margin:auto;text-align:center;font-size:15px;font-style:italic;'>Intervention Sheet</div>
+        <div class='' style='width:100%;margin:0 auto;text-align:center;font-size:15px;font-style:italic;'>Intervention Sheet</div>
         <div class='numero' style=''><h1>N°<?php echo " ".$res['NUM'];?></h1></div>
 
+	<div class='' style="margin-top: 50px;">Toulouse, le <?php setlocale (LC_TIME, 'fr_FR');$date = $res['DATE'];echo strftime("%d %B %Y",strtotime("$date"));?></div>
         <table class='normale' cellspacing='0' style='text-align: left; margin-top:50px;'>
             <tr>
                 <td>Délivré à: </td>
@@ -107,11 +117,12 @@
 	</table>
 
         <div class='titre' style='margin-top: 50px;'><h3>RESULTATS</h3></div>
+        <div class='trad center' style='margin-top:0;margin-bottom: 30px;'>Results</div>
 	<div class='resultats' style=""><?php echo "RESULTAT SUIVANT ".$res['DOCST']." N° ".$res['DOCNUM']." CI-JOINT."; ?></div>
 
         <table class='small footer' cellspacing='0' style=''>
             <tr>
-                <td style='width:33%;text-align:left;'>16/07/2012</td>
+                <td style='width:33%;text-align:left;'>04/06/2012</td>
                 <td style='width:30%;text-align:center;'><?php echo $titre?></td>
                 <td style='width:33%;text-align:right;'>1/1</td>
             </tr>

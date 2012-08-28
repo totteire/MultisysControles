@@ -147,7 +147,7 @@
         </div>
         <table class='small footer' cellspacing='0' style=''>
             <tr>
-                <td style='width:33%;text-align:left;'>29/06/2011</td>
+                <td style='width:33%;text-align:left;'>04/06/2012</td>
                 <td style='width:30%;text-align:center;'><?php echo $titre?></td>
                 <td style='width:33%;text-align:right;'>1/2</td>
             </tr>
@@ -192,16 +192,39 @@
         <h2>¤ JUGEMENT ¤</h2>
         <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Operation assessment</div>
         <table class='normale' cellspacing='0' style=''>
-            <tr><td>(<?php if($res['JUGEMENT'] == 1) echo "X"; else echo "&nbsp;&nbsp;";?>) Appareil conforme aux spécifications énoncées par le constructeur pour les gammes vérifiées.<br><span style='margin-left:20px' class='trad'>Device in compliance with the manufacturer's specifications for the verified ranges.</span></td></tr>
-            <tr><td>(<?php if($res['JUGEMENT'] == 2) echo "X"; else echo "&nbsp;&nbsp;";?>) Appareil conforme aux spécifications énoncées par le constructeur après réparation.<br><span style='margin-left:20px' class='trad'>Device in compliance with the manufacturer's specifications for the verified ranges after repairing.</span></td></tr>
-            <tr><td>(<?php if($res['JUGEMENT'] == 3) echo "X"; else echo "&nbsp;&nbsp;";?>) Appareil non conforme.<br><span style='margin-left:20px' class='trad'>Device not in compliance.</span></td></tr>
+	    <?php
+		switch($res['JUGEMENT']){
+		    case 1:
+			echo "<tr><td>Appareil conforme aux spécifications énoncées par le constructeur.<br><span style='margin-left:20px' class='trad'>Device in compliance with the manufacturer's specifications.</span></td></tr>";
+			break;
+		    case 2:
+			echo "<tr><td>Appareil conforme aux spécifications énoncées par l'utilisateur.<br><span style='margin-left:20px' class='trad'>Device in compliance with the user's specifications.</span></td></tr>";
+			break;
+		    case 3:
+			echo "<tr><td>Appareil conforme aux spécifications énoncées par le technicien vérificateur.<br><span style='margin-left:20px' class='trad'>Device in compliance with the technician's specifications.</span></td></tr>";
+			break;
+		    case 4:
+			echo "<tr><td>Appareil conforme aux spécifications énoncées par le constructeur.<br><span style='margin-left:20px' class='trad'>Device in compliance with the manufacturer's specifications after reparing.</span></td></tr>";
+			break;
+		    case 5:
+			echo "<tr><td>Appareil conforme aux spécifications énoncées par l'utilisateur.<br><span style='margin-left:20px' class='trad'>Device in compliance with the user's specifications after reparing.</span></td></tr>";
+			break;
+		    case 6:
+			echo "<tr><td>Appareil conforme aux spécifications énoncées par le technicien vérificateur.<br><span style='margin-left:20px' class='trad'>Device in compliance with the technician's specifications after reparing.</span></td></tr>";
+			break;
+		    case 7:
+			echo "<tr><td>Appareil non conforme.<br><span style='margin-left:20px' class='trad'>Device not in compliance with the user's specifications.</span></td></tr>";
+			break;
+		}	
+
+	    ?>
         </table>
         <h2>¤ OBSERVATIONS ¤</h2>
         <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Observations</div>
         <div class='normale'><?php if($res['OBSERVATION'] == '')echo "NÉANT"; else echo nl2br($res['OBSERVATION']);?></div>
         <table class='small footer' cellspacing='0' style=''>
             <tr>
-                <td style='width:33%;text-align:left;'>16/07/2012</td>
+                <td style='width:33%;text-align:left;'>04/06/2012</td>
                 <td style='width:30%;text-align:center;'><?php echo $titre?></td>
                 <td style='width:33%;text-align:right;'>2/2</td>
             </tr>
