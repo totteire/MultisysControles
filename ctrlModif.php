@@ -206,9 +206,9 @@
 	<tr class='CE CV mandatory'>
             <td><label class="titre">Jugement:</label></td>
             <td colspan=7><select class="combobox" id='jugement' name='jugement'>
-                <option <?php if($ctrl['JUGEMENT']==1)echo "selected='selected' " ?>value="1">Appareil conforme constructeur</option>
-		<option <?php if($ctrl['JUGEMENT']==2)echo "selected='selected' " ?>value="2">Appareil conforme utilisateur</option>
-                <option <?php if($ctrl['JUGEMENT']==3)echo "selected='selected' " ?>value="3">Appareil conforme technicien vérificateur</option>
+                <option <?php if($ctrl['JUGEMENT']==1)echo "selected='selected' " ?>value="1">Conforme constructeur</option>
+		<option <?php if($ctrl['JUGEMENT']==2)echo "selected='selected' " ?>value="2">Conforme utilisateur</option>
+                <option <?php if($ctrl['JUGEMENT']==3)echo "selected='selected' " ?>value="3">Conforme technicien vérificateur</option>
                 <option <?php if($ctrl['JUGEMENT']==4)echo "selected='selected' " ?>value="4">Réparation constructeur</option>
 		<option <?php if($ctrl['JUGEMENT']==5)echo "selected='selected' " ?>value="5">Réparation utilisateur</option>
                 <option <?php if($ctrl['JUGEMENT']==6)echo "selected='selected' " ?>value="6">Réparation technicien vérificateur</option>
