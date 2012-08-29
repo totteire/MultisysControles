@@ -117,7 +117,7 @@
 		</select>
 	    </td>
 	</tr>
-	<tr class='static appareil mandatory'>
+	<tr class='static appareil autoInsert mandatory'>
 	    <td><label class="titre">Désignation:</label></td>
 	    <td class='minWidth'><select id="AppDesi" class="combobox noArrow" name='appDesi'>
 	    <?php 
