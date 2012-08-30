@@ -118,6 +118,10 @@ table.inline{
     position: fixed !important;
 
 }
+#CtrlClear{
+    float: right;
+    margin-right: 15px;
+}
 /* ----------- messageDiv ----------- */
 #message{
     display:none;
@@ -204,6 +208,7 @@ label.titre{
 }
 #CTRL table{
     min-width: 600px;
+    width: 100%;
     margin: auto auto auto 30px;
 }
 .ui-autocomplete-loading {

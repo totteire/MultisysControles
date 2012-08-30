@@ -75,7 +75,7 @@
         <tr style="display:none;"><td><input type="text" name="pdf_edit" value="<?php echo $ctrl['PDF_EDIT'];?>"/></td></tr>
         <tr class='static menu type'>
             <td><label class="titre">Type: </label></td>
-            <td colspan=7>
+            <td colspan=6>
                 <div class="radio" style="display:inline;">
 		            <input type="radio" id="brEssai" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'ACE')echo "checked=true" ?> value="ACE"/><label for="brEssai">ACE</label>
 		            <input type="radio" id="brVerif" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'CV')echo "checked=true" ?> value="CV"/><label for="brVerif">CV</label>
@@ -84,6 +84,10 @@
                 </div>
                 <h2 style="color:#EB8F00;display:inline;margin-left:150px;">Édition du document</h2>
             </td>
+
+	    <td style="padding-left:200px;">
+		<img id="CtrlClear" class="button" src="img/clear.png" />
+	    </td>
         </tr>
         <tr class='static menu lieu'>
             <td><label class="titre">Lieu:</label></td>
@@ -170,7 +174,7 @@
             <td><label class="titre">Num Chassis:</label></td>
             <td><input type='text' value='<?php echo $ctrl['NUM_CHASSIS'];?>' class="ui-corner-all toValidate validated" name='numC' id='numC'/></td>
         </tr>
-        <tr class='Par CV CE mandatory'>
+        <tr class='Par CV mandatory'>
             <td><label class="titre">Paramètres:</label></td>
             <td colspan=7><select id="Par" class="combobox" name="Par"><option><?php echo $nbParChecked." selections" ?></option></select><a id="ajoutParCtr" class='editParMM' href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
         </tr>
