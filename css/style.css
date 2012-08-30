@@ -122,6 +122,13 @@ table.inline{
     float: right;
     margin-right: 15px;
 }
+img#clearSearch{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+}
 /* ----------- messageDiv ----------- */
 #message{
     display:none;
@@ -133,6 +140,14 @@ table.inline{
     text-align:center;
     z-index: 999999;
 }
+
+.tabs{
+}
+.tableau tbody{
+    height:100%;
+    overflow-y:auto;
+}
+
 /* ----------- stylized ----------- */
 #stylized{
     border:solid 2px #b7ddf2;

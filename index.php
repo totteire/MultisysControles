@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-	<title>Gestion Constats</title>
+	<title>Documents Métrologie</title>
 	<link media="screen, projection, print" href="css/style.css" type="text/css" rel="stylesheet"/>
 	<link type="text/css" href="./js/jquery-ui-1.8.18.custom/css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
 	<script type="text/javascript" src="js/jquery-ui-1.8.18.custom/js/jquery-1.7.1.min.js"></script>

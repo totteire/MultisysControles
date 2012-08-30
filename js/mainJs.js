@@ -487,6 +487,10 @@ function _init(tabNum){
     }
     // FIN RELOAD CONTENT
      
+    $("#clearSearch").click(function(){
+	$("input#search").val("");	    
+	$("input#search").trigger("keyup");
+    })
 
     function updateSubmitClick(php, cssButton, formData){
         if(cssButton === undefined) cssButton = tab.dialogId+' button.submit';
@@ -544,7 +548,7 @@ function _init(tabNum){
             }else{
 		$("li.search").show();
 		//$('input#search').val('');
-		//$('input#search').quicksearch('.ui-tabs-panel:visible table.tableau tbody tr');
+		$('input#search').quicksearch('.ui-tabs-panel:visible table.tableau tbody tr');
 		placerBtAjout();
 	    }
             console.log("click sur tab! tab.page: "+tab.page);
@@ -797,16 +801,17 @@ function numSC_Change(){
 							    }
 						    });
 						    if ( !valid ) {
-							    // remove invalid value, as it didn't match anything
-//								$( this ).val( "" );
-//								select.val( "" );
-//								console.log(input);
-//								input.data( "autocomplete" ).term = "";
 							if($(this).parent().parent().hasClass('autoInsert')){
 							    select.children("option:selected").removeAttr("selected");
 							    $(this).css('background','orange');
 							    $(select).append("<option selected='selected' value='%"+$(this).val()+"'></option>");
 							    return false;
+							}else{
+							    // remove invalid value, as it didn't match anything
+							    $( this ).val( "" );
+							    select.val( "" );
+							    console.log(input);
+							    input.data( "autocomplete" ).term = "";
 							}
 						    }
 					    }

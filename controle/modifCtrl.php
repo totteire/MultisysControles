@@ -10,7 +10,6 @@ $cli = $_POST['cli'];
 $app_desi = $_POST['appDesi'];
 $app_marque = $_POST['appMarque'];
 $app_type = $_POST['appType'];
-#$app = $_POST['app'];
 $numS = trim($_POST['numS']);
 $numC = trim($_POST['numC']);
 $date = date("Y-m-d", strtotime($_POST['date']));

@@ -16,7 +16,7 @@
                 </div>
                 <h2 style="color:#EB8F00;display:inline;margin-left:150px;">Nouveau Document</h2>
             </td>
-	    <td style="padding-left:200px;">
+	    <td>
 		<img id="CtrlClear" class="button" src="img/clear.png" />
 	    </td>
         </tr>
