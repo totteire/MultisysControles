@@ -2,7 +2,6 @@
 
 include('../connect.php');
 
-
 if(isset($_POST['radioType'])) $type = $_POST['radioType']; else $type = "";
 if(isset($_POST['radioLieu'])) $lieu = $_POST['radioLieu']; else $lieu = "";
 $num = trim($_POST['num']);
@@ -20,7 +19,7 @@ $jugement = $_POST['jugement'];
 $observation = addslashes(trim($_POST['observation']));
 $PAR = $_POST['PAR'];
 $MM = $_POST['MM'];
-$docST = $_POST['docST'];
+$docST = addslashes(trim($_POST['docST']));
 $docNum = $_POST['docNum'];
 
 if(strpbrk($numS,'*') || $numS == "") $numS = "****";
