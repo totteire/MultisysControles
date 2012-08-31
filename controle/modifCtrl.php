@@ -17,7 +17,7 @@ $temp = trim($_POST['temp']);
 $tech = $_POST['tech'];
 if($tech == "%" || $tech == "")$tech = 1;
 $jugement = $_POST['jugement'];
-$observation = trim($_POST['observation']);
+$observation = addslashes(trim($_POST['observation']));
 $PAR = $_POST['PAR'];
 $MM = $_POST['MM'];
 $docST = $_POST['docST'];
@@ -76,6 +76,9 @@ if($verifChamps){
             $getIdType = mysql_query("SELECT ID FROM APP_TYPE WHERE TYPE='$app_type';") or die(mysql_error());
             $app_type = mysql_result($getIdType,0);
         }
+	if (strpbrk($docST, '%'))
+	    $docST = strtoupper(str_replace('%', '', $docST));
+
         $reqModifCtrl = mysql_query("UPDATE CONTROLE SET NUM='$num', ID_APP_DESI='$app_desi',ID_APP_MARQUE='$app_marque',ID_APP_TYPE='$app_type', ID_AVOIR='$cli', TYPE_CTRL='$type', DATE='$date', TECHNICIEN='$tech', TEMPERATURE='$temp', LIEU='$lieu', JUGEMENT='$jugement', OBSERVATION='$observation', NUM_SERIE='$numS', NUM_CHASSIS='$numC', PDF_EDIT='$pdf_edit', DOCNUM='$docNum', DOCST='$docST' WHERE ID='$id';") or die(mysql_error());
         $reqID = mysql_query("SELECT ID FROM CONTROLE WHERE NUM='$num';")or die(mysql_error());
         $resID = mysql_fetch_array($reqID);

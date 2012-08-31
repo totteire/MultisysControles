@@ -16,7 +16,7 @@
                 </div>
                 <h2 style="color:#EB8F00;display:inline;margin-left:150px;">Nouveau Document</h2>
             </td>
-	    <td>
+	    <td style="padding-left:200px;">
 		<img id="CtrlClear" class="button" src="img/clear.png" />
 	    </td>
         </tr>
@@ -196,7 +196,7 @@
 	<button class="submit">Enregistrer</button>
         <table class="inline">
 	    <?php
-		$req4="SELECT ID, LIBELLE FROM MOYEN_MESURE;";
+		$req4="SELECT ID, LIBELLE, NOM_VERIF FROM MOYEN_MESURE ORDER BY NOM_VERIF;";
 		$result4=mysql_query($req4)or die(mysql_error());
 		$middleRow = ceil(mysql_num_rows(mysql_query($req4)) / 2);
 		$nb=0;

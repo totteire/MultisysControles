@@ -37,13 +37,14 @@
         <button class="submit">Enregistrer</button>
     </div>
     <div id="dialogMMCtr" class="dialog">
+	<button class="submit">Enregistrer</button>
         <table class="inline">
         <?php
             $resultCheckedMM=mysql_query("SELECT ID_1 FROM UTILISER WHERE ID = $id;")or die(mysql_error());
             $checkedId = array();
             while($resCheckedId=mysql_fetch_array($resultCheckedMM))
                 array_push($checkedId, $resCheckedId['ID_1']);
-            $reqMM="SELECT ID,LIBELLE FROM MOYEN_MESURE;";
+            $reqMM="SELECT ID,LIBELLE, NOM_VERIF FROM MOYEN_MESURE ORDER BY NOM_VERIF;";
             $resultMM=mysql_query($reqMM)or die(mysql_error());
             $middleRow = ceil(mysql_num_rows(mysql_query($reqMM)) / 2);
             $nb=0;
@@ -85,7 +86,7 @@
                 <h2 style="color:#EB8F00;display:inline;margin-left:150px;">Édition du document</h2>
             </td>
 
-	    <td>
+	    <td style="padding-left:200px;">
 		<img id="CtrlClear" class="button" src="img/clear.png" />
 	    </td>
         </tr>
@@ -223,7 +224,7 @@
             <td><label class="titre">Observation:</label></td>
             <td colspan=7><textarea type='textarea' class="ui-corner-all" name='observation' id='observation'><?php echo $ctrl['OBSERVATION'] ?></textarea></td>
         </tr>
-	<tr class='FI mandatory'>
+	<tr class='FI mandatory autoInsert'>
 	    <td><label class="titre">Documents:</label></td>
 	    <td colspan=7>
 		<select id="docsSt" class="combobox" name="docST">

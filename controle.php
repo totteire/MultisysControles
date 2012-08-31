@@ -2,7 +2,7 @@
 </div>
 <table id="tableCol" class="tableau tablesorter">
 	<thead><tr><th class='info'></th><th>Numéro</th><th>Type</th><th>Date</th><th>Client</th><th>APP-Designation</th><th>APP-Marque</th><th>APP-Type</th><th>Num Série</th><th>Num Chassis</th><th></th></tr></thead>
-    <tbody style="overflow-y: scroll; overflow-x: hidden; height: 100px;">
+    <tbody style="">
 	<?php
 		include('connect.php');
 		$req="SELECT CONTROLE.ID,CONTROLE.NUM,CONTROLE.TYPE_CTRL,CONTROLE.DATE,CONTROLE.NUM_SERIE,CONTROLE.NUM_CHASSIS, CONTROLE.PDF_EDIT, NOM, DESIGNATION,MARQUE,TYPE,TECHNICIEN FROM CONTROLE,CLIENT C, APP_DESI, APP_MARQUE, APP_TYPE WHERE C.ID=CONTROLE.ID_AVOIR AND APP_DESI.ID=CONTROLE.ID_APP_DESI AND APP_MARQUE.ID=CONTROLE.ID_APP_MARQUE AND APP_TYPE.ID=CONTROLE.ID_APP_TYPE ORDER BY CONTROLE.ID DESC;";

@@ -116,8 +116,8 @@
 	    </tr>
 	</table>
 
-        <div class='titre' style='margin-top: 50px;'><h3>RESULTATS</h3></div>
-        <div class='trad center' style='margin-top:0;margin-bottom: 30px;'>Results</div>
+        <h2 style="margin-top: 50px;">¤ RESULTATS ¤</h2>
+        <div class='trad' style='margin-left:20px;margin-bottom:15px;'>Results</div>
 	<div class='resultats' style=""><?php echo "RESULTAT SUIVANT ".$res['DOCST']." N° ".$res['DOCNUM']." CI-JOINT."; ?></div>
 
         <table class='small footer' cellspacing='0' style=''>

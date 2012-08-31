@@ -124,7 +124,7 @@ table.inline{
 }
 img#clearSearch{
     position: absolute;
-    top: 5px;
+    top: 6px;
     right: 5px;
     margin-left: 5px;
     cursor: pointer;
