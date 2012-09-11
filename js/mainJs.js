@@ -473,6 +473,7 @@ function _init(tabNum){
 		$("#tabCtr tr.selected").removeClass('selected');
 		$(this).parent().parent().addClass('selected'); 
 	    }
+	    $(this).children("img").attr('src','img/pdfVert.png');
 	});
 	// BOUTTONS GLISSANTS ////////////////////////////////////////////////////////////
 	placerBtAjout();                                                               ///

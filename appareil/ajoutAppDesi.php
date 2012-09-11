@@ -1,7 +1,7 @@
 <?php
 
 $id=trim($_POST['id']);
-$desig=trim(strtoupper($_POST['desig']));
+$desig=trim(strtoupper(addslashes($_POST['desig'])));
 
 if ($desig){
     include("../connect.php");

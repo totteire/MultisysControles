@@ -196,7 +196,7 @@
 	<button class="submit">Enregistrer</button>
         <table class="inline">
 	    <?php
-		$req4="SELECT ID, LIBELLE, NOM_VERIF FROM MOYEN_MESURE ORDER BY NOM_VERIF;";
+		$req4="SELECT ID, LIBELLE, NOM_VERIF FROM MOYEN_MESURE ORDER BY ORDRE, LIBELLE;";
 		$result4=mysql_query($req4)or die(mysql_error());
 		$middleRow = ceil(mysql_num_rows(mysql_query($req4)) / 2);
 		$nb=0;

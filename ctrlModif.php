@@ -44,7 +44,7 @@
             $checkedId = array();
             while($resCheckedId=mysql_fetch_array($resultCheckedMM))
                 array_push($checkedId, $resCheckedId['ID_1']);
-            $reqMM="SELECT ID,LIBELLE, NOM_VERIF FROM MOYEN_MESURE ORDER BY NOM_VERIF;";
+            $reqMM="SELECT ID,LIBELLE, NOM_VERIF FROM MOYEN_MESURE ORDER BY ORDRE, LIBELLE;";
             $resultMM=mysql_query($reqMM)or die(mysql_error());
             $middleRow = ceil(mysql_num_rows(mysql_query($reqMM)) / 2);
             $nb=0;
