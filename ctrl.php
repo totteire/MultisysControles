@@ -111,7 +111,7 @@
 		<input type='text' class="ui-corner-all" name='temp' id='temp'/>°C
 	    </td>
 	</tr>
-	<tr class='ACE CV CE  mandatory'>
+	<tr class='ACE CV CE mandatory'>
 	    <td><label class="titre">Technicien:</label></td>
 	    <td colspan=7>
 		<select id="technicien" class="combobox" name='tech'>

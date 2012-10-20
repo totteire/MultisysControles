@@ -208,7 +208,7 @@
 	    </select>
             </td>
 	</tr>
-	<tr class='CE CV mandatory'>
+	<tr class='ACE CV mandatory'>
             <td><label class="titre">Jugement:</label></td>
             <td colspan=7><select class="combobox" id='jugement' name='jugement'>
                 <option <?php if($ctrl['JUGEMENT']==1)echo "selected='selected' " ?>value="1">Conforme constructeur</option>

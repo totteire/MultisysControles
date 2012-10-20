@@ -129,7 +129,7 @@
 		<td><img <?php echo "src='".$res['SIGNATURE']."'"; ?> style="width:120px;height:54px;" \></td>
             </tr>
             <tr>
-                <td>Ce constat comprend :<br><span class='trad'>This certificate includes</span></td>
+                <td>Ce certificat comprend :<br><span class='trad'>This certificate includes</span></td>
                 <td><b>1 page</b></td>
                 <td style='padding-left:40px;'><b>Date de vérification : <?php echo date("d-m-Y",strtotime($res["DATE"]))?></b><br><span class='trad'>Verification date</span></td>
             </tr>
