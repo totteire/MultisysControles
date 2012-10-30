@@ -204,13 +204,13 @@
 			echo "<tr><td>Appareil conforme aux spécifications énoncées par le technicien vérificateur.<br><span style='margin-left:20px' class='trad'>Device in compliance with the technician's specifications.</span></td></tr>";
 			break;
 		    case 4:
-			echo "<tr><td>Appareil conforme aux spécifications énoncées par le constructeur.<br><span style='margin-left:20px' class='trad'>Device in compliance with the manufacturer's specifications after reparing.</span></td></tr>";
+			echo "<tr><td>Appareil conforme aux spécifications énoncées par le constructeur après réparation.<br><span style='margin-left:20px' class='trad'>Device in compliance with the manufacturer's specifications after reparing.</span></td></tr>";
 			break;
 		    case 5:
-			echo "<tr><td>Appareil conforme aux spécifications énoncées par l'utilisateur.<br><span style='margin-left:20px' class='trad'>Device in compliance with the user's specifications after reparing.</span></td></tr>";
+			echo "<tr><td>Appareil conforme aux spécifications énoncées par l'utilisateur après réparation.<br><span style='margin-left:20px' class='trad'>Device in compliance with the user's specifications after reparing.</span></td></tr>";
 			break;
 		    case 6:
-			echo "<tr><td>Appareil conforme aux spécifications énoncées par le technicien vérificateur.<br><span style='margin-left:20px' class='trad'>Device in compliance with the technician's specifications after reparing.</span></td></tr>";
+			echo "<tr><td>Appareil conforme aux spécifications énoncées par le technicien vérificateur après réparation.<br><span style='margin-left:20px' class='trad'>Device in compliance with the technician's specifications after reparing.</span></td></tr>";
 			break;
 		    case 7:
 			echo "<tr><td>Appareil non conforme.<br><span style='margin-left:20px' class='trad'>Device not in compliance with the user's specifications.</span></td></tr>";
