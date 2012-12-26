@@ -183,7 +183,7 @@ img#clearSearch{
 }
 #stylized input,textarea{
     float:left;
-    font-size:12px;
+    font-size:20px;
     padding:4px 2px;
     border:solid 1px #aacfe4;
     width:200px;
@@ -268,7 +268,7 @@ label.titre{
 	cursor:pointer;
 	color:black;
 	font-family:Helvetica,DejaVu Sans,Arial;
-	font-size:12px;
+	font-size:20px;
 	line-height:20px;
 	height:28px;
 	border:1px solid #F9F5F2;
