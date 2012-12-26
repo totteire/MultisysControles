@@ -97,13 +97,13 @@
             <td><label class="titre">Num Chassis:</label></td>
             <td><input type='text' class="ui-corner-all validated" name='numC' id='numC'/></td>
         </tr>
-        <tr class='Par CV mandatory'>
-            <td><label class="titre">Paramètres:</label></td>
-            <td colspan=7><select id="Par" class="combobox" name="Par"></select><a id="ajoutParCtr" class='editParMM' href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
-        </tr>
         <tr class='CV CE mandatory'>
             <td><label class="titre">Moyens de mesure:</label></td>
             <td colspan=7><select id="MM" class="combobox" name="MM"></select><a id="ajoutMMCtr" class='editParMM' href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
+        </tr>
+        <tr class='Par CV mandatory'>
+            <td><label class="titre">Paramètres:</label></td>
+            <td colspan=7><select id="Par" class="combobox" name="Par"></select><a id="ajoutParCtr" class='editParMM' href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
         </tr>
         <tr class='site mandatory'>
 	    <td><label class="titre">Température:</label></td>
