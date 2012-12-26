@@ -172,7 +172,7 @@
     <div id="dialogParCtr" class="dialog">
         <table class="inline">
         <?php 
-            $req3="SELECT ID, LIBELLE FROM PARAMETRE;";
+            $req3="SELECT ID, LIBELLE FROM PARAMETRE ORDER BY LIBELLE;";
             $result3=mysql_query($req3)or die(mysql_error());
             $middleRow = ceil(mysql_num_rows(mysql_query($req3)) / 2);
             $nb=0;

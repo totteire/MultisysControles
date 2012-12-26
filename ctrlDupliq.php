@@ -13,7 +13,7 @@
             $checkedId = array();
             while($resCheckedId=mysql_fetch_array($resultCheckedPar))
                 array_push($checkedId, $resCheckedId['ID_1']);
-            $reqPar="SELECT ID,LIBELLE FROM PARAMETRE;";
+            $reqPar="SELECT ID,LIBELLE FROM PARAMETRE ORDER BY LIBELLE;";
             $resultPar=mysql_query($reqPar)or die(mysql_error());
             $middleRow = ceil(mysql_num_rows($resultPar) / 2);
             $nb=0;
