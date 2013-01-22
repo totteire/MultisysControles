@@ -138,9 +138,7 @@
             <div style=''>
                 - La reproduction de ce document n'est autorisée que sous forme de fac-similé photographique intégral.<br><span class='trad' style='margin-left:5px'>The reproduction of this certificate is only permitted through an integral facsimile</span>
             </div>
-            <div style=''>
-                - Ce document ne peut être utilisé en lieu et place d'un certificat d'étalonnage.<br><span class='trad' style='margin-left:5px'>This document cannot be used in place of a calibration certificate.</span>
-            </div>
+            
         </div>
         <table class='small footer' cellspacing='0' style=''>
             <tr>

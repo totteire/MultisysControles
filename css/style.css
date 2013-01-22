@@ -248,7 +248,7 @@ label.titre{
 }
 #tabCtr table.tableau td{
     overflow: hidden;
-    max-width: 180px;
+    max-width: 150px;
     white-space: nowrap;
 }
 #CTRL tr.bouttons button, #CTRL tr.bouttons a{
