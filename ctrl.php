@@ -7,18 +7,16 @@
     <table>
         <tr class='static menu type'>
             <td><label class="titre">Type: </label></td>
-            <td colspan=6>
+            <td colspan=7>
                 <div class="radio" style="display:inline;">
 		            <input type="radio" id="brEssai" name="radioType" value="ACE"/><label for="brEssai">ACE</label>
 		            <input type="radio" id="brVerif" name="radioType" value="CV"/><label for="brVerif">CV</label>
 		            <input type="radio" id="brEtal" name="radioType" value="CE"/><label for="brEtal">CE</label>
 			    <input type="radio" id="brInter" name="radioType" value="FI"/><label for="brInter">FI</label>
                 </div>
-                <h2 style="color:#EB8F00;display:inline;margin-left:150px;">Nouveau Document</h2>
-            </td>
-	    <td style="padding-left:200px;">
 		<img id="CtrlClear" class="button" src="img/clear.png" />
-	    </td>
+                <h2 style="color:#EB8F00;display:inline;margin-left:70px;">Nouveau Document</h2>
+            </td>
         </tr>
         <tr class='static menu lieu'>
             <td><label class="titre">Lieu:</label></td>

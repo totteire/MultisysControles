@@ -76,19 +76,17 @@
         <tr style="display:none;"><td><input type="text" name="pdf_edit" value="<?php echo $ctrl['PDF_EDIT'];?>"/></td></tr>
         <tr class='static menu type'>
             <td><label class="titre">Type: </label></td>
-            <td colspan=6>
+            <td colspan=7>
                 <div class="radio" style="display:inline;">
 		            <input type="radio" id="brEssai" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'ACE')echo "checked=true" ?> value="ACE"/><label for="brEssai">ACE</label>
 		            <input type="radio" id="brVerif" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'CV')echo "checked=true" ?> value="CV"/><label for="brVerif">CV</label>
 		            <input type="radio" id="brEtal" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'CE')echo "checked=true" ?> value="CE"/><label for="brEtal">CE</label>
 			    <input type="radio" id="brInter" name="radioType" <?php if($ctrl['TYPE_CTRL'] == 'FI')echo "checked=true" ?> value="FI"/><label for="brInter">FI</label>
                 </div>
-                <h2 style="color:#EB8F00;display:inline;margin-left:150px;">Édition du document</h2>
+		<img id="CtrlClear" class="button" src="img/clear.png" />
+                <h2 style="color:#EB8F00;display:inline;margin-left:70px;">Édition du document</h2>
             </td>
 
-	    <td style="padding-left:200px;">
-		<img id="CtrlClear" class="button" src="img/clear.png" />
-	    </td>
         </tr>
         <tr class='static menu lieu'>
             <td><label class="titre">Lieu:</label></td>

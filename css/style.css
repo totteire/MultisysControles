@@ -119,8 +119,7 @@ table.inline{
 
 }
 #CtrlClear{
-    float: right;
-    margin-right: 15px;
+    margin-left: 50px;
 }
 img#clearSearch{
     position: absolute;
