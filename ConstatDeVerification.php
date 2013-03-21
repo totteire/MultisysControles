@@ -59,14 +59,14 @@
 </style>
 
 <?php
-    $req = "SELECT LIBELLE, NOM_VERIF, NUM_DATE_VERIF FROM MOYEN_MESURE, UTILISER U WHERE U.ID_1 = MOYEN_MESURE.ID AND U.ID=$ctrlId";
+    $req = "SELECT LIBELLE, NOM_VERIF, NUM_DATE_VERIF FROM MOYEN_MESURE, UTILISER U WHERE U.ID_1 = MOYEN_MESURE.ID AND U.ID=$ctrlId ORDER BY MOYEN_MESURE.ORDRE";
     $resultMM = mysql_query($req) or die(mysql_error());
     
     $req = "SELECT LIBELLE, LABEL FROM PARAMETRE, VERIFIER V WHERE V.ID_1 = PARAMETRE.ID AND V.ID=$ctrlId";
     $resultPar = mysql_query($req) or die(mysql_error());
 ?>
 
-<page orientation='portrait' format='A4' style='' <?php if($EnTete == 1) echo "backimg='./img/PAPIERENTETE.jpg'";?>>
+<page orientation='portrait' format='A4' style='' <?php if($ilEnTete == 1) echo "backimg='./img/PAPIERENTETE.jpg'";?>>
     <div class='container' style=''>
         <div class='titre' style=''><h1 style='margin-bottom:5px;'><?php echo $titre;?></h1></div>
         <div class='' style='width:100%;margin:auto;text-align:center;font-size:15px;font-style:italic;'>Calibration Certificate</div>
