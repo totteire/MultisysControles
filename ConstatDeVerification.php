@@ -144,6 +144,9 @@
             <div style=''>
                 - Ce document ne peut être utilisé en lieu et place d'un certificat d'étalonnage.<br><span class='trad' style='margin-left:5px'>This document cannot be used in place of a calibration certificate.</span>
             </div>
+            <div style=''>
+                - Ce document est réalisé suivant les recommandations des fascicules de documentation AFNOR X07-011 définissant le constat de vérification.<br><span class='trad' style='margin-left:5px'>This document is issued according to AFNOR X07-011 documentation section which define a calibration certificate.</span>
+            </div>
         </div>
         <table class='small footer' cellspacing='0' style=''>
             <tr>
