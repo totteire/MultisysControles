@@ -2,7 +2,7 @@
 
 $host="localhost";
 $username="root";
-$password="";
+$password="toor";
 $db_name="multisys";
 
 // Connection à la  base de données
