@@ -96,10 +96,12 @@
         <tr class='static mandatory'>
             <td><label class="titre">Numéro:</label></td>
             <td><input type='text' class="ui-corner-all" value=<?php echo $ctrl['NUM'] ?> name='num' id='num' defaut=<?php include('getCtrlNum.php');?>></td>
-	    <td><label class="titre narrow">Date:</label></td>
-	    <td><input type="text" id="date" class='datepicker ui-corner-all' name="date" size="20" value=<?php echo date('d-m-Y',strtotime($ctrl['DATE'])) ?>></td>
         </tr>
-	<tr class='static mandatory'>
+        <tr class='static mandatory'>
+            <td><label class="titre narrow">Date:</label></td>
+            <td><input type="text" id="date" class='datepicker ui-corner-all' name="date" size="20" value=<?php echo date('d-m-Y',strtotime($ctrl['DATE'])) ?>></td>
+        </tr>
+        <tr class='static mandatory'>
             <td><label class="titre">Client:</label></td>
             <td colspan=7>
                 <select id="cli" class="combobox" name='cli'>
@@ -131,6 +133,8 @@
 	    ?>
 		</select>
 	    </td>
+	</tr>
+	<tr class='static appareil mandatory'>
 	    <td><label class="titre  narrow">Marque:</label></td>
 	    <td class='minWidth'><select id="AppMarq" class="combobox" name='appMarque'>
 	    <?php
@@ -144,6 +148,8 @@
 		}
 	    ?>
 	    </select>
+	</tr>
+	<tr class='static appareil mandatory'>
 	    </td>
 	    <td><label class="titre  narrow">Type:</label></td>
             <td class='minWidth'><select id="AppType" class="combobox" name='appType'>
@@ -161,22 +167,22 @@
 	    </td>
 	</tr>
 	<tr class='static'>
-            <td><label class="titre">Num Série:</label></td>
-            <td><input type='text' value='<?php echo $ctrl['NUM_SERIE'];?>' class="ui-corner-all" name='numS' id='numS'/></td>
-        </tr>
+        <td><label class="titre">Num Série:</label></td>
+        <td><input type='text' value='<?php echo $ctrl['NUM_SERIE'];?>' class="ui-corner-all" name='numS' id='numS'/></td>
+    </tr>
 	<tr class='static'>
-            <td><label class="titre">Num Chassis:</label></td>
-            <td><input type='text' value='<?php echo $ctrl['NUM_CHASSIS'];?>' class="ui-corner-all" name='numC' id='numC'/></td>
-        </tr>
-        <tr class='CV CE mandatory'>
-            <td><label class="titre">Moyens de mesure:</label></td>
-            <td colspan=7><select id="MM" class="combobox" name="MM"><option><?php echo $nbMMChecked." selections" ?></option></select><a id="ajoutMMCtr" class='editParMM' href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
-        </tr>
-        <tr class='Par CV CE mandatory'>
-            <td><label class="titre">Paramètres:</label></td>
-            <td colspan=7><select id="Par" class="combobox" name="Par"><option><?php echo $nbParChecked." selections" ?></option></select><a id="ajoutParCtr" class='editParMM' href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
-        </tr>
-        <tr class='site CV mandatory'>
+        <td><label class="titre">Num Chassis:</label></td>
+        <td><input type='text' value='<?php echo $ctrl['NUM_CHASSIS'];?>' class="ui-corner-all" name='numC' id='numC'/></td>
+    </tr>
+    <tr class='CV CE mandatory'>
+        <td><label class="titre">Moyens de mesure:</label></td>
+        <td colspan=7><select id="MM" class="combobox" name="MM"><option><?php echo $nbMMChecked." selections" ?></option></select><a id="ajoutMMCtr" class='editParMM' href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
+    </tr>
+    <tr class='Par CV CE mandatory'>
+        <td><label class="titre">Paramètres:</label></td>
+        <td colspan=7><select id="Par" class="combobox" name="Par"><option><?php echo $nbParChecked." selections" ?></option></select><a id="ajoutParCtr" class='editParMM' href=#><span class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-plusthick'></span></span></a></td>
+    </tr>
+    <tr class='site CV mandatory'>
 	    <td><label class="titre">Température:</label></td>
 	    <td colspan=7>
 		<input type='text' value='<?php echo $ctrl['TEMPERATURE'];?>' class="ui-corner-all" name='temp' id='temp'/>°C
