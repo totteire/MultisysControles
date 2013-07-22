@@ -54,7 +54,7 @@
 		    </tr>";
 		    $nb++;
 		}
-        echo "<span>".$when.$nb." résultats</span>";
+        echo "<div>".$when.$nb." résultats</div>";
 	?>
 	</tbody>
 </table>
