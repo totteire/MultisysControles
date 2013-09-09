@@ -1,6 +1,6 @@
 <button class="btAjout"><h1> +&nbsp; &nbsp; Moyen de Mesure</h1></button>
 <table id="tableau" class="tableau tablesorter">
-	<thead><tr><th class='info'></th><th class="topLeft">Libellé</th><th>Vérification</th><th class="topRight">Numéro & Date</th></tr></thead>
+	<thead><tr><th class='info'></th><th class="topLeft">Libellé</th><th>Vérification</th><th>Numéro & Date</th><th class="topRight">Ordre d'affichage</th></tr></thead>
     <tbody>
 	<?php
 		include('connect.php');
@@ -14,6 +14,7 @@
 				<td id='libelle'>".$res['LIBELLE']."</a></td>
 				<td id='nomVerif'>".$res['NOM_VERIF']."</td>
 				<td id='numDateVerif'>".$res["NUM_DATE_VERIF"]."</td>
+				<td id='order'>".$res["ORDRE"]."</td>
 			</tr>";
 			$nb++;
 		}
@@ -37,6 +38,9 @@
 			<label>Numéro & Date:</label>
 			<input type="text" name="numDateVerif" id="numDateVerif" />
 			
+			<label>Ordre d'affichage:</label>
+			<input type="text" name="order" id="order" />
+
 			<button class="submit">Enregistrer</button>
 		</form>
 	</div>
