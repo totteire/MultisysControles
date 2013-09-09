@@ -73,7 +73,8 @@
         <div class='' style='width:100%;margin:0 auto;text-align:center;font-size:15px;font-style:italic;'>Intervention Sheet</div>
         <div class='numero' style=''><h1>N°<?php echo " ".$res['NUM'];?></h1></div>
 
-        <div class='' style="margin-top: 50px;">Toulouse, le <?php setlocale(LC_TIME, 'fr_FR.utf8');$date = $res['DATE'];echo strftime("%d %B %Y",strtotime("$date"));?></div>
+        <!--<div class='' style="margin-top: 50px;">Toulouse, le <?php //setlocale(LC_TIME, 'fr_FR.utf8');$date = $res['DATE'];echo strftime("%d %B %Y",strtotime("$date"));?></div>-->
+        <div class='' style="margin-top: 50px;">Toulouse, le <?php setlocale(LC_ALL, 'fr-FR.utf8','fra');$date = $res['DATE'];echo strftime("%d %B %Y",strtotime("$date"));?></div>
         <table class='normale' cellspacing='0' style='text-align: left; margin-top:50px;'>
             <tr>
                 <td>Délivré à: </td>
