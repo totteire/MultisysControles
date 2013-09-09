@@ -22,8 +22,8 @@ $MM = $_POST['MM'];
 $docST = addslashes(trim($_POST['docST']));
 $docNum = $_POST['docNum'];
 
-if(strpbrk($numS,'*') || $numS == "") $numS = "****";
-if(strpbrk($numC,'*') || $numC == "") $numC = "****";
+if(($numS=='*') || ($numS == "")) $numS = "****";
+if(($numC=='*') || ($numC == "")) $numC = "****";
 
 switch($type){
     case "ACE":
