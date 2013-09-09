@@ -1,6 +1,6 @@
 <?php
 $id=trim($_POST['id']);
-$type=trim(strtoupper(strtoupper($_POST['type'])));
+$type=trim(strtoupper(addslashes($_POST['type'])));
 
 if (!$id||!$type){
 	$return['error'] = true;

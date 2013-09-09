@@ -1,7 +1,7 @@
 <?php
 $id=trim($_POST['id']);
-$libelle=trim(ucfirst($_POST['libelle']));
-$label=trim(ucfirst($_POST['label']));
+$libelle=addslashes(trim(ucfirst($_POST['libelle'])));
+$label=addslashes(trim(ucfirst($_POST['label'])));
 
 if (!$libelle){
 	$return['error'] = true;

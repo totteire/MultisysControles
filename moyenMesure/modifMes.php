@@ -1,6 +1,6 @@
 <?php
 $id=trim($_POST['id']);
-$libelle=trim($_POST['libelle']);
+$libelle=addslashes(trim($_POST['libelle']));
 $nomVerif=trim($_POST['nomVerif']);
 $numDateVerif=trim($_POST['numDateVerif']);
 $order=trim($_POST['order']);

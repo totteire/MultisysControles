@@ -1,7 +1,7 @@
 <?php
 $id=trim($_POST['id']);
-$nom=trim($_POST['nom']);
-$signature=trim($_POST['signature']);
+$nom=addslashes(trim($_POST['nom']));
+$signature=addslashes(trim($_POST['signature']));
 
 if (!$id||!$nom||!$signature){
 	$return['error'] = true;

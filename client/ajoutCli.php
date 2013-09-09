@@ -1,9 +1,9 @@
 <?php
 
 $id=trim($_POST['id']);
-$nom=trim(strtoupper($_POST['nom']));
-$ad1=trim(strtoupper($_POST['ad1']));
-$ad2=trim(strtoupper($_POST['ad2']));
+$nom=trim(strtoupper(addslashes($_POST['nom'])));
+$ad1=trim(strtoupper(addslashes($_POST['ad1'])));
+$ad2=trim(strtoupper(addslashes($_POST['ad2'])));
 $adVille=trim(strtoupper($_POST['adVille']));
 $adCP=trim(strtoupper($_POST['adCP']));
 

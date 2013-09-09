@@ -1,6 +1,6 @@
 <?php
 $id=trim($_POST['id']);
-$marque=trim(strtoupper(strtoupper($_POST['marque'])));
+$marque=trim(strtoupper(addslashes($_POST['marque'])));
 
 if (!$id||!$marque){
 	$return['error'] = true;
