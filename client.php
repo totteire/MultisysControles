@@ -39,12 +39,11 @@
 			<label></label>
 			<input type="text" name="ad2" id="ad2" />
 
-			<label>Ville:</label>
-
-			<input type="text" name="adVille" id="adVille" />
-			
 			<label>Code Postal:</label>
 			<input type="text" name="adCP" id="adCP"/>
+			
+			<label>Ville:</label>
+			<input type="text" name="adVille" id="adVille" />
 			
 			<button class="submit">Enregistrer</button>
 

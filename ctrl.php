@@ -6,13 +6,13 @@
     <form id="ctrlForm" class="formulaire">
     <table>
         <tr class='static menu type'>
-            <td><label class="titre">Type: </label></td>
-            <td>
+            <td style="width:150px;"><label class="titre">Type: </label></td>
+            <td style="width:240px">
                 <div class="radio" style="display:inline;">
 		            <input type="radio" id="brEssai" name="radioType" value="ACE"/><label for="brEssai">ACE</label>
 		            <input type="radio" id="brVerif" name="radioType" value="CV"/><label for="brVerif">CV</label>
 		            <input type="radio" id="brEtal" name="radioType" value="CE"/><label for="brEtal">CE</label>
-			    <input type="radio" id="brInter" name="radioType" value="FI"/><label for="brInter">FI</label>
+                    <input type="radio" id="brInter" name="radioType" value="FI"/><label for="brInter">FI</label>
                 </div>
             </td>
             <td>
